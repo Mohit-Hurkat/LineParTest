@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="stylemy.css">
-<script src="homepage.js"></script>
+    <script src="js/homepage.js" type="text/javascript"></script>
 <script type="text/javascript">
 $( document ).ready(function(){
 $('.tab a').on('click', function (e) {
@@ -38,7 +38,7 @@ $('.tab a').on('click', function (e) {
       
       <div class="tab-content">
         <div id="signup">   
-          <h1>Sign Up for Free</h1>
+          <h1 class="sign">Sign Up</h1>
           
           <form action="/" method="post">
           
@@ -50,7 +50,7 @@ $('.tab a').on('click', function (e) {
             </label>
             <input type="text"  name="name" required autocomplete="off"/>
             </div>
-	        </div>
+
           
 			<div class="field-wrap">
             <label>
@@ -81,6 +81,7 @@ $('.tab a').on('click', function (e) {
           	</div>   
           	    
           <button type="submit" class="button button-block"/>Get Started</button>
+          </div><!-- top-row -->
           </form>
 
         </div>
@@ -107,10 +108,8 @@ $('.tab a').on('click', function (e) {
           <p class="forgot"><a href="#">Forgot Password?</a></p>
           
           <button class="button button-block">Log In</button>
-          
           </form>
-
-        </div>
+        </div><!-- login -->
       </div><!-- tab-content -->
       
 </div> <!-- /form -->
