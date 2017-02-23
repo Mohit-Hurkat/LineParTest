@@ -5,8 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style1.css">
+<script src="homepage.js"></script>
 </head>
 <body>
-
+	<div class="form">
+      
+      	<ul class="tab-group">
+        	<li class="tab active"><a href="#GiveTest">Give Test</a></li>
+        	<li class="tab"><a href="#UpdateInfo">Update Information</a></li>
+         	<li class="tab"><a href="#PreviousResult">Show Previous Result</a></li>
+		</ul>
+	</div> <!-- /form -->
 </body>
 </html>
