@@ -11,4 +11,5 @@ public interface StudentDao {
 	Student search(String username) throws IOException, ClassNotFoundException, SQLException;
 	List<Student> displayAll() throws IOException,ClassNotFoundException, SQLException;
     boolean update(String username, Student newStudent) throws IOException, ClassNotFoundException, SQLException;
+	boolean updatePass(String mailId, String password) throws IOException, ClassNotFoundException, SQLException;
 }

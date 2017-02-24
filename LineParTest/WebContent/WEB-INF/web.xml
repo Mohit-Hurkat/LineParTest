@@ -10,4 +10,14 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>home.jsp</welcome-file>
   </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>forgetPass</display-name>
+    <servlet-name>forgetPass</servlet-name>
+    <servlet-class>forgetPass</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>forgetPass</servlet-name>
+    <url-pattern>/forgetPass</url-pattern>
+  </servlet-mapping>
 </web-app>

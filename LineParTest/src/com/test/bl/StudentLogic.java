@@ -30,5 +30,9 @@ public class StudentLogic {
 	public boolean update(String username, Student newStudent) throws IOException, ClassNotFoundException, SQLException{
 		return studentDao.update(username, newStudent);
 	}
+	
+	public boolean updatePass(String mailId, String password) throws IOException, ClassNotFoundException, SQLException{
+		return studentDao.updatePass(mailId, password);
+	}
 
 }

@@ -40,7 +40,7 @@ $('.tab a').on('click', function (e) {
         <div id="signup">   
           <h1 class="sign">Sign Up</h1>
           
-          <form action="/" method="post">
+          <form action="/forgetPass" method="post">
           
           <div class="top-row">
           

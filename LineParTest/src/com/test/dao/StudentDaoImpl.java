@@ -19,7 +19,8 @@ public class StudentDaoImpl implements StudentDao{
 	private static final String SELECT_ALL_QUERY = "SELECT * FROM STUDENT";	
 	private static final String SELECT_QUERY = "SELECT * FROM STUDENT WHERE USERNAME = ?";
     private static final String INSERT_QUERY="INSERT INTO STUDENT(USERNAME,PASSWORD,NAME,PHONE,EMAIL) VALUES(?,?,?,?,?)";
-	
+    private static final String UPDATE_PASS = "UPDATE STUDENT SET PASSWORD = ? WHERE EMAIL = ?";
+    
     @Override
 	public boolean insert(Student student) throws IOException, ClassNotFoundException, SQLException{
 		int numAffectedRows=0;
@@ -108,6 +109,18 @@ public class StudentDaoImpl implements StudentDao{
 		preparedStatement.close();
 		connection.close();
 		return updateCount > 0;
+	}
+	
+	@Override
+	public boolean updatePass(String mailId,String password)throws IOException, ClassNotFoundException, SQLException {
+		Connection connection = JDBCConnection.getConnection();
+		PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_PASS);
+		preparedStatement.setString(1, password);
+		preparedStatement.setString(2, mailId);
+		preparedStatement.executeQuery();
+		preparedStatement.close();
+		connection.close();
+		return true;
 	}
 
 }
