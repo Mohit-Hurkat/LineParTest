@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.test.bean.Subject;
+import com.test.bl.SubjectLogic;
 import com.test.bl.TestLogic;
 
  
@@ -37,7 +39,7 @@ public class TestController extends HttpServlet {
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
 				}
-			} catch (ClassNotFoundException | SQLException e) {
+			} catch (ClassNotFoundException | SQLException | InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

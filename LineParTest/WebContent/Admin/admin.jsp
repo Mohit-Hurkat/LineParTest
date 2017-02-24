@@ -28,6 +28,11 @@
         		<li class="float"><a href="./adminSubejct.jsp">Update Subject</a></li>
         	</ul>
         	</li>
-        	<li class="tab " id="update" ><a href="./adminAdmin">Update Admin</a></li>
+        	<li class="tab " id="update" ><a>Admin</a>
+        	<ul class="dropdown-content">
+        		<li style="height: 49px;"></li>
+        		<li class="float"><a href="./adminAdmin.jsp">Update Admin</a></li>
+        	</ul>
+        	</li>
 		</ul>
 	</div> <!-- /form -->

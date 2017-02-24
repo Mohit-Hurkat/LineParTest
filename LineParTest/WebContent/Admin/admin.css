@@ -42,6 +42,7 @@ body {
 .form ul li ul li{
 	 display: block;
     width: 100%;
+    padding:0px;
 
 }
 
@@ -100,9 +101,11 @@ a:hover {
 .float:hover a{
     color:#ffffff;
     }
+    
 .float a{
 	color:rgba(19, 35, 47, 0.9);
-
-	
+	float: left;
+	padding: 15px;
+	width:100%;
 	}
 
