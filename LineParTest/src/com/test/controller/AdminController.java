@@ -20,7 +20,7 @@ public class AdminController extends HttpServlet {
 	 
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("inside admin controller");
+	 
 		if (request.getParameter("login") != null) {
 			
 			String user=request.getParameter("username");
@@ -30,8 +30,8 @@ public class AdminController extends HttpServlet {
 				if(lc.check(user,pass))
 				{
 					HttpSession session=request.getSession();  
-			        session.setAttribute("username",user); 
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
+			        session.setAttribute("username",user); //use this attribute to display data
+					RequestDispatcher dispatch=request.getRequestDispatcher("./admin.jsp");
 					dispatch.forward(request, response);
 				}
 				else
@@ -58,7 +58,7 @@ public class AdminController extends HttpServlet {
 				String newuser=request.getParameter("userName");
 				String newpass=request.getParameter("password");
 				ad=new Admin(newuser,newpass);
-				request.setAttribute("adminupdate", ad);
+				request.setAttribute("adminupdate", ad);//use this attribute to display data
 				RequestDispatcher dispatch=request.getRequestDispatcher("./admin.jsp");
 				dispatch.forward(request, response);
 				}
@@ -80,7 +80,7 @@ public class AdminController extends HttpServlet {
 		     AdminLogic adLogic=new AdminLogic();
 		     try {
 				Admin ad=adLogic.search(user);
-				request.setAttribute("adminserach", ad);
+				request.setAttribute("adminserach", ad);//use this attribute to display data
 				RequestDispatcher dispatch=request.getRequestDispatcher("./admin.jsp");
 				dispatch.forward(request, response);
 				
