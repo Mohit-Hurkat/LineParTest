@@ -31,7 +31,7 @@ public class AdminController extends HttpServlet {
 				{
 					HttpSession session=request.getSession();  
 			        session.setAttribute("username",user); //use this attribute to display data
-					RequestDispatcher dispatch=request.getRequestDispatcher("./admin.jsp");
+					RequestDispatcher dispatch=request.getRequestDispatcher("./Admin/admin.jsp");
 					dispatch.forward(request, response);
 				}
 				else
