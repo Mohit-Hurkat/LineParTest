@@ -10,7 +10,7 @@
     <title>Typed.js - Type your heart out</title>
     <!-- Get jQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-    <script src="js/typed.js" type="text/javascript"></script>
+    <script src="javascript/homepage.js" type="text/javascript"></script>
     <script>
     $(function(){
 
