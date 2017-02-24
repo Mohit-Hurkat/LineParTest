@@ -15,7 +15,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<%@include file="/studentHeader.jsp" %>
+<%@include file="./studentHeader.jsp" %>
 
 </body>
 </html>

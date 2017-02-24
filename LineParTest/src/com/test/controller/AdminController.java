@@ -12,7 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.test.bean.Admin;
 import com.test.bl.AdminLogic;
-import com.test.bl.LoginCheck;
+
  
  
 public class AdminController extends HttpServlet {
@@ -20,19 +20,18 @@ public class AdminController extends HttpServlet {
 	 
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("inside admin controller");
 		if (request.getParameter("login") != null) {
 			
-			String user=request.getParameter("userName");
+			String user=request.getParameter("username");
 			String pass=request.getParameter("password");
-			Admin ad=new Admin(user,pass);
-			LoginCheck lc=new LoginCheck();
+			AdminLogic lc=new AdminLogic(); 
 			try {
-				if(lc.check(ad))
+				if(lc.check(user,pass))
 				{
 					HttpSession session=request.getSession();  
 			        session.setAttribute("username",user); 
-					RequestDispatcher dispatch=request.getRequestDispatcher("./admin.jsp");
+					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
 					dispatch.forward(request, response);
 				}
 				else

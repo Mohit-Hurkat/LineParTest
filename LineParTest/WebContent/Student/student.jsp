@@ -10,6 +10,6 @@
     <script src="javascript/homepage.js" type="text/javascript"></script>
 </head>
 <body>
-<%@include file="/studentHeader.jsp" %>
+<%@include file="./studentHeader.jsp" %>
 </body>
 </html>

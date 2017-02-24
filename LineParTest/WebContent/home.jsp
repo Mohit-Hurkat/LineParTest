@@ -89,7 +89,7 @@ $('.tab a').on('click', function (e) {
         <div id="login">   
           <h1>Welcome Back!</h1>
           
-          <form action="/" method="post">
+          <form action="./signIn" method="post">
           
             <div class="field-wrap">
             <label>
@@ -107,7 +107,7 @@ $('.tab a').on('click', function (e) {
           
           <p class="forgot"><a href="#">Forgot Password?</a></p>
           
-          <button class="button button-block">Log In</button>
+          <button class="button button-block" name="login">Log In</button>
           </form>
         </div><!-- login -->
       </div><!-- tab-content -->

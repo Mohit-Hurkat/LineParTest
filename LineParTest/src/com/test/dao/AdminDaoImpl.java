@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.test.bean.Admin;
 import com.test.bean.Student;
+import com.test.bl.AdminLogic;
 import com.test.helper.JDBCConnection;
 
 public class AdminDaoImpl implements AdminDao{
@@ -47,5 +48,15 @@ public class AdminDaoImpl implements AdminDao{
 		preparedStatement.close();
 		connection.close();
 		return admin;
+	}
+	
+	public boolean check(String username,String password)throws IOException,ClassNotFoundException, SQLException {
+	AdminLogic adLogic=new AdminLogic();
+	Admin checkAd=adLogic.search(username);
+	if(checkAd.getUsername().equals(username) && checkAd.getPassword().equals(password))
+	{
+		return true;
+	}
+	return false;
 	}
 }

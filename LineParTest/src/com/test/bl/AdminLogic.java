@@ -19,4 +19,7 @@ public class AdminLogic {
 	public Admin search(String username) throws IOException, ClassNotFoundException, SQLException{
 		return adminDao.search(username);
 	}
+	public boolean check(String username,String password)throws IOException,ClassNotFoundException, SQLException {
+		return adminDao.check(username, password);
+	}
 }

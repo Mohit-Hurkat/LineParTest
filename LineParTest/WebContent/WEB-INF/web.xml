@@ -70,4 +70,14 @@
     <servlet-name>forgetPass</servlet-name>
     <url-pattern>/forgetPass</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>signInController</display-name>
+    <servlet-name>signInController</servlet-name>
+    <servlet-class>com.test.controller.signInController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>signInController</servlet-name>
+    <url-pattern>/signIn</url-pattern>
+  </servlet-mapping>
 </web-app>
