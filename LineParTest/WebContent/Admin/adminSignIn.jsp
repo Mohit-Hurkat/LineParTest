@@ -36,7 +36,7 @@
         		<li class="float"><a href="./Admin/adminSubject.jsp">Delete Subject</a></li>
         		<li class="float"><a href="./Admin/adminSubject.jsp">Display Subject</a></li>
         		<li class="float"><a href="./Admin/adminSubject.jsp">Insert Subject</a></li>
-        		<li class="float"><a href="./Admin/adminSubject.jsp">Search Subject</a></li>
+        		<li class="float"><a href="./Admin/AdminSubject/searchSubject.jsp">Search Subject</a></li>
         		<li class="float"><a href="./Admin/adminSubject.jsp">Update Subject</a></li>
         	</ul>
         	</li>

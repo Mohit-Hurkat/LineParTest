@@ -48,7 +48,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>SubjectController</servlet-name>
-    <url-pattern>/SubjectController</url-pattern>
+    <url-pattern>/Admin/AdminSubject/</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>

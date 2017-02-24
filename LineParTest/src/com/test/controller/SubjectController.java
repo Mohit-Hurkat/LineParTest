@@ -67,14 +67,15 @@ public class SubjectController extends HttpServlet {
 		      
 		}
 		else if (request.getParameter("search") != null) {
-			int subid=Integer.parseInt(request.getParameter("subid"));
+			int subid=Integer.parseInt(request.getParameter("subjectId"));
 			SubjectLogic lc=new SubjectLogic();
+			System.out.println("l");
 			try {
 				Subject sub=lc.search(subid);
 				if(sub.getSubjectId()==subid)
-				{
+				{				System.out.println("j");
 				request.setAttribute("subjectSearch", sub);//use this attribute to abstract data
-				RequestDispatcher dispatch=request.getRequestDispatcher("./subject.jsp");
+				RequestDispatcher dispatch=request.getRequestDispatcher("searchSubject.jsp");
 				dispatch.forward(request, response);
 				}
 				else
@@ -83,8 +84,13 @@ public class SubjectController extends HttpServlet {
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
 				}
-			} catch (ClassNotFoundException | SQLException e) {
-			 
+			} catch (NullPointerException e) {
+				response.sendRedirect("../../lost.jsp");
+				e.printStackTrace();
+			}
+			
+			catch (ClassNotFoundException | SQLException e) {
+				System.out.println("k");
 				e.printStackTrace();
 			}
 		  

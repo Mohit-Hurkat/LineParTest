@@ -24,7 +24,7 @@
         		<li class="float"><a href="./adminSubject.jsp">Delete Subject</a></li>
         		<li class="float"><a href="./adminSubject.jsp">Display Subject</a></li>
         		<li class="float"><a href="./adminSubject.jsp">Insert Subject</a></li>
-        		<li class="float"><a href="./adminSubject.jsp">Search Subject</a></li>
+        		<li class="float"><a href="./AdminSubject/searchSubject.jsp">Search Subject</a></li>
         		<li class="float"><a href="./adminSubejct.jsp">Update Subject</a></li>
         	</ul>
         	</li>
