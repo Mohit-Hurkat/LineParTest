@@ -12,6 +12,56 @@
   </welcome-file-list>
   <servlet>
     <description></description>
+    <display-name>AdminController</display-name>
+    <servlet-name>AdminController</servlet-name>
+    <servlet-class>com.test.controller.AdminController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminController</servlet-name>
+    <url-pattern>/AdminController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>QuestionController</display-name>
+    <servlet-name>QuestionController</servlet-name>
+    <servlet-class>com.test.controller.QuestionController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>QuestionController</servlet-name>
+    <url-pattern>/QuestionController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StudentController</display-name>
+    <servlet-name>StudentController</servlet-name>
+    <servlet-class>com.test.controller.StudentController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentController</servlet-name>
+    <url-pattern>/StudentController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SubjectController</display-name>
+    <servlet-name>SubjectController</servlet-name>
+    <servlet-class>com.test.controller.SubjectController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SubjectController</servlet-name>
+    <url-pattern>/SubjectController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TestController</display-name>
+    <servlet-name>TestController</servlet-name>
+    <servlet-class>com.test.controller.TestController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestController</servlet-name>
+    <url-pattern>/TestController</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
     <display-name>forgetPass</display-name>
     <servlet-name>forgetPass</servlet-name>
     <servlet-class>forgetPass</servlet-class>
