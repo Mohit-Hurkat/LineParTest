@@ -2,6 +2,7 @@ package com.test.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -17,7 +18,9 @@ public class SubjectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+		System.out.println("hell41");
+		Enumeration<String> helloo=request.getParameterNames();
+		System.out.println(helloo);
 		if (request.getParameter("insert") != null) {
 			 
 			SubjectLogic lc=new SubjectLogic(); 
@@ -99,21 +102,24 @@ public class SubjectController extends HttpServlet {
 			 
 			SubjectLogic lc=new SubjectLogic();
 			try {
+				System.out.println("hell4");
 				List<Subject> sub=lc.displayAll();
 				if(sub!=null)
 				{
+					System.out.println("hell");
 				request.setAttribute("subjectDisplay", sub);//use this attribute to display data
-				RequestDispatcher dispatch=request.getRequestDispatcher("./subject.jsp");
+				RequestDispatcher dispatch=request.getRequestDispatcher("studentGiveTest.jsp");
 				dispatch.forward(request, response);
 				}
 				else
 				{
+					System.out.println("hell1");
 					request.setAttribute("subjectDisplay","Error.");//use this attribute to abstract info
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
 				}
-			} catch (ClassNotFoundException | SQLException e) {
-			 
+			} catch (ClassNotFoundException | SQLException | NullPointerException e) {
+				System.out.println("hell3");
 				e.printStackTrace();
 			}
 		  

@@ -1,8 +1,15 @@
+	<style>
+	button{
+	float:left;
+	width:33%;
+	}
+	</style>
 	<div class="form">
-      
+        <form action="./" method="post">
       	<ul class="tab-group">
-        	<li class="tab " id="giveTest"><a href="studentGiveTest.jsp">Give Test</a></li>
-        	<li class="tab" id="updateInfo"><a href="studentUpdateInfo.jsp">Update Information</a></li>
-         	<li class="tab" id="prevResult"><a href="studentPrevResult.jsp">Show Previous Result</a></li>
+        	<li class="tab " id="giveTest"><button name="display"><a style="width: 100%;">Give Test</a></button></li>
+        	<li class="tab" id="updateInfo"><button name="update"><a style="width: 100%;">Update Information</a></button></li>
+         	<li class="tab" id="prevResult"><button name="result"><a style="width: 100%;">Show Previous Result</a></button></li>
 		</ul>
+		</form>
 	</div> <!-- /form -->
