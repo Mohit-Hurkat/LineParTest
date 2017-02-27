@@ -8,8 +8,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+import com.test.bean.Admin;
 import com.test.bean.Student;
+import com.test.bl.AdminLogic;
+import com.test.bl.StudentLogic;
 import com.test.helper.JDBCConnection;
 
 public class StudentDaoImpl implements StudentDao{
@@ -122,5 +124,15 @@ public class StudentDaoImpl implements StudentDao{
 		connection.close();
 		return true;
 	}
+	
+	public boolean check(String username,String password)throws IOException,ClassNotFoundException, SQLException {
+		StudentLogic studentLogic=new StudentLogic();
+		Student checkStudent=studentLogic.search(username);
+		if(checkStudent.getUsername().equals(username) && checkStudent.getPassword().equals(password))
+		{
+			return true;
+		}
+		return false;
+		}
 
 }

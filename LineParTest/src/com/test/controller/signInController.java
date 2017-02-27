@@ -20,14 +20,16 @@ public class signInController extends HttpServlet {
 			request.setAttribute("username", user);
 			request.setAttribute("password", pass);
 			request.setAttribute("login", login);
+			System.out.println("mohit");
 			RequestDispatcher dispatch=request.getRequestDispatcher("./AdminController");
 			dispatch.forward(request, response);
+			System.out.println("mohit2");
 		}
 		else{
 			request.setAttribute("username", user);
 			request.setAttribute("password", pass);
 			request.setAttribute("login", login);
-			RequestDispatcher dispatch=request.getRequestDispatcher("./StudentController");
+			RequestDispatcher dispatch=request.getRequestDispatcher("./StudentHelper");
 			dispatch.forward(request, response);
 		}
 		

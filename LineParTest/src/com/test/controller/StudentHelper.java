@@ -23,10 +23,11 @@ import com.test.bl.TestLogic;
  
 public class StudentHelper extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private StudentLogic lc=new StudentLogic(); 
 	 
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		HttpSession session=request.getSession();  
 		if (request.getParameter("display") != null) {
 			 
 			SubjectLogic lc=new SubjectLogic();
@@ -60,7 +61,6 @@ public class StudentHelper extends HttpServlet {
 			String sphone=request.getParameter("sphone");
 			String semail=request.getParameter("semail");
 			Student student=new Student(suname, spass, sname, sphone, semail);
-			StudentLogic lc=new StudentLogic(); 
 			try {
 				if(lc.update(suname, student))
 				{
@@ -106,6 +106,28 @@ public class StudentHelper extends HttpServlet {
 			}
 		      
 		}
+	else if (request.getParameter("login") != null) {
+		
+		String user=request.getParameter("username");
+		String pass=request.getParameter("password");
+		try {
+			if(lc.check(user,pass))
+			{
+				session.setAttribute("sessionUsername", user);
+				RequestDispatcher dispatch=request.getRequestDispatcher("./Student/student.jsp");
+				dispatch.forward(request, response);
+			}
+			else
+			{
+				RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
+				dispatch.forward(request, response);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+	}
 	}
  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
