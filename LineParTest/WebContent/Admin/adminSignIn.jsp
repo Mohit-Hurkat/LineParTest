@@ -20,10 +20,8 @@
         		<li class="float"><a href="./Admin/adminQuestion.jsp"> Delete Question</a></li>
         		<li class="float"><a href="./Admin/adminQuestion.jsp">Insert Question</a></li>
         		<li  class="float"><a href="./Admin/adminQuestion.jsp">Update Question</a></li>
-        		<li  class="float"><a href="../QuestionController?display=display"> View All Questions</a></li>
-        	
+        		<li  class="float"><a href="./QuestionController?display=display"> View All Questions</a></li>
         	</ul>
-        		
         	</li>
         	<li class="tab" id="updateInfo"><a>Student</a>
         	<ul class="dropdown-content">

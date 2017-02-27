@@ -19,7 +19,7 @@ public class QuestionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 
+	 System.out.println("ques");
 		if (request.getParameter("insert") != null) {
 			 
 			QuestionLogic lc=new QuestionLogic(); 
@@ -99,7 +99,7 @@ public class QuestionController extends HttpServlet {
 		  
 		}
 		else if (request.getParameter("display") != null) {
-			 
+			
 			QuestionLogic lc=new QuestionLogic(); 
 		//	int quesId=Integer.parseInt(request.getParameter("quesid"));
 			int quesId=2;
@@ -108,10 +108,10 @@ public class QuestionController extends HttpServlet {
 				if(ques!=null)
 				{
 				request.setAttribute("questionDisplay", ques);//use this attribute to display data
-				System.out.println("enter");
+			
 				RequestDispatcher dispatch=request.getRequestDispatcher("./Admin/AdminQuestion/viewAllQuestion.jsp");
 				dispatch.forward(request, response);
-				System.out.println("exit");
+				
 				}
 				else
 				{
