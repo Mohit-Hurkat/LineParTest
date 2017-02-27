@@ -11,16 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.test.bean.Admin;
 import com.test.bean.Student;
 import com.test.bean.Subject;
-import com.test.bl.AdminLogic;
 import com.test.bl.StudentLogic;
 import com.test.bl.SubjectLogic;
 import com.test.bl.TestLogic;
 
- 
- 
+import javafx.scene.control.Alert;
+
+
 public class StudentHelper extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private StudentLogic lc=new StudentLogic(); 
@@ -38,7 +37,7 @@ public class StudentHelper extends HttpServlet {
 				{
 					System.out.println("hell");
 				request.setAttribute("subjectDisplay", sub);//use this attribute to display data
-				RequestDispatcher dispatch=request.getRequestDispatcher("studentGiveTest.jsp");
+				RequestDispatcher dispatch=request.getRequestDispatcher("./Student/studentGiveTest.jsp");
 				dispatch.forward(request, response);
 				}
 				else
@@ -65,7 +64,7 @@ public class StudentHelper extends HttpServlet {
 				if(lc.update(suname, student))
 				{
 					request.setAttribute("studentUpdate","Successfully Updated.");
-					RequestDispatcher dispatch=request.getRequestDispatcher("./student.jsp");
+					RequestDispatcher dispatch=request.getRequestDispatcher("./Student/studentUpdateInfo.jsp");
 					dispatch.forward(request, response);
 				}
 				else	 
@@ -91,7 +90,7 @@ public class StudentHelper extends HttpServlet {
 				if(res>0)
 				{
 					request.setAttribute("testResult", res);//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./student.jsp");
+					RequestDispatcher dispatch=request.getRequestDispatcher("./studentResult.jsp");
 					dispatch.forward(request, response);
 				}
 				else	 
@@ -114,16 +113,18 @@ public class StudentHelper extends HttpServlet {
 			if(lc.check(user,pass))
 			{
 				session.setAttribute("sessionUsername", user);
-				RequestDispatcher dispatch=request.getRequestDispatcher("./Student/student.jsp");
-				dispatch.forward(request, response);
+				response.sendRedirect("./Student/student.jsp");
 			}
 			else
 			{
-				RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
-				dispatch.forward(request, response);
+				response.sendRedirect("./lost.jsp");
 			}
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+		}
+		catch( NullPointerException e){
+			response.sendRedirect("./usernamePassword.jsp");			
+		}
+		catch (ClassNotFoundException | SQLException e) {
+			response.sendRedirect("./lost.jsp");
 		}
 		
 		

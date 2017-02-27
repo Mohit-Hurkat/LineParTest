@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="../studentUpdateInfo.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style1.css"/>
     <script src="../javascript/homepage.js" type="text/javascript"></script>
     <script>
 $(document).ready(function() {
@@ -28,7 +28,6 @@ function Validation() {
 </script>
 </head>
 <body>
-<%@include file="./studentHeader.jsp" %>
 <div class="form">
 <form action="/studentUpdateInfo.jsp" method="post" name="updateForm">
           
@@ -75,6 +74,9 @@ function Validation() {
       
           <input type="submit" class="button button-block" value="Submit">
           </div><!-- top-row -->
+          </form>
+          <form action="./Student/student.jsp" method="post" name="backForm">
+          <button class="back-button">BACK</button>
           </form>
 </div>
 </body>

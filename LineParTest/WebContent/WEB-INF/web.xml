@@ -48,7 +48,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>SubjectController</servlet-name>
-    <url-pattern>/Student/</url-pattern>
+    <url-pattern>/SubejctController</url-pattern>
   </servlet-mapping>
   <servlet>
     <description></description>
@@ -79,5 +79,15 @@
   <servlet-mapping>
     <servlet-name>signInController</servlet-name>
     <url-pattern>/signIn</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StudentHelper</display-name>
+    <servlet-name>StudentHelper</servlet-name>
+    <servlet-class>com.test.controller.StudentHelper</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StudentHelper</servlet-name>
+    <url-pattern>/StudentHelper</url-pattern>
   </servlet-mapping>
 </web-app>

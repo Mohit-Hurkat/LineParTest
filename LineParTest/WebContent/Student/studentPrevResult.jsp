@@ -15,6 +15,8 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<%@include file="./studentHeader.jsp" %>
+<form action="./Student/student.jsp" method="post" name="backForm">
+          <button class="back-button">BACK</button>
+          </form>
 </body>
 </html>
