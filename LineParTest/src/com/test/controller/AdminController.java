@@ -42,8 +42,6 @@ public class AdminController extends HttpServlet {
 			} catch (ClassNotFoundException | SQLException e) {
 				e.printStackTrace();
 			}
-			
-			
 		} 
 		else if(request.getParameter("update") != null)
 		{
@@ -87,17 +85,11 @@ public class AdminController extends HttpServlet {
 			} catch (ClassNotFoundException | SQLException e) {
 				 
 				e.printStackTrace();
-			}
-		     
+			} 
 		}
-
-		 
-	 
 	}
- 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
  
 		doGet(request, response);
 	}
-
 }

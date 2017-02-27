@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.jasper.tagplugins.jstl.core.Out;
+
 import com.test.bean.Student;
 import com.test.bean.Subject;
 import com.test.bl.StudentLogic;
@@ -26,7 +28,7 @@ public class StudentHelper extends HttpServlet {
 	 
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();  
+		HttpSession session=request.getSession(false);
 		if (request.getParameter("display") != null) {
 			 
 			SubjectLogic lc=new SubjectLogic();
@@ -54,27 +56,33 @@ public class StudentHelper extends HttpServlet {
 		}
 		
 		else if (request.getParameter("update") != null) {
-			String suname=request.getParameter("suname");
-			String spass=request.getParameter("spass");
-			String sname=request.getParameter("sname");
-			String sphone=request.getParameter("sphone");
-			String semail=request.getParameter("semail");
+			String suname=(String)session.getAttribute("sessionUsername");
+			System.out.println(suname);
+            String spass=request.getParameter("updatePassword");
+			String sname=request.getParameter("updateName");
+			String sphone=request.getParameter("updatePhone");
+			String semail=request.getParameter("updateEmail");
 			Student student=new Student(suname, spass, sname, sphone, semail);
 			try {
+				
 				if(lc.update(suname, student))
 				{
+					System.out.println(suname);
+					System.out.println( "if");
 					request.setAttribute("studentUpdate","Successfully Updated.");
-					RequestDispatcher dispatch=request.getRequestDispatcher("./Student/studentUpdateInfo.jsp");
+					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
 					dispatch.forward(request, response);
 				}
 				else	 
 				{
+					System.out.println( "else");
 					request.setAttribute("studentUpdate","Error.");
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
+				System.out.println( e);
 				e.printStackTrace();
 			}
 		  
@@ -105,6 +113,21 @@ public class StudentHelper extends HttpServlet {
 			}
 		      
 		}
+		
+		else if (request.getParameter("retrieve") != null) {
+			String studentName=(String)session.getAttribute("sessionUsername");
+			try {
+				Student student=lc.search(studentName);
+				session.setAttribute("studentUpdate", student);
+					response.sendRedirect("./Student/studentUpdateInfo.jsp");					
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				System.out.println( e);
+				e.printStackTrace();
+			}
+		  
+		}
+		
 	else if (request.getParameter("login") != null) {
 		
 		String user=request.getParameter("username");
@@ -113,7 +136,7 @@ public class StudentHelper extends HttpServlet {
 			if(lc.check(user,pass))
 			{
 				session.setAttribute("sessionUsername", user);
-				response.sendRedirect("./Student/student.jsp");
+		        response.sendRedirect("./Student/student.jsp");
 			}
 			else
 			{
