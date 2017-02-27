@@ -24,14 +24,9 @@ function Validation() {
 	    	return false;
 	    }
 	    return true;
-	    
+	
 }
 </script>
-<style>
-label.active {
-  transform:translateY(-25px);
-  }
-</style>
 </head>
 <body>
 <div class="form">
@@ -40,7 +35,7 @@ label.active {
           <div class="top-row">
           	<div class="field-wrap">
             <label class="active highlight">
-           Username<span class="req">*</span>
+           Student name<span class="req">*</span>
             </label>
             <input type="text"  name="updateName" value="${studentUpdate.name}" required autocomplete="off"/>
             </div>
@@ -64,7 +59,7 @@ label.active {
           	</div>  
           	<div class="field-wrap">
             <label class="active highlight">            
-          Update Phone No(10 digits)<span class="req">*</span>
+          Update Phone No (10 digits)<span class="req">*</span>
             </label>
             <input type="tel"  name="updatePhone" pattern="^\d{10}$" value="${studentUpdate.phone}" required autocomplete="off" />
             </div>
@@ -73,7 +68,8 @@ label.active {
           </div><!-- top-row -->
           </form>
           <form action="./Student/student.jsp" method="post" name="backForm">
-          <button class="back-button">BACK</button>
+          <button  class="back-button" >BACK</button>
+        
           </form>
 </div>
 </body>

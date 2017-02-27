@@ -115,7 +115,9 @@ label.active {
     opacity:0;
   }
 }
-
+label.active {
+  transform:translateY(-25px);
+  }
 label.highlight {
 	color:#ffffff;
 }

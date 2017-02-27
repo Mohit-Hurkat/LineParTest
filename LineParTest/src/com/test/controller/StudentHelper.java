@@ -70,7 +70,7 @@ public class StudentHelper extends HttpServlet {
 					System.out.println(suname);
 					System.out.println( "if");
 					request.setAttribute("studentUpdate","Successfully Updated.");
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
+					RequestDispatcher dispatch=request.getRequestDispatcher("./Student/updateStudent.jsp");
 					dispatch.forward(request, response);
 				}
 				else	 
