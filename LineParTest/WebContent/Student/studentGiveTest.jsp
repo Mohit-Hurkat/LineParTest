@@ -4,6 +4,13 @@
     <%@page import="com.test.bean.Subject" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<style>
+input[type=radio]{
+height:auto;
+width: auto;
+display:inline;
+}
+</style>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
@@ -20,12 +27,30 @@ $(document).ready(function() {
 <%@include file="./studentHeader.jsp" %>
 <% ArrayList<Subject> subList=(ArrayList<Subject>)request.getAttribute("subjectDisplay");%>
 <div class="form">
-<div class="tab-group" style=>
- <form action="./lost.jsp" method="post">
-<%for (int i=0;i<subList.size();i++){%>
-  <button type="button" name="subject" value="<%=subList.get(i).getSubject()%>"><%=subList.get(i).getSubject()%>
-  </button>
+<div class="tab-group">
+ <form action="../lost.jsp" method="post">
+
+ <div style="color: white;">
+	<table border="1" style="width:100%;">
+	<tr>
+	<th>Subject Id</th>
+	<th>Subject Name</th>
+	<th>Examination Start Date</th>
+	<th>Examination End Date</th>
+	<th>Select</th>
+	</tr>
+	<%for (Subject sub:subList){%>
+		<tr>
+			<td><%=sub.getSubjectId()%></td>
+			<td><%=sub.getSubject()%></td>
+			<td><%=sub.getStart()%></td>
+			<td><%=sub.getEnd()%></td>
+			<td><input type="radio" name="subject" value="${sub.getSubject()}"></td>
+		</tr>
 	<% } %>
+</table>
+ </div><br>
+ <input type="submit" class="button button-block">
 </form>
 </div>
 </div>
