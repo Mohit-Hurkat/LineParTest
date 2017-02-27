@@ -16,11 +16,14 @@
         	<li class="tab " id="question"><a>Question</a>
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        		<li class="float"><a href="./Admin/adminQuestion.jsp">Delete Question</a></li>
+        	 	
+        		<li class="float"><a href="./Admin/adminQuestion.jsp"> Delete Question</a></li>
         		<li class="float"><a href="./Admin/adminQuestion.jsp">Insert Question</a></li>
         		<li  class="float"><a href="./Admin/adminQuestion.jsp">Update Question</a></li>
-        		<li  class="float"><a href="./Admin/adminQuestion.jsp">View All Questions</a></li>
+        		<li  class="float"><a href="../QuestionController?display=display"> View All Questions</a></li>
+        	
         	</ul>
+        		
         	</li>
         	<li class="tab" id="updateInfo"><a>Student</a>
         	<ul class="dropdown-content">
@@ -48,6 +51,8 @@
         	</li>
 		</ul>
 	</div> <!-- /form -->
-
+<form action="./QuestionController">
+<input type="submit" name="display" value="display">
+</form>
 </body>
 </html>

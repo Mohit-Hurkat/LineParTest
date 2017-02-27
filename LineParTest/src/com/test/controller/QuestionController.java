@@ -101,14 +101,17 @@ public class QuestionController extends HttpServlet {
 		else if (request.getParameter("display") != null) {
 			 
 			QuestionLogic lc=new QuestionLogic(); 
-			int quesId=Integer.parseInt(request.getParameter("quesid"));
+		//	int quesId=Integer.parseInt(request.getParameter("quesid"));
+			int quesId=2;
 			try {
 				List<Question> ques=lc.displayAll(quesId);
 				if(ques!=null)
 				{
 				request.setAttribute("questionDisplay", ques);//use this attribute to display data
-				RequestDispatcher dispatch=request.getRequestDispatcher("./question.jsp");
+				System.out.println("enter");
+				RequestDispatcher dispatch=request.getRequestDispatcher("./Admin/AdminQuestion/viewAllQuestion.jsp");
 				dispatch.forward(request, response);
+				System.out.println("exit");
 				}
 				else
 				{
