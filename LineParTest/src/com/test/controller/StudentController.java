@@ -48,14 +48,14 @@ public class StudentController extends HttpServlet {
 		} 
 		else if(request.getParameter("delete") != null)
 		{
-			String suname=request.getParameter("suname");
+			HttpSession session=request.getSession(false);
+			String suname=request.getParameter("username");
 			StudentLogic lc=new StudentLogic(); 
 			try {
 				if(lc.delete(suname))
 				{
-					request.setAttribute("studentDelete","Successfully Deleted.");
-					RequestDispatcher dispatch=request.getRequestDispatcher("./student.jsp");
-					dispatch.forward(request, response);
+					session.setAttribute("studentDelete","Successfully Deleted.");
+					response.sendRedirect("./Admin/adminStudent.jsp");
 				}
 				else	 
 				{
@@ -76,7 +76,7 @@ public class StudentController extends HttpServlet {
 				Student stu=lc.search(suname);
 				if(stu.getUsername().equals(suname))
 				{
-				request.setAttribute("studentserach", stu);
+				request.setAttribute("studentsearch", stu);
 				RequestDispatcher dispatch=request.getRequestDispatcher("./student.jsp");
 				dispatch.forward(request, response);
 				}

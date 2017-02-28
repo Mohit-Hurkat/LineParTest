@@ -26,7 +26,7 @@
         	<li class="tab" id="updateInfo"><a>Student</a>
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        		<li class="float"><a  href="./Admin/adminStudent.jsp">Delete Student</a></li>
+        		<li class="float"><a  href="./AdminStudentHelper?display=display">Delete Student</a></li>
         		<li class="float"><a  href="./Admin/adminStudent.jsp">Search Student</a></li>
         		<li class="float"><a  href="./Admin/adminStudent.jsp">View All Students</a></li>
         	</ul>
