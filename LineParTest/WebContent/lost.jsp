@@ -77,8 +77,8 @@
     </style>
 </head>
 <body>
-<% String message=(String)session.getAttribute("message");
-String message1=(String)session.getAttribute("message1"); 
+<% String message=(String)request.getAttribute("message");
+String message1=(String)request.getAttribute("message1"); 
 if(message==null){
 	message="Oops! It looks like you're lost. ";
 }
