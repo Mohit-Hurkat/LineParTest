@@ -13,8 +13,10 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.jasper.tagplugins.jstl.core.Out;
 
+import com.test.bean.Result;
 import com.test.bean.Student;
 import com.test.bean.Subject;
+import com.test.bl.ResultLogic;
 import com.test.bl.StudentLogic;
 import com.test.bl.SubjectLogic;
 import com.test.bl.TestLogic;
@@ -91,10 +93,10 @@ public class StudentHelper extends HttpServlet {
 		else if(request.getParameter("result") != null)//check the parameter name
 		{
 			TestLogic lc=new TestLogic(); 
-			String username=request.getParameter("username");
-			int subid=Integer.parseInt(request.getParameter("subid"));
+			String username=(String) session.getAttribute("sessionUsername");
+			int subjectId=Integer.parseInt(request.getParameter("subjectId"));
 			try {
-				int res=lc.result(username, subid);
+				int res=lc.result(username, subjectId);
 				if(res>0)
 				{
 					request.setAttribute("testResult", res);//use this attribute to abstract info
@@ -151,7 +153,31 @@ public class StudentHelper extends HttpServlet {
 		}
 		
 		
-	}
+		}
+	else if (request.getParameter("resultstudent") != null) {//check the parameter name
+		ResultLogic rc=new ResultLogic(); 
+		String username=(String) session.getAttribute("sessionUsername");
+		try {
+			List<Result> result1=rc.show(username);
+			if(result1!=null)
+			{
+				session.setAttribute("testResult",result1);//use this attribute to display data
+				response.sendRedirect("./Student/studentPrevResult.jsp");
+			}
+			else	 
+			{
+				request.setAttribute("testResult","Error.");//use this attribute to abstract info
+				RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
+				dispatch.forward(request, response);
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	  
+		}
+		
+		
 	}
  
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

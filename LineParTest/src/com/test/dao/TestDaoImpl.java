@@ -200,13 +200,6 @@ public class TestDaoImpl implements TestDao {
 		while(rs2.next()){
 		res=rs2.getInt(1);
 		}
-		if(res==0){
-			System.out.println("You haven't given any test.");
-			preparedStatement1.close();
-			preparedStatement.close();
-			connection.close();
-			return false;
-		}
 		while(rs1.next()){
 			int subject_id=rs1.getInt(1);
 			res=rs1.getInt(2);

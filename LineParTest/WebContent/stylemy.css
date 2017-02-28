@@ -108,16 +108,14 @@ label {
 }
 
 label.active {
-  transform:translateY(50px);
+  transform:translateY(-25px);
   left:2px;
   font-size:14px;
   .req {
     opacity:0;
   }
 }
-label.active {
-  transform:translateY(-25px);
-  }
+
 label.highlight {
 	color:#ffffff;
 }
