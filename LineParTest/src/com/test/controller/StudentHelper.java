@@ -146,7 +146,10 @@ public class StudentHelper extends HttpServlet {
 			}
 		}
 		catch( NullPointerException e){
-			response.sendRedirect("./usernamePassword.jsp");			
+			request.setAttribute("message","Invalid Credentials");
+	    	request.setAttribute("message1","Visit lenskart for better vision.");
+	    	RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
+			dispatch.forward(request, response);			
 		}
 		catch (ClassNotFoundException | SQLException e) {
 			response.sendRedirect("./lost.jsp");

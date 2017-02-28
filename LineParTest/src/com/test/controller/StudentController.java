@@ -85,7 +85,15 @@ public class StudentController extends HttpServlet {
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
 				}
-			} catch (ClassNotFoundException | SQLException e) {
+			} 
+			catch(NullPointerException e){
+				request.setAttribute("message","Please Select a Valid Username");
+		    	 request.setAttribute("message1","Visit lenskart for better vision.");
+		    	 RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
+		    	 dispatch.forward(request, response);
+		    	 
+			}
+			catch (ClassNotFoundException | SQLException e) {
 			 
 				e.printStackTrace();
 			}

@@ -105,7 +105,7 @@ $('.tab a').on('click', function (e) {
             <input type="password" name="password" required autocomplete="off">
           </div>
           
-          <p class="forgot"><a href="#">Forgot Password?</a></p>
+          <p class="forgot"><a href="./lost.jsp">Forgot Password?</a></p>
           
           <button class="button button-block" name="login">Log In</button>
           </form>

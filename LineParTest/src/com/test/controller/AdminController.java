@@ -35,6 +35,7 @@ public class AdminController extends HttpServlet {
 				}
 				else
 				{
+					request.setAttribute("message","Invalid Credentials");
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
 					dispatch.forward(request, response);
 				}
@@ -80,8 +81,8 @@ public class AdminController extends HttpServlet {
 				request.setAttribute("adminserach", ad);//use this attribute to display data
 				RequestDispatcher dispatch=request.getRequestDispatcher("./admin.jsp");
 				dispatch.forward(request, response);
-				
-			} catch (ClassNotFoundException | SQLException e) {
+			}
+		     catch (ClassNotFoundException | SQLException e) {
 				 
 				e.printStackTrace();
 			} 

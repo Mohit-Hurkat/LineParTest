@@ -34,9 +34,6 @@
 			<td><%=stu.getPhone()%></td>
 			<td><%=stu.getEmail()%></td>
 			<td><%=stu.getPassword()%></td>
-			
-			
-			
 		 
 		</tr>
 	<% } %>
