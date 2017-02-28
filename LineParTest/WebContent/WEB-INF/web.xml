@@ -111,7 +111,7 @@
     <url-pattern>/AdminQuestion/</url-pattern>
   </servlet-mapping>
   <servlet>
-      <description></description>
+    <description></description>
     <display-name>AdminStudentHelper</display-name>
     <servlet-name>AdminStudentHelper</servlet-name>
     <servlet-class>com.test.controller.AdminStudentHelper</servlet-class>
@@ -119,5 +119,15 @@
   <servlet-mapping>
     <servlet-name>AdminStudentHelper</servlet-name>
     <url-pattern>/AdminStudentHelper</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>GiveTestController</display-name>
+    <servlet-name>GiveTestController</servlet-name>
+    <servlet-class>com.test.controller.GiveTestController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GiveTestController</servlet-name>
+    <url-pattern>/GiveTest</url-pattern>
   </servlet-mapping>
 </web-app>

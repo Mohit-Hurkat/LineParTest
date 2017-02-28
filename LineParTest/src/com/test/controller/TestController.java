@@ -9,45 +9,77 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import com.test.bean.Result;
 import com.test.bl.TestLogic;
 
  
 public class TestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
+	private TestLogic lc=new TestLogic(); 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 
-		if (request.getParameter("givetest") != null) {//check the parameter name
-			 
-			TestLogic lc=new TestLogic(); 
-			String suname=request.getParameter("suname");
-			int subid=Integer.parseInt(request.getParameter("subid"));
-			 
+		HttpSession session=request.getSession(false);
+		int subjectId=Integer.parseInt(request.getParameter("subjectId"));
+		String username=(String) session.getAttribute("sessionUsername");
+		if (request.getParameter("giveTest") != null) {//check the parameter name			 
 			try {
-				if(lc.giveTest(suname, subid))
+				List<Result> result=lc.giveTest(username, subjectId);
+				System.out.println(result);
+				System.out.println(subjectId);
+				System.out.println(username);
+				
+				if(lc.giveTest(username, subjectId) == null)
 				{
-					request.setAttribute("giveTest","Successfully Given.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./student.jsp");
-					dispatch.forward(request, response);
+					if(lc.check_questions(subjectId,username))
+					{
+						if(lc.dateCheck(subjectId))
+						{		
+								request.setAttribute("sessionSubjectId", subjectId);
+								RequestDispatcher dispatch=request.getRequestDispatcher("./Test/Rules.jsp");//change this to appropriate path
+								dispatch.forward(request, response);				
+						}
+						else	 
+						{ 
+							request.setAttribute("message","Please check Test Time Period ");//use this attribute to abstract info
+							RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
+							dispatch.forward(request, response);
+						}
+					}
+					else	 
+					{
+						request.setAttribute("message","Questions Yet To Be Updated.");
+						request.setAttribute("message1","Please Select Another Subject..");//use this attribute to abstract info
+						RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
+						dispatch.forward(request, response);
+					}
 				}
 				else	 
 				{
-					request.setAttribute("giveTest"," Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
+					request.setAttribute("message","Test Already Given");
+					request.setAttribute("message1",result.toString());
+					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
 					dispatch.forward(request, response);
 				}
-			} catch (ClassNotFoundException | SQLException e) {
+			} 
+		catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} 
+		}
+		
+		
+		
+		
+		
+		
+		
+		
 		else if(request.getParameter("result") != null)//check the parameter name
 		{
-			TestLogic lc=new TestLogic(); 
 			String suname=request.getParameter("suname");
 			int subid=Integer.parseInt(request.getParameter("subid"));
 			try {
@@ -71,7 +103,6 @@ public class TestController extends HttpServlet {
 		      
 		}
 		else if (request.getParameter("check") != null) {//check the parameter name
-			TestLogic lc=new TestLogic();
 			int subid=Integer.parseInt(request.getParameter("subid"));
 			try {
 				if(lc.check(subid))
@@ -93,8 +124,6 @@ public class TestController extends HttpServlet {
 		  
 		}
 		else if (request.getParameter("datecheck") != null) {//check the parameter name
-			 
-			TestLogic lc=new TestLogic();
 			int subid=Integer.parseInt(request.getParameter("subid"));
 			try {
 				 
@@ -117,7 +146,6 @@ public class TestController extends HttpServlet {
 		  
 		}
 		else if (request.getParameter("resultstudent") != null) {//check the parameter name
-			TestLogic lc=new TestLogic(); 
 			String suname=request.getParameter("suname");
 			try {
 				if(lc.result_student(suname))

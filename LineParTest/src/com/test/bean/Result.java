@@ -42,7 +42,7 @@ public class Result {
 	}
 	@Override
 	public String toString() {
-		return "Result [username=" + username + ", subject=" + subjectId + ", result=" + result + ", date=" + date + "]";
+		return "SubjectId=" + subjectId + ", Result=" + result + ", Date=" + date + "]";
 	}
     
      

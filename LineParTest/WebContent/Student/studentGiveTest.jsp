@@ -27,7 +27,7 @@ $(document).ready(function() {
 <% ArrayList<Subject> subList=(ArrayList<Subject>)request.getAttribute("subjectDisplay");%>
 <div class="form">
 <div class="tab-group">
- <form action="../lost.jsp" method="post">
+ <form action="${pageContext.request.contextPath}/TestController" method="post">
 
  <div style="color: white;">
 	<table border="1" style="width:100%;">
@@ -44,12 +44,12 @@ $(document).ready(function() {
 			<td><%=sub.getSubject()%></td>
 			<td><%=sub.getStart()%></td>
 			<td><%=sub.getEnd()%></td>
-			<td><input type="radio" name="subject" value="${sub.getSubject()}"></td>
+			<td><input type="radio" name="subjectId" value="<%=sub.getSubjectId()%>"></td>
 		</tr>
 	<% } %>
 </table>
  </div><br>
- <input type="submit" class="button button-block">
+ <input type="submit" class="button button-block" name="giveTest">
 </form>
 </div>
  <form action="${pageContext.request.contextPath}/Student/student.jsp" method="post">
