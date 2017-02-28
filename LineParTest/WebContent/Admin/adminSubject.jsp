@@ -10,13 +10,9 @@
     <script src="../javascript/homepage.js" type="text/javascript"></script>
 </head>
 <body>
- 	<%if(session.getAttribute("subjectInsert").equals("Successfully Inserted.")) %>
- 	<%{ %>	<h1>Successfully Inserted.</h1><%} %>
- 		<%  if(session.getAttribute("subjectDelete").equals("Successfully Deleted.")) %>
- 		<%{ %>	<h1>Successfully Deleted.</h1><%} %>
- 		<% if(session.getAttribute("subjectUpdate").equals("Successfully Updated.")) %>
- 		<%{ %>	<h1>Successfully Updated.</h1><%} %>
- 	<form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp">
+ 	<%String print=(String)session.getAttribute("mess"); %>	
+ 		<h1><%=print%></h1>
+ 		<form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp">
  		<input type="submit" value="Back">
  	</form>
 	

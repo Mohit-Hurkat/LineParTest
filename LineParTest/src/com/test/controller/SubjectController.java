@@ -34,7 +34,7 @@ public class SubjectController extends HttpServlet {
 				if(lc.insert(subname,subdate1,subdate2))
 				{
 				 
-					session.setAttribute("subjectInsert","Successfully Inserted.");//use this attribute to abstract info
+					session.setAttribute("mess","Successfully Inserted.");//use this attribute to abstract info
 					 response.sendRedirect("./Admin/adminSubject.jsp");
 					 
 				}
@@ -51,13 +51,14 @@ public class SubjectController extends HttpServlet {
 		} 
 		else if(request.getParameter("delete") != null)
 		{
+			try {
 			int subid=Integer.parseInt(request.getParameter("subjectId"));
 			SubjectLogic lc=new SubjectLogic(); 
-			try {
+			
 				if(lc.delete(subid))
 				{
 					System.out.println("del");
-					session.setAttribute("subjectDelete","Successfully Deleted.");//use this attribute to abstract info
+					session.setAttribute("mess","Successfully Deleted.");//use this attribute to abstract info
 					response.sendRedirect("./Admin/adminSubject.jsp");
 					System.out.println("del2");
 				}
@@ -67,6 +68,13 @@ public class SubjectController extends HttpServlet {
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
 				}
+			}
+			catch(NullPointerException | NumberFormatException e){
+					request.setAttribute("message","Please Select a Valid Subject");
+		    	 request.setAttribute("message1","Visit lenskart for better vision.");
+		    	 RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
+		    	 dispatch.forward(request, response);
+		    	 
 			} catch (ClassNotFoundException | SQLException e) {
 			 
 				e.printStackTrace();
@@ -137,7 +145,7 @@ public class SubjectController extends HttpServlet {
 			try {
 				if(lc.update(subid,sub))
 				{
-					session.setAttribute("subjectUpdate","Successfully Updated.");//use this attribute to abstract info
+					session.setAttribute("mess","Successfully Updated.");//use this attribute to abstract info
 					 response.sendRedirect("./Admin/adminSubject.jsp");
 				}
 				else	 
