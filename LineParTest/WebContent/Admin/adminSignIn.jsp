@@ -44,7 +44,7 @@
         	<li class="tab " id="update" ><a>Admin</a>
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        		<li class="float"><a href="../Admin/adminAdmin.jsp">Update Admin</a></li>
+        		<li class="float"><a href="../Admin/AdminAdmin/adminAdmin.jsp">Update Admin</a></li>
         	</ul>
         	</li>
 		</ul>

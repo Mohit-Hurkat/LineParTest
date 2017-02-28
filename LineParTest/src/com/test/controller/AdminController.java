@@ -20,7 +20,7 @@ public class AdminController extends HttpServlet {
 	 
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 
+		
 		if (request.getParameter("login") != null) {
 			
 			String user=request.getParameter("username");
@@ -45,30 +45,26 @@ public class AdminController extends HttpServlet {
 		} 
 		else if(request.getParameter("update") != null)
 		{
-			HttpSession session=request.getSession(false);  
-	        String user=(String)session.getAttribute("username"); 
+			HttpSession session=request.getSession(false); 
+	        String user="admin";
 		     AdminLogic adLogic=new AdminLogic();
 		     Admin ad=null;
 		     try {
-				ad=adLogic.search(user);
-				if(ad.getUsername().equals(user))
-				{
-				String newuser=request.getParameter("userName");
+		    	 System.out.println("1");
+			 
 				String newpass=request.getParameter("password");
-				ad=new Admin(newuser,newpass);
-				request.setAttribute("adminupdate", ad);//use this attribute to display data
-				RequestDispatcher dispatch=request.getRequestDispatcher("./admin.jsp");
-				dispatch.forward(request, response);
+				if(adLogic.update(user, newpass))
+				{
+				session.invalidate();//use this attribute to display data
+				response.sendRedirect("./Admin/AdminAdmin/updateSuccess.jsp");
 				}
 				else
 				{
-					request.setAttribute("adminupdate", null);
-					RequestDispatcher dispatch=request.getRequestDispatcher("./admin.jsp");
-					dispatch.forward(request, response);
+					response.sendRedirect("./lost.jsp");
 				}
 				
 			} catch (ClassNotFoundException | SQLException e) {
-				 
+		  
 				e.printStackTrace();
 			}
 		}
@@ -78,7 +74,7 @@ public class AdminController extends HttpServlet {
 		     AdminLogic adLogic=new AdminLogic();
 		     try {
 				Admin ad=adLogic.search(user);
-				request.setAttribute("adminserach", ad);//use this attribute to display data
+				request.setAttribute("adminsearch", ad);//use this attribute to display data
 				RequestDispatcher dispatch=request.getRequestDispatcher("./admin.jsp");
 				dispatch.forward(request, response);
 			}
