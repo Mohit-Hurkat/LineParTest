@@ -18,7 +18,14 @@ display:inline;
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style1.css"/>
     <script src="../javascript/homepage.js" type="text/javascript"></script>
     <script>
-
+    $(document).ready(function(){
+    	var $submit = $("#sub").hide();
+    	var $submit1 = $("#dis").show();
+    	var    $cbs = $("input[type='radio']").click(function() {
+            $submit.toggle( $cbs.is(":checked") );
+            $submit1.hide();
+        });
+       });
 
 </script>
 </head>
@@ -48,7 +55,10 @@ display:inline;
 	<% } %>
 </table>
  </div><br>
- <input type="submit"  value="Select" name="delete">
+ <div id="dis">
+ <h1>Please select the Subject</h1>
+ </div>
+ <input type="submit" id="sub" value="Select" name="delete">
 </form>
 </div>
 <form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post" name="backForm">
