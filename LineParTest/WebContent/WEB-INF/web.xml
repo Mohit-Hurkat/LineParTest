@@ -102,6 +102,16 @@
   </servlet-mapping>
   <servlet>
     <description></description>
+    <display-name>AdminQuestionController</display-name>
+    <servlet-name>AdminQuestionController</servlet-name>
+    <servlet-class>com.test.controller.AdminQuestionController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminQuestionController</servlet-name>
+    <url-pattern>/AdminQuestion/</url-pattern>
+  </servlet-mapping>
+  <servlet>
+      <description></description>
     <display-name>AdminStudentHelper</display-name>
     <servlet-name>AdminStudentHelper</servlet-name>
     <servlet-class>com.test.controller.AdminStudentHelper</servlet-class>

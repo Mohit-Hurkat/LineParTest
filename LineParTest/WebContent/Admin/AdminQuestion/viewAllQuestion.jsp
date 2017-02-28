@@ -10,7 +10,6 @@
 <title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style1.css"/>
-    <script src="../javascript/homepage.js" type="text/javascript"></script>
     <script>
 $(document).ready(function() {
         $("#giveTest").addClass("active");
@@ -18,33 +17,33 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<% ArrayList<Question> subList=(ArrayList<Question>)request.getAttribute("questionDisplay"); %>
+<% ArrayList<Question> subList=(ArrayList<Question>)session.getAttribute("sessionQuestionAll"); 
+int subject=(Integer)(session.getAttribute("sessionSubjectId"));%>
 <div class="form">
-<div class="tab-group">
+	<div class="tab-group">
+ 		<div style="color: white;">
+ 			<h2>Subject ID: <%=subject%></h2>
+			<table border="1" style="width:100%;">
+				<tr>
+					<th>Question Id</th>
+					<th>Question</th>
+					<th>Answer</th>
+				</tr>
+				<%for (Question sub:subList){%>
+				<tr>
+					<td><%=sub.getQuestionId()%></td>
+					<td><%=sub.getQuestion()%></td> 
+					<td><%=sub.getAnswer()%></td> 
+				</tr>
+				<% } %>
+			</table>
+ 		</div>
+ 	</div>
 
-
- <div style="color: white;">
- 	<h2>Subject ID: <%=subList.get(1).getSubjectId() %></h2>
-	<table border="1" style="width:100%;">
-	<tr>
-	<th>Question Id</th>
-	<th>Question</th>
-	<th>Answer</th>
-	</tr>
-	<%for (Question sub:subList){%>
-		<tr>
-			<td><%=sub.getQuestionId()%></td>
-			<td><%=sub.getQuestion()%></td> 
-			<td><%=sub.getAnswer()%></td> 
-		</tr>
-	<% } %>
-</table>
- </div>
- </div>
- </div>
  <br>
- <form action="./Admin/admin.jsp" method="post">
- <input type="submit" class="button button-block" value="BACk">
+ <form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post">
+ <input type="submit" class="button button-block" value="Back">
  </form>
+  </div>
 </body>
 </html>

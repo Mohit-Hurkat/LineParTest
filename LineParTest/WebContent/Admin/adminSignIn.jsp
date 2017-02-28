@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="./Admin/admin.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin/admin.css">
     <script src="./javascript/homepage.js" type="text/javascript"></script>
 </head>
 <body>
@@ -17,34 +17,34 @@
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
         	 	
-        		<li class="float"><a href="./Admin/adminQuestion.jsp"> Delete Question</a></li>
-        		<li class="float"><a href="./Admin/adminQuestion.jsp">Insert Question</a></li>
-        		<li  class="float"><a href="./Admin/adminQuestion.jsp">Update Question</a></li>
-        		<li  class="float"><a href="./QuestionController?display=display"> View All Questions</a></li>
+        		<li class="float"><a href="../AdminQuestion/?display1=display1"> Delete Question</a></li>
+        		<li class="float"><a href="../AdminQuestion/?display2=display2">Insert Question</a></li>
+        		<li  class="float"><a href="../AdminQuestion/?display3=display3">Update Question</a></li>
+        		<li  class="float"><a href="../AdminQuestion/?display4=display4"> View All Questions</a></li>
         	</ul>
         	</li>
         	<li class="tab" id="updateInfo"><a>Student</a>
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        		<li class="float"><a  href="./AdminStudentHelper?display=display">Delete Student</a></li>
-        		<li class="float"><a  href="./Admin/adminStudent.jsp">Search Student</a></li>
-        		<li class="float"><a  href="./Admin/adminStudent.jsp">View All Students</a></li>
+        		<li class="float"><a  href="../AdminStudentHelper?display=display">Delete Student</a></li>
+        		<li class="float"><a  href="../Admin/adminStudent.jsp">Search Student</a></li>
+        		<li class="float"><a  href="../Admin/adminStudent.jsp">View All Students</a></li>
         	</ul>
 			 </li>
          	<li class="tab " id="subject" ><a>Subject</a>
          	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        		<li class="float"><a href="./SubjectHelper?display=display">Delete Subject</a></li>
-        		<li class="float"><a href="./Admin/adminSubject.jsp">Display Subject</a></li>
-        		<li class="float"><a href="./Admin/adminSubject.jsp">Insert Subject</a></li>
-        		<li class="float"><a href="./Admin/AdminSubject/searchSubject.jsp">Search Subject</a></li>
-        		<li class="float"><a href="./Admin/adminSubject.jsp">Update Subject</a></li>
+        		<li class="float"><a href="../SubjectHelper?display=display">Delete Subject</a></li>
+        		<li class="float"><a href="../Admin/adminSubject.jsp">Display Subject</a></li>
+        		<li class="float"><a href="../Admin/adminSubject.jsp">Insert Subject</a></li>
+        		<li class="float"><a href="../Admin/AdminSubject/searchSubject.jsp">Search Subject</a></li>
+        		<li class="float"><a href="../Admin/adminSubject.jsp">Update Subject</a></li>
         	</ul>
         	</li>
         	<li class="tab " id="update" ><a>Admin</a>
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        		<li class="float"><a href="./Admin/adminAdmin.jsp">Update Admin</a></li>
+        		<li class="float"><a href="../Admin/adminAdmin.jsp">Update Admin</a></li>
         	</ul>
         	</li>
 		</ul>

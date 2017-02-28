@@ -4,158 +4,89 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.test.bean.Question;
+import com.test.bean.Subject;
 import com.test.bl.QuestionLogic;
+import com.test.bl.SubjectLogic;
 
 
  
 public class QuestionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
- 
+	private SubjectLogic sLogic=new SubjectLogic();
+	private Subject sub=null;
+	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 System.out.println("ques");
-		if (request.getParameter("insert") != null) {
-			 
-			QuestionLogic lc=new QuestionLogic(); 
-			int quesId=Integer.parseInt(request.getParameter("quesid"));
-			int subId=Integer.parseInt(request.getParameter("subid"));
-			String question=request.getParameter("question");
-			int ans=Integer.parseInt(request.getParameter("answer"));
-			String ch1=request.getParameter("choice1");
-			String ch2=request.getParameter("choice2");
-			String ch3=request.getParameter("choice3");
-			String ch4=request.getParameter("choice4");
-			String answer=request.getParameter("ans");
-			Question ques=new Question(quesId, subId, question, ans, ch1, ch2, ch3, ch4, answer);
+		HttpSession session=request.getSession(false);
+		int id=Integer.parseInt(request.getParameter("subject"));
+		session.setAttribute("sessionSubjectId", id);
+		if (session.getAttribute("call").equals("insert")){
+			System.out.println("iasd");
 			
 			try {
-				if(lc.insert(ques))
-				{
-					request.setAttribute("questioninsert","Successfully Inserted.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./question.jsp");
-					dispatch.forward(request, response);
-				}
-				else	 
-				{
-					request.setAttribute("questionInsert"," Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
-				}
+				sub=sLogic.search(id);
+					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
+					response.sendRedirect("./Admin/AdminQuestion/insertQuestion.jsp");
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} 
-		else if(request.getParameter("delete") != null)
-		{
-			QuestionLogic lc=new QuestionLogic(); 
-			int quesId=Integer.parseInt(request.getParameter("quesid"));
+		else if(session.getAttribute("call").equals("delete")){
 			try {
-				if(lc.delete(quesId))
-				{
-					request.setAttribute("questionDelete","Successfully Deleted.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./question.jsp");
-					dispatch.forward(request, response);
-				}
-				else	 
-				{
-					request.setAttribute("questionDelete","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
-				}
+				sub=sLogic.search(id);
+					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
+					response.sendRedirect("./Admin/AdminQuestion/deleteQuestion.jsp");
 			} catch (ClassNotFoundException | SQLException e) {
-			 
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		      
-		}
-		else if (request.getParameter("search") != null) {
-			QuestionLogic lc=new QuestionLogic(); 
-			int quesId=Integer.parseInt(request.getParameter("quesid"));
+	}
+		else if (session.getAttribute("call").equals("search")) {
 			try {
-				Question ques=lc.search(quesId);
-				if(ques.getQuestionId()==quesId)
-				{
-				request.setAttribute("questionSearch", ques);//use this attribute to abstract data
-				RequestDispatcher dispatch=request.getRequestDispatcher("./question.jsp");
-				dispatch.forward(request, response);
-				}
-				else
-				{
-					request.setAttribute("questionSearch","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
-				}
+				sub=sLogic.search(id);
+					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
+					response.sendRedirect("./Admin/AdminQuestion/searchQuestion.jsp");
 			} catch (ClassNotFoundException | SQLException e) {
-			 
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		  
 		}
-		else if (request.getParameter("display") != null) {
-			
-			QuestionLogic lc=new QuestionLogic(); 
-		//	int quesId=Integer.parseInt(request.getParameter("quesid"));
-			int quesId=2;
+		else if (session.getAttribute("call").equals("displayAll")) {
+			QuestionLogic qLogic=new QuestionLogic();
 			try {
-				List<Question> ques=lc.displayAll(quesId);
-				if(ques!=null)
-				{
-				request.setAttribute("questionDisplay", ques);//use this attribute to display data
-			
-				RequestDispatcher dispatch=request.getRequestDispatcher("./Admin/AdminQuestion/viewAllQuestion.jsp");
-				dispatch.forward(request, response);
-				
+				sub=sLogic.search(id);
+				List<Question> ques=qLogic.displayAll(sub.getSubjectId());
+				if(ques!=null){
+				session.setAttribute("sessionQuestionAll",ques);
+					response.sendRedirect("./Admin/AdminQuestion/viewAllQuestion.jsp");
 				}
-				else
-				{
-					request.setAttribute("questionDisplay","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
-				}
-			} catch (ClassNotFoundException | SQLException e) {
-			 
-				e.printStackTrace();
-			}
-		  
-		}
-		else if (request.getParameter("update") != null) {
-			QuestionLogic lc=new QuestionLogic(); 
-			int quesId=Integer.parseInt(request.getParameter("quesid"));
-			int subId=Integer.parseInt(request.getParameter("subid"));
-			String question=request.getParameter("question");
-			int ans=Integer.parseInt(request.getParameter("answer"));
-			String ch1=request.getParameter("choice1");
-			String ch2=request.getParameter("choice2");
-			String ch3=request.getParameter("choice3");
-			String ch4=request.getParameter("choice4");
-			String answer=request.getParameter("ans");
-			Question ques=new Question(quesId, subId, question, ans, ch1, ch2, ch3, ch4, answer); 
-			
-			try {
-				if(lc.update(quesId, ques))
-				{
-					request.setAttribute("questionUpdate","Successfully Updated.");//use this attribute to display data
-					RequestDispatcher dispatch=request.getRequestDispatcher("./question.jsp");
-					dispatch.forward(request, response);
-				}
-				else	 
-				{
-					request.setAttribute("questionUpdate","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+				else{
+					
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		  
+		}
+		else if (session.getAttribute("call").equals("update")) {
+			try {
+				sub=sLogic.search(id);
+					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
+					response.sendRedirect("./Admin/AdminQuestion/updateQuestion.jsp");
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
  
