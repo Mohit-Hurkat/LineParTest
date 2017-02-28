@@ -21,7 +21,7 @@
  	<div style="color: white;">
 	<table border="1" style="width:100%;">
 	<tr>
-	<th>Username Name</th>
+	<th>Username</th>
  
  
 	</tr>

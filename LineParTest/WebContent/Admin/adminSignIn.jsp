@@ -27,8 +27,8 @@
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
         		<li class="float"><a  href="../AdminStudentHelper?display=display">Delete Student</a></li>
-        		<li class="float"><a  href="../Admin/adminStudent.jsp">Search Student</a></li>
-        		<li class="float"><a  href="../Admin/adminStudent.jsp">View All Students</a></li>
+        		<li class="float"><a  href="../AdminStudentHelper?search=search">Search Student</a></li>
+        		<li class="float"><a  href="../AdminStudentHelper?displayAll=displayAll">View All Students</a></li>
         	</ul>
 			 </li>
          	<li class="tab " id="subject" ><a>Subject</a>

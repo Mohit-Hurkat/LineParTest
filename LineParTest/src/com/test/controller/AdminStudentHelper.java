@@ -20,16 +20,61 @@ public class AdminStudentHelper extends HttpServlet {
 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 if (request.getParameter("display") != null) {
-			 HttpSession session=request.getSession(false);
+		 HttpSession session=request.getSession(false); 
+		if (request.getParameter("display") != null) {
+			
 				StudentLogic lc=new StudentLogic(); 
 				try {
 					List<Student> stu=lc.displayAll();
 					if(stu!=null)
 					{
-						System.out.println("enter");
+						
 					session.setAttribute("studentDisplay", stu);
 					response.sendRedirect("./Admin/AdminStudent/deleteStudent.jsp");
+					}
+					else
+					{
+						request.setAttribute("studentDelete","Error.");
+						RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
+						dispatch.forward(request, response);
+					}
+				} catch (ClassNotFoundException | SQLException e) {
+				 
+					e.printStackTrace();
+				}
+			  
+			}
+		else if (request.getParameter("displayAll") != null) {
+				StudentLogic lc=new StudentLogic(); 
+				try {
+					List<Student> stu=lc.displayAll();
+					if(stu!=null)
+					{
+						
+					session.setAttribute("studentDisplay", stu);
+					response.sendRedirect("./Admin/AdminStudent/viewAllStudents.jsp");
+					}
+					else
+					{
+						request.setAttribute("studentDelete","Error.");
+						RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
+						dispatch.forward(request, response);
+					}
+				} catch (ClassNotFoundException | SQLException e) {
+				 
+					e.printStackTrace();
+				}
+			  
+			}
+		else if (request.getParameter("search") != null) {
+				StudentLogic lc=new StudentLogic(); 
+				try {
+					List<Student> stu=lc.displayAll();
+					if(stu!=null)
+					{
+						
+					session.setAttribute("studentDisplay", stu);
+					response.sendRedirect("./Admin/AdminStudent/searchStudent.jsp");
 					}
 					else
 					{

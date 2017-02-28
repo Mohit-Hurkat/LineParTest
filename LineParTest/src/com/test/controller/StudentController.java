@@ -18,8 +18,9 @@ public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		 
-		if (request.getParameter("insert") != null) {
+		HttpSession session=request.getSession(false);
+		if (request.getParameter("insert") != null)
+		{
 		 
 			StudentLogic lc=new StudentLogic(); 
 			String suname=request.getParameter("suname");
@@ -48,14 +49,14 @@ public class StudentController extends HttpServlet {
 		} 
 		else if(request.getParameter("delete") != null)
 		{
-			HttpSession session=request.getSession(false);
+			
 			String suname=request.getParameter("username");
 			StudentLogic lc=new StudentLogic(); 
 			try {
 				if(lc.delete(suname))
 				{
 					session.setAttribute("studentDelete","Successfully Deleted.");
-					response.sendRedirect("./Admin/adminStudent.jsp");
+					response.sendRedirect("./Admin/AdminStudent/adminStudent.jsp");
 				}
 				else	 
 				{
@@ -70,15 +71,14 @@ public class StudentController extends HttpServlet {
 		      
 		}
 		else if (request.getParameter("search") != null) {
-			String suname=request.getParameter("suname");
+			String suname=request.getParameter("username");
 			StudentLogic lc=new StudentLogic(); 
 			try {
 				Student stu=lc.search(suname);
 				if(stu.getUsername().equals(suname))
 				{
-				request.setAttribute("studentsearch", stu);
-				RequestDispatcher dispatch=request.getRequestDispatcher("./student.jsp");
-				dispatch.forward(request, response);
+					session.setAttribute("studentSearch",stu);
+					response.sendRedirect("./Admin/AdminStudent/adminStudentSearch.jsp");
 				}
 				else
 				{
