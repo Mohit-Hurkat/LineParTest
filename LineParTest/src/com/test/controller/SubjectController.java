@@ -10,6 +10,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.test.bean.Subject;
 import com.test.bl.SubjectLogic;
@@ -18,6 +19,7 @@ public class SubjectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session=request.getSession(true);
 		System.out.println("hell41");
 		Enumeration<String> helloo=request.getParameterNames();
 		System.out.println(helloo);
@@ -48,14 +50,15 @@ public class SubjectController extends HttpServlet {
 		} 
 		else if(request.getParameter("delete") != null)
 		{
-			int subid=Integer.parseInt(request.getParameter("subid"));
+			int subid=Integer.parseInt(request.getParameter("subjectId"));
 			SubjectLogic lc=new SubjectLogic(); 
 			try {
 				if(lc.delete(subid))
 				{
-					request.setAttribute("subjectDelete","Successfully Deleted.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./subject.jsp");
-					dispatch.forward(request, response);
+					System.out.println("del");
+					session.setAttribute("subjectDelete","Successfully Deleted.");//use this attribute to abstract info
+					response.sendRedirect("./Admin/adminSubject.jsp");
+					System.out.println("del2");
 				}
 				else	 
 				{

@@ -34,7 +34,7 @@
          	<li class="tab " id="subject" ><a>Subject</a>
          	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
-        		<li class="float"><a href="./Admin/adminSubject.jsp">Delete Subject</a></li>
+        		<li class="float"><a href="./SubjectHelper?display=display">Delete Subject</a></li>
         		<li class="float"><a href="./Admin/adminSubject.jsp">Display Subject</a></li>
         		<li class="float"><a href="./Admin/adminSubject.jsp">Insert Subject</a></li>
         		<li class="float"><a href="./Admin/AdminSubject/searchSubject.jsp">Search Subject</a></li>
