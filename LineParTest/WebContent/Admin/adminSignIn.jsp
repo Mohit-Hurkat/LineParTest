@@ -49,8 +49,6 @@
         	</li>
 		</ul>
 	</div> <!-- /form -->
-<form action="./QuestionController">
-<input type="submit" name="display" value="display">
-</form>
+ 
 </body>
 </html>

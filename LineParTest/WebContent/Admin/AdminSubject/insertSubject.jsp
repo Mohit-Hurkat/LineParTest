@@ -70,7 +70,9 @@ $('.tab a').on('click', function (e) {
         
        
       </div><!-- tab-content -->
-      
+     <br> <form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post" name="backForm">
+ <input type="submit" class="button-block" value="Back">
+          </form>
 </div> <!-- /form -->
 </body>
 </html>
