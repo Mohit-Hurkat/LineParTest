@@ -49,11 +49,10 @@ public class StudentController extends HttpServlet {
 		} 
 		else if(request.getParameter("delete") != null)
 		{
-			
-			String suname=request.getParameter("username");
+			String username=request.getParameter("username");
 			StudentLogic lc=new StudentLogic(); 
 			try {
-				if(lc.delete(suname))
+				if(lc.delete(username))
 				{
 					session.setAttribute("studentDelete","Successfully Deleted.");
 					response.sendRedirect("./Admin/AdminStudent/adminStudent.jsp");

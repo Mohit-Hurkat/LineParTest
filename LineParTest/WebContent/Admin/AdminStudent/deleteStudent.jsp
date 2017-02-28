@@ -6,12 +6,21 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style1.css"/>
 <title>Insert title here</title>
+    <script type="text/javascript">
+    $(document).ready(function(){
+    	var $submit = $("#sub").hide();
+    	var $submit1 = $("#dis").show();
+    	var    $cbs = $("input[type='radio']").click(function() {
+            $submit.toggle( $cbs.is(":checked") );
+            $submit1.hide();
+        });
+       });
+</script>
 </head>
 <body>
-	
-		<body>
 
 		<% ArrayList<Student> studentList=(ArrayList<Student>)session.getAttribute("studentDisplay");%>
 <div class="form">
@@ -28,18 +37,20 @@
 	<%for (Student stu:studentList){%>
 		<tr>
 			<td><%=stu.getUsername()%></td>
-			
+			<td><input type="radio" name="username" value="<%=stu.getUsername()%>"></td>
 		 
 		</tr>
 	<% } %>
 	</table>
  	</div><br>
- 	<h1> Select  User :</h1><input type="text" name="username" ><br>
- 	<input type="submit"  value="delete" name="delete">
+ 	 <div id="dis">
+ <h1>Please Select an User</h1>
+ </div>
+ <input type="submit" id="sub" value="delete" name="delete">
 </form>
 </div><br>
-<form action="./Admin/adminSignIn.jsp" method="post" name="backForm">
-          <button class="back-button">BACK</button>
+<form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post" name="backForm">
+ <input type="submit" class="button-block" value="Back">
           </form>
 </div>
 

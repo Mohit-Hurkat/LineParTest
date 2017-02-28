@@ -31,8 +31,11 @@
  	<h1> Search User :</h1><input type="text" name="username" ><br>
  	<input type="submit"  value="search" name="search">
 </form>
-</div><br>
-
+</div>
+<br>
+<form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post" name="backForm">
+ <input type="submit" class="button-block" value="Back">
+          </form>
 </div>
 </body>
 </html>
