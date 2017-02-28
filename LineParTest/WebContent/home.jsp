@@ -83,7 +83,6 @@ $('.tab a').on('click', function (e) {
           <button type="submit" class="button button-block"/>Get Started</button>
           </div><!-- top-row -->
           </form>
-
         </div>
         
         <div id="login">   
