@@ -52,9 +52,9 @@ $(document).ready(function() {
  <input type="submit" class="button button-block">
 </form>
 </div>
-<form action="./Student/student.jsp" method="post" name="backForm">
-          <button class="back-button">BACK</button>
-          </form>
+ <form action="${pageContext.request.contextPath}/Student/student.jsp" method="post">
+ <input type="submit" class="button-block" value="Back">
+ </form>
 </div>
 </body>
 </html>

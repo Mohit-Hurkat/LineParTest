@@ -45,9 +45,10 @@ text-align: center;
 </table>
  </div><br>
 </div>
-<form action="./Student/student.jsp" method="post" name="backForm">
-          <button class="back-button">BACK</button>
-          </form>
+ <br>
+ <form action="${pageContext.request.contextPath}/Student/student.jsp" method="post">
+ <input type="submit" class="button-block" value="Back">
+ </form>
 </div>
 </body>
 </html>

@@ -77,14 +77,23 @@
     </style>
 </head>
 <body>
+<% String message=(String)session.getAttribute("message");
+String message1=(String)session.getAttribute("message1"); 
+if(message==null){
+	message="Oops! It looks like you're lost. ";
+}
+if(message1==null){
+	message1="Sorry about that.";
+}
+%>
 <div class="form">
     <div class="wrap">
         <h1 id="construct">Site Is Under-construction.</h1>
 
         <div class="type-wrap">
             <div id="typed-strings">
-                <span>Oops! It looks like you're lost. </span>
-                <p>Sorry about that.</p>
+                <span><%=message%></span>
+                <p><%=message1%></p>
                 <p>Let me try and help. </p>
 				<p>Click On The Below Links for Navigations. </p>
             </div>
