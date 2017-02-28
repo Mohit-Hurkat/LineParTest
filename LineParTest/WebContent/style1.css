@@ -119,7 +119,7 @@ label {
 }
 
 label.active {
-  transform:translateY(50px);
+  transform:translateY(-25px);
   left:2px;
   font-size:14px;
   .req {
@@ -194,7 +194,7 @@ textarea {
 
 .button-block {
   display:block;
-  width:100%;
+  width:40%;
 }
 
 .forgot {

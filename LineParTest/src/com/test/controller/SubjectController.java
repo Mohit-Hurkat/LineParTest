@@ -20,22 +20,23 @@ public class SubjectController extends HttpServlet {
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(true);
-		System.out.println("hell41");
 		Enumeration<String> helloo=request.getParameterNames();
 		System.out.println(helloo);
 		if (request.getParameter("insert") != null) {
-			 
+		
 			SubjectLogic lc=new SubjectLogic(); 
-			String subname=request.getParameter("subname");
-			String subdate1=request.getParameter("suddate1");
-			String subdate2=request.getParameter("suddate2");
+			String subname=request.getParameter("subjectName");
+			String subdate1=request.getParameter("subjectDate1");
+			String subdate2=request.getParameter("subjectDate2");
 			 
 			try {
-				if(lc.insert( subname, subdate1,subdate2))
+				
+				if(lc.insert(subname,subdate1,subdate2))
 				{
-					request.setAttribute("subjectinsert","Successfully Inserted.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./subject.jsp");
-					dispatch.forward(request, response);
+				 
+					session.setAttribute("subjectInsert","Successfully Inserted.");//use this attribute to abstract info
+					 response.sendRedirect("./Admin/adminSubject.jsp");
+					 
 				}
 				else	 
 				{
@@ -75,14 +76,13 @@ public class SubjectController extends HttpServlet {
 		else if (request.getParameter("search") != null) {
 			int subid=Integer.parseInt(request.getParameter("subjectId"));
 			SubjectLogic lc=new SubjectLogic();
-			System.out.println("l");
+		 
 			try {
 				Subject sub=lc.search(subid);
 				if(sub.getSubjectId()==subid)
-				{				System.out.println("j");
-				request.setAttribute("subjectSearch", sub);//use this attribute to abstract data
-				RequestDispatcher dispatch=request.getRequestDispatcher("searchSubject.jsp");
-				dispatch.forward(request, response);
+				{				 
+					session.setAttribute("subjectSearch", sub);//use this attribute to display data
+					response.sendRedirect("./Admin/AdminSubject/adminSubjectSearch.jsp");
 				}
 				else
 				{
@@ -110,9 +110,9 @@ public class SubjectController extends HttpServlet {
 				if(sub!=null)
 				{
 					System.out.println("hell");
-				request.setAttribute("subjectDisplay", sub);//use this attribute to display data
-				RequestDispatcher dispatch=request.getRequestDispatcher("studentGiveTest.jsp");
-				dispatch.forward(request, response);
+					session.setAttribute("subjectDisplay", sub);//use this attribute to display data
+					response.sendRedirect("./Admin/AdminSubject/displaySubject.jsp");
+				 
 				}
 				else
 				{
@@ -128,18 +128,17 @@ public class SubjectController extends HttpServlet {
 		  
 		}
 		else if (request.getParameter("update") != null) {
-			int subid=Integer.parseInt(request.getParameter("subid"));
-			String subname=request.getParameter("subname");
-			String subdate1=request.getParameter("suddate1");
-			String subdate2=request.getParameter("suddate2");
+			int subid=Integer.parseInt(request.getParameter("subjectId"));
+			String subname=request.getParameter("subjectName");
+			String subdate1=request.getParameter("subjectDate1");
+			String subdate2=request.getParameter("subjectDate2");
 			Subject sub=new Subject(subid, subname, subdate1, subdate2);
 			SubjectLogic lc=new SubjectLogic();
 			try {
 				if(lc.update(subid,sub))
 				{
-					request.setAttribute("subjectUpdate","Successfully Updated.");//use this attribute to display data
-					RequestDispatcher dispatch=request.getRequestDispatcher("./subject.jsp");
-					dispatch.forward(request, response);
+					session.setAttribute("subjectUpdate","Successfully Updated.");//use this attribute to abstract info
+					 response.sendRedirect("./Admin/adminSubject.jsp");
 				}
 				else	 
 				{

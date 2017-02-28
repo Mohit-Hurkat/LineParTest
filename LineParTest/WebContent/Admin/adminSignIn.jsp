@@ -35,10 +35,10 @@
          	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
         		<li class="float"><a href="../SubjectHelper?display=display">Delete Subject</a></li>
-        		<li class="float"><a href="../Admin/adminSubject.jsp">Display Subject</a></li>
-        		<li class="float"><a href="../Admin/adminSubject.jsp">Insert Subject</a></li>
-        		<li class="float"><a href="../Admin/AdminSubject/searchSubject.jsp">Search Subject</a></li>
-        		<li class="float"><a href="../Admin/adminSubject.jsp">Update Subject</a></li>
+        		<li class="float"><a href="../SubjectHelper?display1=display1">Display Subject</a></li>
+        		<li class="float"><a href="./AdminSubject/insertSubject.jsp">Insert Subject</a></li>
+        		<li class="float"><a href="../SubjectHelper?display3=display3">Search Subject</a></li>
+        		<li class="float"><a href="../SubjectHelper?display2=display2">Update Subject</a></li>
         	</ul>
         	</li>
         	<li class="tab " id="update" ><a>Admin</a>

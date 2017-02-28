@@ -23,17 +23,87 @@ public class SubjectHelper extends HttpServlet {
 			 
 			SubjectLogic lc=new SubjectLogic();
 			try {
-				System.out.println("hell4");
+				 
 				List<Subject> sub=lc.displayAll();
 				if(sub!=null)
 				{
-					System.out.println("hell");
+					 
 				session.setAttribute("subjectDisplay", sub);//use this attribute to display data
 				response.sendRedirect("./Admin/AdminSubject/deleteSubject.jsp");
 				}
 				else
 				{
-					System.out.println("hell1");
+				 
+					request.setAttribute("subjectDisplay","Error.");//use this attribute to abstract info
+					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
+					dispatch.forward(request, response);
+				}
+			} catch (ClassNotFoundException | SQLException | NullPointerException e) {
+				System.out.println("hell3");
+				e.printStackTrace();
+			}  
+		}else if (request.getParameter("display1") != null) {
+			 
+			SubjectLogic lc=new SubjectLogic();
+			try {
+				 
+				List<Subject> sub=lc.displayAll();
+				if(sub!=null)
+				{
+					 
+				session.setAttribute("subjectDisplay", sub);//use this attribute to display data
+				response.sendRedirect("./Admin/AdminSubject/displaySubject.jsp");
+				}
+				else
+				{
+				 
+					request.setAttribute("subjectDisplay","Error.");//use this attribute to abstract info
+					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
+					dispatch.forward(request, response);
+				}
+			} catch (ClassNotFoundException | SQLException | NullPointerException e) {
+				System.out.println("hell3");
+				e.printStackTrace();
+			}  
+		}
+		else if (request.getParameter("display2") != null) {
+			 
+			SubjectLogic lc=new SubjectLogic();
+			try {
+				 
+				List<Subject> sub=lc.displayAll();
+				if(sub!=null)
+				{
+					 
+				session.setAttribute("subjectDisplay", sub);//use this attribute to display data
+				response.sendRedirect("./Admin/AdminSubject/updateSubject.jsp");
+				}
+				else
+				{
+				 
+					request.setAttribute("subjectDisplay","Error.");//use this attribute to abstract info
+					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
+					dispatch.forward(request, response);
+				}
+			} catch (ClassNotFoundException | SQLException | NullPointerException e) {
+				System.out.println("hell3");
+				e.printStackTrace();
+			}  
+		}else   if (request.getParameter("display3") != null) {
+			 
+			SubjectLogic lc=new SubjectLogic();
+			try {
+				 
+				List<Subject> sub=lc.displayAll();
+				if(sub!=null)
+				{
+					 
+				session.setAttribute("subjectDisplay", sub);//use this attribute to display data
+				response.sendRedirect("./Admin/AdminSubject/searchSubject.jsp");
+				}
+				else
+				{
+				 
 					request.setAttribute("subjectDisplay","Error.");//use this attribute to abstract info
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
