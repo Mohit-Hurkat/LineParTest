@@ -42,7 +42,7 @@ int subject=(Integer)(session.getAttribute("sessionSubjectId"));%>
 
  <br>
  <form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post">
- <input type="submit" class="button button-block" value="Back">
+ <input type="submit" class="button-block" value="Back">
  </form>
   </div>
 </body>
