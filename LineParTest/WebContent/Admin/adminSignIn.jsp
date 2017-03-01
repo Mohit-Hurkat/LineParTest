@@ -11,7 +11,6 @@
     <script src="./javascript/homepage.js" type="text/javascript"></script>
 </head>
 <body>
-<c:if test="${empty sessionScope.admin}"><c:redirect url="/home.jsp" /></c:if> 
 	<div class="form">
       
       	<ul class="tab-group">

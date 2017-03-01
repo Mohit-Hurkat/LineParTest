@@ -13,7 +13,6 @@
 
 </head>
 <body>
-<c:if test="${empty sessionScope.student}"><c:redirect url="/home.jsp"/></c:if>  
 <%@include file="./studentHeader.jsp" %>
 </body>
 </html>
