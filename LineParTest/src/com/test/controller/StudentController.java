@@ -23,18 +23,17 @@ public class StudentController extends HttpServlet {
 		{
 		 
 			StudentLogic lc=new StudentLogic(); 
-			String suname=request.getParameter("suname");
-			String spass=request.getParameter("spass");
-			String sname=request.getParameter("sname");
-			String sphone=request.getParameter("sphone");
-			String semail=request.getParameter("semail");
-			Student student=new Student(suname, spass, sname, sphone, semail);
+			String username=request.getParameter("username");
+			String userpass=request.getParameter("password");
+			String name=request.getParameter("name");
+			String phone=request.getParameter("phone");
+			String email=request.getParameter("email");
+			Student student=new Student(username, userpass, name, phone, email);
 			try {
 				if(lc.insert(student))
 				{
 					request.setAttribute("studentinsert","Successfully Inserted.");
-					RequestDispatcher dispatch=request.getRequestDispatcher("./student.jsp");
-					dispatch.forward(request, response);
+					response.sendRedirect("./Student/success.jsp");
 				}
 				else	 
 				{

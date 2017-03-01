@@ -40,7 +40,7 @@ $('.tab a').on('click', function (e) {
         <div id="signup">   
           <h1 class="sign">Sign Up</h1>
           
-          <form action="/forgetPass" method="post">
+          <form action="./StudentController" method="post">
           
           <div class="top-row">
           
@@ -80,7 +80,7 @@ $('.tab a').on('click', function (e) {
             <input type="password"  name="password" required autocomplete="off"/>
           	</div>   
           	    
-          <button type="submit" class="button button-block"/>Get Started</button>
+          <button type="submit" class="button button-block" name="insert"/>Get Started</button>
           </div><!-- top-row -->
           </form>
         </div>
