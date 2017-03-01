@@ -28,11 +28,6 @@ function showDivs(n) {
   x[slideIndex-1].style.display = "block";  
 }
 
-$( document ).ready(function(){
-	"#mySlides":not(first-child) {
-	    display: none;
-	}
-});
 </script>
 <style type="text/css">
 body{
