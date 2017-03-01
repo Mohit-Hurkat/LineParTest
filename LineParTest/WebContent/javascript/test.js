@@ -3,6 +3,20 @@ $( document ).ready(function(){
 	for (i = 1; i < g.length; i++) {
 	     g[i].style.display = "none";  
 	  }
+	
+	var seconds_left = 50;
+
+	var interval = setInterval(function() {
+	    document.getElementById('timer_div').innerHTML = --seconds_left;
+
+	    if (seconds_left <= 0)
+	    {
+	       
+	       clearInterval(interval);
+	       $( "#test" ).submit();
+	    }
+	}, 1000);
+	
 });
 
 var slideIndex = 1;
@@ -28,14 +42,3 @@ function showDivs(n) {
 
 
 
-var seconds_left = 600;
-
-var interval = setInterval(function() {
-    document.getElementById('timer_div').innerHTML = --seconds_left;
-
-    if (seconds_left <= 0)
-    {
-       document.getElementById('timer_div').innerHTML = "You are Ready!";
-       clearInterval(interval);
-    }
-}, 1000);

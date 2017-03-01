@@ -12,6 +12,7 @@ public interface QuestionDao {
 	List<Question> displayAll(int subjectId) throws IOException, ClassNotFoundException, SQLException;
 	boolean update(int questionId, Question question) throws IOException, ClassNotFoundException, SQLException;
 	boolean delete(int questionID) throws IOException, ClassNotFoundException, SQLException;
+    public String answer(int questionID) throws IOException, ClassNotFoundException, SQLException;
 	
 
 }

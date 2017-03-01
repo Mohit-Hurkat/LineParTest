@@ -19,6 +19,7 @@ public class QuestionDaoImpl implements QuestionDao{
 	private static final String SELECT_QUERY = "SELECT * FROM QUESTIONS WHERE QUESTION_ID = ?";
     private static final String INSERT_QUERY="INSERT INTO QUESTIONS(QUESTION_ID,SUBJECT_ID,QUESTION,CHOICE1,CHOICE2,CHOICE3,CHOICE4,ANSWER,ANS,VALUE) VALUES(?,?,?,?,?,?,?,?,?,0)";
     private static final String GET_MAX_ID_QUERY = "SELECT COALESCE(MAX(QUESTION_ID), 0) AS COUNT FROM QUESTIONS";
+    private static final String GET_ANS = "SELECT ANS FROM QUESTIONS WHERE QUESTION_ID = ?";
     private int question_id;
     private int subject_id;
     private String question_1;
@@ -149,4 +150,17 @@ public class QuestionDaoImpl implements QuestionDao{
 		connection.close();
 		return result;
 	}
+    
+    public String answer(int questionID) throws IOException, ClassNotFoundException, SQLException {
+    	Connection connection = JDBCConnection.getConnection();
+		PreparedStatement preparedStatement = connection.prepareStatement(GET_ANS);
+		preparedStatement.setInt(1, questionID);
+		ResultSet rs = preparedStatement.executeQuery();
+		rs.next();
+		String ans = rs.getString("ANS");
+		preparedStatement.close();
+		connection.close();
+    	return ans;
+    
+    }
 }

@@ -130,4 +130,14 @@
     <servlet-name>GiveTestController</servlet-name>
     <url-pattern>/GiveTest</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TestResult</display-name>
+    <servlet-name>TestResult</servlet-name>
+    <servlet-class>com.test.controller.TestResult</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestResult</servlet-name>
+    <url-pattern>/Result</url-pattern>
+  </servlet-mapping>
 </web-app>
