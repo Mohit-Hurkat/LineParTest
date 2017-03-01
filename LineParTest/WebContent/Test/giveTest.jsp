@@ -40,6 +40,7 @@ display:inline;
 }
 </style>
 
+
 </head>
 <body>
 <%ArrayList<Question> ques=(ArrayList<Question>)session.getAttribute("Questions");
