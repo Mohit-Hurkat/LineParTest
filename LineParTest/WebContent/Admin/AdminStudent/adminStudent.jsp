@@ -10,6 +10,7 @@
     <script src="../javascript/homepage.js" type="text/javascript"></script>
 </head>
 <body>
+<c:if test="${empty sessionScope.admin}"><c:redirect url="/home.jsp" /></c:if> 
  	<h1>Successfully Deleted.</h1>
  	<br>
 <form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post" name="backForm">

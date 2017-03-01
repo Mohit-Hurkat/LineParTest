@@ -2,6 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@page import="java.util.ArrayList"%>
     <%@page import="com.test.bean.Subject" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <style>
@@ -29,6 +30,7 @@ display:inline;
 </script>
 </head>
 <body>
+<c:if test="${empty sessionScope.admin}"><c:redirect url="/home.jsp" /></c:if> 
 <% ArrayList<Subject> subList=(ArrayList<Subject>)session.getAttribute("subjectDisplay");%>
 <div class="form">
 <div class="tab-group">

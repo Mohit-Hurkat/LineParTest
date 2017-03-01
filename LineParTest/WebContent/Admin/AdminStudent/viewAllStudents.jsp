@@ -10,10 +10,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-	
-		<body>
-
-		<% ArrayList<Student> studentList=(ArrayList<Student>)session.getAttribute("studentDisplay");%>
+<c:if test="${empty sessionScope.admin}"><c:redirect url="/home.jsp" /></c:if> 
+<% ArrayList<Student> studentList=(ArrayList<Student>)session.getAttribute("studentDisplay");%>
 <div class="form">
 <div class="tab-group">
  <form action="${pageContext.request.contextPath}/StudentController">
