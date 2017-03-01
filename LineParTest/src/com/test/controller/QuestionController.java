@@ -26,14 +26,13 @@ public class QuestionController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 //System.out.println("ques");
 		HttpSession session=request.getSession(false);
-		int id=Integer.parseInt(request.getParameter("subject"));
-		session.setAttribute("sessionSubjectId", id);
+		
 		
 		if (session.getAttribute("call").equals("insert")){
-			//System.out.println("iasd");
+			int subjectId=Integer.parseInt(request.getParameter("subject")); //subject is subjectId
+			session.setAttribute("sessionSubjectId", subjectId);
 			try {
-				sub=sLogic.search(id);
-				
+				sub=sLogic.search(subjectId);
 					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
 					session.setAttribute("call", "insertIntoTable");
 					 response.sendRedirect("./Admin/AdminQuestion/insertQuestion.jsp");
@@ -43,22 +42,24 @@ public class QuestionController extends HttpServlet {
 			}
 		}
 		else if(session.getAttribute("call").equals("insertIntoTable")){
-			int subjectId=Integer.parseInt(request.getParameter("subjectId"));
+			int subjectId=Integer.parseInt(request.getParameter("subject")); //subject is subjectId
+			session.setAttribute("sessionSubjectId", subjectId);
+			int questionId=Integer.parseInt(request.getParameter("questionId"));
 			String question=request.getParameter("question");
 			String op1=request.getParameter("op1");
 			String op2=request.getParameter("op2");
 			String op3=request.getParameter("op3");
 			String op4=request.getParameter("op4");
 			int answer=Integer.parseInt(request.getParameter("answer"));
-			Question q=new Question(id, subjectId, question, answer, op1, op2, op3, op4, op1);
+			Question ques=new Question(questionId, subjectId, question, answer, op1, op2, op3, op4, op1);
 			try {
-				if(qLogic.insert(q)){
+				if(qLogic.insert(ques)){
 					session.setAttribute("message","Inserted Successfully");
 						response.sendRedirect("./Admin/AdminQuestion/final.jsp");
 					}
 				else
 				{
-					session.setAttribute("message","error");
+					session.setAttribute("message","Inserted Failed");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
@@ -68,15 +69,15 @@ public class QuestionController extends HttpServlet {
 			
 		}
 		else if(session.getAttribute("call").equals("deleteQues")){
-			int quesId=Integer.parseInt(request.getParameter("subject"));
+			int questionId=Integer.parseInt(request.getParameter("questionId"));
 			try {
-				if(qLogic.delete(quesId)){
+				if(qLogic.delete(questionId)){
 					session.setAttribute("message","Deleted Successfully");
 						response.sendRedirect("./Admin/AdminQuestion/final.jsp");
 					}
 				else
 				{
-					session.setAttribute("message","error");
+					session.setAttribute("message","Deletion Unsuccessful");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
@@ -86,8 +87,10 @@ public class QuestionController extends HttpServlet {
 			
 		}
 		else if (session.getAttribute("call").equals("search")) {
+			int subjectId=Integer.parseInt(request.getParameter("subject")); //subject is subjectId
+			session.setAttribute("sessionSubjectId", subjectId);
 			try {
-				sub=sLogic.search(id);
+				sub=sLogic.search(subjectId);
 					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
 					response.sendRedirect("./Admin/AdminQuestion/searchQuestion.jsp");
 			} catch (ClassNotFoundException | SQLException e) {
@@ -98,9 +101,10 @@ public class QuestionController extends HttpServlet {
 		}
 		
 		else if (session.getAttribute("call").equals("displayAll")) {
+			int subjectId=Integer.parseInt(request.getParameter("subject")); //subject is subjectId
+			session.setAttribute("sessionSubjectId", subjectId);
 			try {
-				sub=sLogic.search(id);
-				List<Question> ques=qLogic.displayAll(sub.getSubjectId());
+				List<Question> ques=qLogic.displayAll(subjectId);
 				if(ques!=null){
 				session.setAttribute("sessionQuestionAll",ques);
 					response.sendRedirect("./Admin/AdminQuestion/viewAllQuestion.jsp");
@@ -116,28 +120,88 @@ public class QuestionController extends HttpServlet {
 		}		
 		
 		else if (session.getAttribute("call").equals("update")) {
+			int subjectId=Integer.parseInt(request.getParameter("subject")); //subject is subjectId
+			session.setAttribute("sessionSubjectId", subjectId);
 			try {
-				sub=sLogic.search(id);
-					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
+				List<Question> ques=qLogic.displayAll(subjectId);
+				if(ques!=null){
+				session.setAttribute("sessionQuestionAll",ques);
+				session.setAttribute("call", "updateQues");
 					response.sendRedirect("./Admin/AdminQuestion/updateQuestion.jsp");
-			} catch (ClassNotFoundException | SQLException e) {
+				}
+			}catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
+		else if(session.getAttribute("call").equals("updateQues")){
+			int subjectId=(Integer)session.getAttribute("sessionSubjectId"); //subject is subjectId
+						int questionId=Integer.parseInt(request.getParameter("questionId"));
+						try {
+							Question qu=qLogic.search(questionId);
+							String question=qu.getQuestion();
+							String op1=qu.getChoice1();	
+							String op2=qu.getChoice2();
+							String op3=qu.getChoice3();
+							String op4=qu.getChoice4();
+							int answer=qu.getAnswer();
+							Question ques=new Question(questionId, subjectId, question, answer, op1, op2, op3, op4, op1);
+							session.setAttribute("sessionQuestion", ques);
+							session.setAttribute("call", "finalQues");
+							response.sendRedirect("./Admin/AdminQuestion/finalUpdate.jsp");
+						}
+						catch (Exception e) {
+							session.setAttribute("message","Update Failed");
+							response.sendRedirect("./lost.jsp");
+						}
+						
+		}
+		
+		else if (session.getAttribute("call").equals("finalQues")) {
+			int questionId=Integer.parseInt(request.getParameter("questionId"));
+			int subjectId=Integer.parseInt(request.getParameter("subject"));
+			String question=request.getParameter("question");
+			String op1=request.getParameter("op1");
+			String op2=request.getParameter("op2");
+			String op3=request.getParameter("op3");
+			String op4=request.getParameter("op4");
+			int answer=Integer.parseInt(request.getParameter("answer"));
+			Question ques=new Question(questionId, subjectId, question, answer, op1, op2, op3, op4, op1);
+			try {
+					if(qLogic.update(questionId, ques)){
+						session.setAttribute("sessionQuestionAll",ques);
+						session.setAttribute("message", "");
+					response.sendRedirect("./Admin/AdminQuestion/final.jsp");
+				}
+					else{
+						session.setAttribute("message","Update Failed");
+						response.sendRedirect("./lost.jsp");
+					}
+			}catch (ClassNotFoundException | SQLException e) {
+				session.setAttribute("message","Update Failed");
+				response.sendRedirect("./lost.jsp");
+			}
+		}
+		
+		
+		
 		
 		else if(session.getAttribute("call").equals("delete")){
+			int subjectId=Integer.parseInt(request.getParameter("subject")); //subject is subjectId
+			session.setAttribute("sessionSubjectId", subjectId);
 			try {
-				sub=sLogic.search(id);
+				sub=sLogic.search(subjectId);
 				List<Question> ques=qLogic.displayAll(sub.getSubjectId());
 				if(ques!=null){
-				session.setAttribute("sessionQuestionAll",ques);
-				session.setAttribute("call", "deleteQues");
+					session.setAttribute("sessionQuestionAll",ques);//use this attribute to abstract info
+					session.setAttribute("call", "deleteQues");
 					response.sendRedirect("./Admin/AdminQuestion/deleteQuestion.jsp");
 				}
-				else{
-					
+				else
+				{
+				session.setAttribute("message","Detele Failed");
+				response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block

@@ -42,7 +42,7 @@
 		<tr>
 		<td><%=ques.getQuestionId()%></td>
 			<td><%=ques.getQuestion()%></td>
-			<td><input type="radio" name="subject" value="<%=ques.getQuestionId()%>"></td>
+			<td><input type="radio" name="questionId" value="<%=ques.getQuestionId()%>"></td>
 		</tr>
 	<% } %>
 	</table>
