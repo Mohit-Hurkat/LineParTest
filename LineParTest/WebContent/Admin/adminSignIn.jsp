@@ -17,10 +17,10 @@
         	<ul class="dropdown-content">
         		<li style="height: 49px;"></li>
         	 	
-        		<li class="float"><a href="../AdminQuestion/?display1=display1"> Delete Question</a></li>
-        		<li class="float"><a href="../AdminQuestion/?display2=display2">Insert Question</a></li>
-        		<li  class="float"><a href="../AdminQuestion/?display3=display3">Update Question</a></li>
-        		<li  class="float"><a href="../AdminQuestion/?display4=display4"> View All Questions</a></li>
+        		<li class="float"><a href="../AdminQuestion/?delete=delete"> Delete Question</a></li>
+        		<li class="float"><a href="../AdminQuestion/?insert=insert">Insert Question</a></li>
+        		<li  class="float"><a href="../AdminQuestion/?update=update">Update Question</a></li>
+        		<li  class="float"><a href="../AdminQuestion/?viewAll=viewAll"> View All Questions</a></li>
         	</ul>
         	</li>
         	<li class="tab" id="updateInfo"><a>Student</a>

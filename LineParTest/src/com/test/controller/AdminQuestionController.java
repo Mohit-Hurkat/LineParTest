@@ -29,16 +29,16 @@ public class AdminQuestionController extends HttpServlet {
 				List<Subject> sub=lc.displayAll();
 				if(sub!=null)
 				{
-					if (request.getParameter("display1") != null) {
+					if (request.getParameter("delete") != null) {
 						session.setAttribute("call","delete");
 					}
-					else if (request.getParameter("display2") != null) {
+					else if (request.getParameter("insert") != null) {
 						session.setAttribute("call","insert");
 					}
-					else if (request.getParameter("display3") != null) {
+					else if (request.getParameter("update") != null) {
 						session.setAttribute("call","update");
 					}
-					else if (request.getParameter("display4") != null) {
+					else if (request.getParameter("viewAll") != null) {
 						session.setAttribute("call","displayAll");
 					}
 					System.out.println("hell");

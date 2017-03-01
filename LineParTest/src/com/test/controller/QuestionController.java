@@ -21,6 +21,7 @@ public class QuestionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private SubjectLogic sLogic=new SubjectLogic();
 	private Subject sub=null;
+	private QuestionLogic qLogic=new QuestionLogic();
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 System.out.println("ques");
@@ -38,17 +39,7 @@ public class QuestionController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		} 
-		else if(session.getAttribute("call").equals("delete")){
-			try {
-				sub=sLogic.search(id);
-					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
-					response.sendRedirect("./Admin/AdminQuestion/deleteQuestion.jsp");
-			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-	}
+		}
 		else if (session.getAttribute("call").equals("search")) {
 			try {
 				sub=sLogic.search(id);
@@ -60,8 +51,8 @@ public class QuestionController extends HttpServlet {
 			}
 		  
 		}
+		
 		else if (session.getAttribute("call").equals("displayAll")) {
-			QuestionLogic qLogic=new QuestionLogic();
 			try {
 				sub=sLogic.search(id);
 				List<Question> ques=qLogic.displayAll(sub.getSubjectId());
@@ -77,7 +68,8 @@ public class QuestionController extends HttpServlet {
 				e.printStackTrace();
 			}
 		  
-		}
+		}		
+		
 		else if (session.getAttribute("call").equals("update")) {
 			try {
 				sub=sLogic.search(id);
@@ -87,6 +79,43 @@ public class QuestionController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+		}
+		
+		
+		else if(session.getAttribute("call").equals("delete")){
+			try {
+				sub=sLogic.search(id);
+				List<Question> ques=qLogic.displayAll(sub.getSubjectId());
+				if(ques!=null){
+				session.setAttribute("sessionQuestionAll",ques);
+				session.setAttribute("call", "deleteQues");
+					response.sendRedirect("./Admin/AdminQuestion/deleteQuestion.jsp");
+				}
+				else{
+					
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		else if(session.getAttribute("call").equals("deleteQues")){
+			int quesId=Integer.parseInt(request.getParameter("subject"));
+			try {
+				if(qLogic.delete(quesId)){
+					session.setAttribute("message","Deleted Successfully");
+						response.sendRedirect("./Admin/AdminQuestion/final.jsp");
+					}
+				else
+				{
+					session.setAttribute("message","error");
+					response.sendRedirect("./lost.jsp");
+				}
+			} catch (ClassNotFoundException | SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 		}
 	}
  

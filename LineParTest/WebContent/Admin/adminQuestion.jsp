@@ -11,5 +11,6 @@
 </head>
 <body>
 <%@include file="./admin.jsp" %>
+
 </body>
 </html>
