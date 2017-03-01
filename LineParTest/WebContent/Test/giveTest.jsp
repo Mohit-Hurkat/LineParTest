@@ -9,34 +9,19 @@
 <title>Insert title here</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style1.css"/>
-<script>
-var slideIndex = 1;
-showDivs(slideIndex);
-
-function plusDivs(n) {
-  showDivs(slideIndex += n);
-}
-
-function showDivs(n) {
-  var i;
-  var x = document.getElementsByClassName("mySlides");
-  if (n > x.length) {slideIndex = 1}    
-  if (n < 1) {slideIndex = x.length}
-  for (i = 0; i < x.length; i++) {
-     x[i].style.display = "none";  
-  }
-  x[slideIndex-1].style.display = "block";  
-}
-
-</script>
+<script src="${pageContext.request.contextPath}/javascript/test.js" type="text/javascript"></script>
 <style type="text/css">
 body{
 color:white;
+font-size:20px;
 }
 input[type=radio]{
 height:auto;
 width: auto;
 display:inline;
+}
+#timer_div{
+float:left;
 }
 </style>
 
@@ -57,11 +42,11 @@ display:inline;
 		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice3()%></li>
 		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice4()%></li>
 			</ol>
-
 		</div>
 				<%}%>
-							<button class="w3-button w3-display-left" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="w3-button w3-display-right" onclick="plusDivs(1)">&#10095;</button>
+							<button class="left" id="lef" onclick="plusDivs(-1)">&#10094;</button>
+  <button class="right" id="rig" onclick="plusDivs(1)">&#10095;</button> 
+  <div id="timer_div"></div>
 	</div>
 </body>
 </html>
