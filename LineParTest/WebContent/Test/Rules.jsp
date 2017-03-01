@@ -27,7 +27,7 @@ color:white;
 		<p>Once answered you can't change your answer</p>
 		<p>Each question is of one mark</p>
 		<p>Your result will be displayed as per the number of correct questions you have answered in percentage</p>
- 		<input type="submit" class="button-block">
+ 		<input type="submit" class="button-block" value="Start">
 		</form>
 		</div>
 </div>
