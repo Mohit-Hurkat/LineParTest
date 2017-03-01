@@ -21,6 +21,7 @@ public class GiveTestController extends HttpServlet {
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
+		
 		String username=(String)session.getAttribute("sessionUsername");
 		try {
 			int subject=Integer.parseInt(request.getParameter("subjectIdd"));

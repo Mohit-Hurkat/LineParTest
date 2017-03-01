@@ -21,7 +21,7 @@ width: auto;
 display:inline;
 }
 #timer_div{
-float:left;
+float:right;
 }
 </style>
 
@@ -29,24 +29,26 @@ float:left;
 </head>
 <body>
 <%ArrayList<Question> ques=(ArrayList<Question>)session.getAttribute("Questions");
-%>
-<%int que=0; %>
-<div class="form">	
+int que=0; %>
+<form action="${pageContext.request.contextPath}/Result" id="test" method="post">
+<div class="form">
 <%for (Question quest:ques){%>
 	<div class="h">
 	<ol class="mySlides">
 		<h3>QuestionNo: <%=++que%></h3>
 		<h3><%= quest.getQuestion()%></h3>
-		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice1()%></li>
-		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice2()%></li>
-		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice3()%></li>
-		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice4()%></li>
+		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getChoice1()%>"><%=	quest.getChoice1()%></li>
+		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getChoice2()%>"><%= quest.getChoice2()%></li>
+		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getChoice3()%>"><%= quest.getChoice3()%></li>
+		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getChoice4()%>"><%= quest.getChoice4()%></li>
 			</ol>
 		</div>
 				<%}%>
-							<button class="left" id="lef" onclick="plusDivs(-1)">&#10094;</button>
-  <button class="right" id="rig" onclick="plusDivs(1)">&#10095;</button> 
+							<a class="left" id="lef" onclick="plusDivs(-1)">&#10094;</a>
+  <a class="right" id="rig" onclick="plusDivs(1)">&#10095;</a> 
   <div id="timer_div"></div>
 	</div>
+ <input type="submit" class="button button-block" value="Finish Test">
+ </form>
 </body>
 </html>

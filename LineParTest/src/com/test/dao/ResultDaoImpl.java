@@ -15,6 +15,7 @@ import com.test.helper.JDBCConnection;
 public class ResultDaoImpl implements ResultDao{
 
 	private static final String Check_Result2="Select * from RESULT WHERE USERNAME=?";
+	private static final String Set_Result="INSERT INTO RESULT(USERNAME,SUBJECT_ID,RESULT,TIME_) VALUES(?,?,?,to_date(sysdate,'dd-mm-yy'))";
 	
 	public List<Result> show(String username) throws ClassNotFoundException, SQLException, IOException{
 		List<Result> resultList = new ArrayList<>();
@@ -32,5 +33,18 @@ public class ResultDaoImpl implements ResultDao{
 		preparedStatement.close();
 		connection.close();
 		return resultList;
+	}
+	
+	public boolean set(String username,int subjectId,int result) throws ClassNotFoundException, SQLException, IOException{
+		Connection connection = JDBCConnection.getConnection();
+		PreparedStatement preparedStatement = connection.prepareStatement(Set_Result);
+		preparedStatement.setString(1,username);
+		preparedStatement.setInt(2,subjectId);
+		preparedStatement.setInt(3,result);
+		preparedStatement.executeQuery();
+		preparedStatement.close();
+		connection.close();
+		return false;
+		
 	}
 }

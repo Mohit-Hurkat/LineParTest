@@ -14,4 +14,7 @@ public class ResultLogic {
 	public List<Result> show(String username) throws ClassNotFoundException, SQLException, IOException{
 		return rdao.show(username);
 	}
+	public boolean set(String username,int subjectId,int result) throws ClassNotFoundException, SQLException, IOException{
+		return rdao.set(username, subjectId, result);
+	}
 }

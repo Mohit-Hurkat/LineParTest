@@ -37,5 +37,8 @@ public class QuestionLogic
 		return qdao.delete(questionID);
 		
 	}
+    public String answer(int questionID) throws IOException, ClassNotFoundException, SQLException {
+    	return qdao.answer(questionID);
+    }
 	
 }
