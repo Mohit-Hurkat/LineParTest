@@ -11,12 +11,16 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style1.css"/>
 </head>
 <body>
-<%ArrayList<Question> ques=(ArrayList<Question>)session.getAttribute("quest"); %>>
+<%ArrayList<Question> ques=(ArrayList<Question>)session.getAttribute("Questions");
+for (Question quest:ques){
+out.println(quest.getQuestion());
+}
+%>
 <div class="form">
 	<div class="tab-content">
 	<ul class="tab-group">
 	<%for (Question quest:ques){%>
-		<li><input type="radio" name="choice" value="<%= quest.getQuestion()%>"></li>
+		<li><p><%= quest.getQuestion()%></p></li>
 		<li><input type="radio" name="choice" value="<%= quest.getChoice1()%>"></li>
 		<li><input type="radio" name="choice" value="<%= quest.getChoice2()%>"></li>
 		<li><input type="radio" name="choice" value="<%= quest.getChoice3()%>"></li>

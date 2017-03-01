@@ -23,7 +23,7 @@ public class TestDaoImpl implements TestDao {
 	private static final String Set_Value="update QUESTIONS SET VALUE = 0 WHERE VALUE= ?";
 	private static final String Call_Question="select * FROM ( "+
 			"select * FROM QUESTIONS ORDER BY DBMS_RANDOM.RANDOM)"+
-			"WHERE rownum <=10 AND SUBJECT_ID = ? AND VALUE = 0";
+			"WHERE rownum <=10 AND SUBJECT_ID = ? AND VALUE != ? ";
 	private static final String Set_Value1="update QUESTIONS SET VALUE = ? where QUESTION_ID = ?";
 	private static final String Set_Result="INSERT INTO RESULT(USERNAME,SUBJECT_ID,RESULT,TIME_) VALUES(?,?,?,to_date(sysdate,'yyyy-mm-dd'))";
 	private static final String Check_Result="Select * from RESULT WHERE USERNAME=? AND SUBJECT_ID=? ";
@@ -189,7 +189,6 @@ public class TestDaoImpl implements TestDao {
 	public List<Result> giveTest(String username,int subjectId) throws ClassNotFoundException, SQLException, InterruptedException{
 		List<Result> resultList = new ArrayList<>();
 		Result res=null;
-		resultList=null;
 		Connection connection = JDBCConnection.getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(Check_Result);
 		preparedStatement.setString(1,username);
@@ -201,7 +200,7 @@ public class TestDaoImpl implements TestDao {
 			System.out.println(result);
 			res = new Result(username, subjectId, result, date);
 			System.out.println(res+"hello");
-				resultList.add(res);
+			resultList.add(res);
 		}
 		preparedStatement.close();
 		connection.close();
@@ -237,6 +236,7 @@ public class TestDaoImpl implements TestDao {
 		Connection connection = JDBCConnection.getConnection();
 		PreparedStatement preparedStatement1 = connection.prepareStatement(Call_Question);
 		preparedStatement1.setInt(1,subjectId);
+		preparedStatement1.setString(2,username);
 		ResultSet rs = preparedStatement1.executeQuery();
 		PreparedStatement preparedStatement2 = connection.prepareStatement(Set_Value1);
 			while(rs.next()){

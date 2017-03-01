@@ -2,6 +2,7 @@ package com.test.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -24,12 +25,12 @@ public class TestController extends HttpServlet {
 		String username=(String) session.getAttribute("sessionUsername");
 		if (request.getParameter("giveTest") != null) {//check the parameter name			 
 			try {
-				List<Result> result=lc.giveTest(username, subjectId);
-				System.out.println(result);
+				List<Result> result=new ArrayList<>();
+//				System.out.println(result);
 				System.out.println(subjectId);
 				System.out.println(username);
-				
-				if(lc.giveTest(username, subjectId) == null)
+				System.out.println(result);
+				if(lc.giveTest(username, subjectId).equals(result) )
 				{
 					if(lc.check_questions(subjectId,username))
 					{
@@ -57,7 +58,7 @@ public class TestController extends HttpServlet {
 				else	 
 				{
 					request.setAttribute("message","Test Already Given");
-					request.setAttribute("message1",result.toString());
+//					request.setAttribute("message1",result.toString());
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
 					dispatch.forward(request, response);
 				}

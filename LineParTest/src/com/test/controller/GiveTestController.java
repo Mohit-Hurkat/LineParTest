@@ -23,15 +23,15 @@ public class GiveTestController extends HttpServlet {
 		HttpSession session=request.getSession(false);
 		String username=(String)session.getAttribute("sessionUsername");
 		try {
-			int subject=(Integer)request.getAttribute("subjectIdd");
+			int subject=Integer.parseInt(request.getParameter("subjectIdd"));
 			List<Question> quest=new ArrayList<>();
 			quest=lc.getQuestions(username, subject);
-				for(Question ques:quest){
-			System.out.println(ques.toString());
+			for(Question ques:quest){
+			System.out.println(ques);
 				}
-			session.setAttribute("Questions",quest);//use this attribute to display data
-			RequestDispatcher dispatch=request.getRequestDispatcher("./Test/giveTest.jsp");
-			dispatch.forward(request, response);
+			session.setAttribute("Questions",quest);
+			System.out.println("hellllll");//use this attribute to display data
+			response.sendRedirect("./Test/giveTest.jsp");
 		} catch (InterruptedException | ClassNotFoundException | SQLException | NullPointerException e) {
 			e.printStackTrace();
 		}
