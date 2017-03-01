@@ -75,6 +75,9 @@
             100% { opacity:1; }
         }
     </style>
+ <%
+session.invalidate();
+%>
 </head>
 <body>
 <% String message=(String)session.getAttribute("message");

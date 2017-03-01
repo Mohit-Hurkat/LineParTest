@@ -27,6 +27,9 @@ $('.tab a').on('click', function (e) {
 	});
 
 	</script>
+<%
+session.invalidate();
+%>
 </head>
 <body>
 <div class="form">

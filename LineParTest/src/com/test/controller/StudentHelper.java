@@ -20,6 +20,7 @@ import com.test.bl.ResultLogic;
 import com.test.bl.StudentLogic;
 import com.test.bl.SubjectLogic;
 import com.test.bl.TestLogic;
+import com.test.bean.User;
 
 import javafx.scene.control.Alert;
 
@@ -30,9 +31,9 @@ public class StudentHelper extends HttpServlet {
 	 
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession(false);
+		
 		if (request.getParameter("display") != null) {
-			 
+			HttpSession session=request.getSession(false);
 			SubjectLogic lc=new SubjectLogic();
 			try {
 				System.out.println("hell4");
@@ -58,6 +59,7 @@ public class StudentHelper extends HttpServlet {
 		}
 		
 		else if (request.getParameter("update") != null) {
+			HttpSession session=request.getSession(false);
 			String suname=(String)session.getAttribute("sessionUsername");
 			System.out.println(suname);
             String spass=request.getParameter("updatePassword");
@@ -92,6 +94,7 @@ public class StudentHelper extends HttpServlet {
 		
 		else if(request.getParameter("result") != null)//check the parameter name
 		{
+			HttpSession session=request.getSession(false);
 			TestLogic lc=new TestLogic(); 
 			String username=(String) session.getAttribute("sessionUsername");
 			int subjectId=Integer.parseInt(request.getParameter("subjectId"));
@@ -117,6 +120,7 @@ public class StudentHelper extends HttpServlet {
 		}
 		
 		else if (request.getParameter("retrieve") != null) {
+			HttpSession session=request.getSession(false);
 			String studentName=(String)session.getAttribute("sessionUsername");
 			try {
 				Student student=lc.search(studentName);
@@ -134,9 +138,12 @@ public class StudentHelper extends HttpServlet {
 		
 		String user=request.getParameter("username");
 		String pass=request.getParameter("password");
+		Student student=new Student(user, pass, "mohit", "9987588772", "mohit.hukat@gmail.com");
 		try {
 			if(lc.check(user,pass))
 			{
+				HttpSession session=request.getSession();
+				session.setAttribute("student",student);
 				session.setAttribute("sessionUsername", user);
 		        response.sendRedirect("./Student/student.jsp");
 			}
@@ -158,6 +165,7 @@ public class StudentHelper extends HttpServlet {
 		
 		}
 	else if (request.getParameter("resultstudent") != null) {//check the parameter name
+		HttpSession session=request.getSession(false);
 		ResultLogic rc=new ResultLogic(); 
 		String username=(String) session.getAttribute("sessionUsername");
 		try {

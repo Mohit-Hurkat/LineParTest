@@ -17,9 +17,10 @@ import com.test.bl.AdminLogic;
  
 public class AdminController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	 
+	private Admin admin=null;
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		
 		if (request.getParameter("login") != null) {
 			
@@ -28,8 +29,9 @@ public class AdminController extends HttpServlet {
 			AdminLogic lc=new AdminLogic(); 
 			try {
 				if(lc.check(user,pass))
-				{
+				{	admin=new Admin(user, pass);
 					HttpSession session=request.getSession();  
+					session.setAttribute("admin",admin);
 			        session.setAttribute("username",user); //use this attribute to display data
 			        response.sendRedirect("./Admin/adminSignIn.jsp");
 				}
