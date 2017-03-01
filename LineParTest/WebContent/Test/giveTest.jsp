@@ -56,10 +56,10 @@ display:inline;
 	<ol class="mySlides">
 		<h3>QuestionNo: <%=++que%></h3>
 		<h3><%= quest.getQuestion()%></h3>
-		<li><input type="radio" name="choice" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice1()%></li>
-		<li><input type="radio" name="choice" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice2()%></li>
-		<li><input type="radio" name="choice" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice3()%></li>
-		<li><input type="radio" name="choice" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice4()%></li>
+		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice1()%></li>
+		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice2()%></li>
+		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice3()%></li>
+		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getQuestionId()%>"><%=(String)quest.getChoice4()%></li>
 			</ol>
 
 		</div>
