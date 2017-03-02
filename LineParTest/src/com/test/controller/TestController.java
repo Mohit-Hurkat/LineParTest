@@ -21,7 +21,8 @@ public class TestController extends HttpServlet {
 	private TestLogic lc=new TestLogic(); 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
-		int subjectId=Integer.parseInt(request.getParameter("subjectId"));
+		try {
+			int subjectId=Integer.parseInt(request.getParameter("subjectId"));
 		String username=(String) session.getAttribute("sessionUsername");
 		if (request.getParameter("giveTest") != null) {//check the parameter name			 
 			try {
@@ -43,39 +44,45 @@ public class TestController extends HttpServlet {
 						else	 
 						{ 
 							session.setAttribute("message","Please check Test Time Period");
-							session.setAttribute("message1","Please Login Again");
+							session.setAttribute("message1","Please Try Again");
 							response.sendRedirect("./lost.jsp");
 						}
 					}
 					else	 
 					{
 						session.setAttribute("message","Questions Yet To Be Updated.");
-						session.setAttribute("message1","Please Login Again");
+						session.setAttribute("message1","Please Try Again");
 						response.sendRedirect("./lost.jsp");
 					}
 				}
 				else	 
 				{
 					session.setAttribute("message","Test Already Given");
-					session.setAttribute("message1","Please Login Again");
+					session.setAttribute("message1","Please Try Again");
 					response.sendRedirect("./lost.jsp");
 				}
-			} 
-		catch (ClassNotFoundException | InterruptedException |SQLException e) {
-			session.setAttribute("message","Server Down!!!");
-			session.setAttribute("message1","Please Contact The Administrator.");
-			response.sendRedirect("./lost.jsp");
+			}
+			catch (ClassNotFoundException | InterruptedException |SQLException e) {
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
+				}
+		}
+			else	 
+			{
+				session.setAttribute("message","Test Error");
+				session.setAttribute("message1","Please Try Again");
+				response.sendRedirect("./lost.jsp");
 			}
 		}
+		catch(NullPointerException | NumberFormatException e){
+			session.setAttribute("message","Please Select A Subject!");
+			session.setAttribute("message1","Oops");
+			response.sendRedirect("./lost.jsp");
+		}
+	
 		
-		
-		
-		
-		
-		
-		
-		
-		else if(request.getParameter("result") != null)//check the parameter name
+		 if(request.getParameter("result") != null)//check the parameter name
 		{
 			String suname=request.getParameter("suname");
 			int subid=Integer.parseInt(request.getParameter("subid"));

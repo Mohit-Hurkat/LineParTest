@@ -43,7 +43,7 @@ public class SubjectController extends HttpServlet {
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message","Invalid Input Format");
 				session.setAttribute("message1","Please Contact The Administrator.");
 				response.sendRedirect("./lost.jsp");
 			}

@@ -40,6 +40,9 @@
 		</div>
 	</form>
 	</div>
+	 <form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post" name="backForm">
+ <input type="submit" class="button-block" value="Back">
+          </form>
 </div>
  	
 </body>

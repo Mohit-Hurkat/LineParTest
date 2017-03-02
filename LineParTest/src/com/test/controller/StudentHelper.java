@@ -2,6 +2,7 @@ package com.test.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.jasper.tagplugins.jstl.core.Out;
 
+import com.test.bean.Question;
 import com.test.bean.Result;
 import com.test.bean.Student;
 import com.test.bean.Subject;
@@ -171,16 +173,16 @@ public class StudentHelper extends HttpServlet {
 		String username=(String) session.getAttribute("sessionUsername");
 		try {
 			List<Result> result1=rc.show(username);
-			System.out.println("result1");
-			if(result1!=null)
+			List<Question> result2=new ArrayList<>();
+			if(!result1.equals(result2))
 			{
 				session.setAttribute("testResult",result1);//use this attribute to display data
 				response.sendRedirect("./Student/studentPrevResult.jsp");
 			}
 			else	 
 			{
-				session.setAttribute("message","");//use this attribute to abstract info
-				session.setAttribute("message1","");//use this attribute to abstract info
+				session.setAttribute("message","No Test Given");//use this attribute to abstract info
+				session.setAttribute("message1","Hence, No Result Found");//use this attribute to abstract info
 				response.sendRedirect("./lost.jsp");
 			}
 		} catch (ClassNotFoundException | SQLException e) {

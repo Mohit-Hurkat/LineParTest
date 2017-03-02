@@ -27,7 +27,7 @@ float:left;
 }
 .leftRight{
 font-size: 50px;
-padding: 0px 100px 0px 420px;
+padding: 0px 100px 0px 350px;
 }
 a{
 padding: 0px 40px 0px 40px;
@@ -42,6 +42,7 @@ overflow:auto;
 <c:if test="${empty sessionScope.student}"><c:redirect url="/home.jsp" /></c:if>  
 <%ArrayList<Question> ques=(ArrayList<Question>)session.getAttribute("Questions");
 int que=0; %>
+
 <form action="${pageContext.request.contextPath}/Result" id="test" method="post">
 <div class="form">
 <%for (Question quest:ques){%>
@@ -58,11 +59,11 @@ int que=0; %>
 				<%}%>
 				<div class="leftRight">
 							<div class="arrow bounce">
- 									 <a class="fa fa-arrow-down fa-2x" id="lef" onclick="plusDivs(-1)">&#10094;</a>
+ 									 <a class="fa fa-arrow-down fa-2x" id="lef" onclick="plusDivs(-1)">&#10094;prev </a>
  									 </div>
  									 <div id="timer_div"></div>
  									 <div class="arrow bounce1">
- 									  <a class="fa fa-arrow-down fa-2x" id="rig" onclick="plusDivs(1)">&#10095;</a>
+ 									  <a class="fa fa-arrow-down fa-2x" id="rig" onclick="plusDivs(1)">next&#10095;</a><br>
 							</div>
 							
 				</div>
@@ -79,8 +80,9 @@ int que=0; %>
  <h1>Please Answer Atleast One Question</h1>
  </div>
 		</div>
-	</div>
+ </div>
  <input type="submit" class="button button-block" id="sub" value="Finish Test">
  </form>
+
 </body>
 </html>

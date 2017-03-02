@@ -37,7 +37,7 @@
  	 </div><br>
  	 <form action="${pageContext.request.contextPath}/SubjectController">
  	<h1> Search Subject ID :</h1> 
- 	<input type="number" name="subjectId" ><br><br>
+ 	<input type="number" min="1" name="subjectId" ><br><br>
  	<input type="submit"  value="search" name="search">
  	</form><br>
  	<form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post" name="backForm">

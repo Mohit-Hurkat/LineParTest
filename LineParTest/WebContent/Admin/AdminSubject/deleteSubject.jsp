@@ -40,7 +40,7 @@
 	<% } %>
 	</table>
  	</div><br>
- 	<h1> Select  Subject :</h1><input type="number" name="subjectId" ><br>
+ 	<h1> Select  Subject :</h1><input type="number" min="1" name="subjectId" ><br>
  	<input type="submit"  value="delete" name="delete">
 </form>
 </div><br>

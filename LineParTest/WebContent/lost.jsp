@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -74,6 +75,9 @@
             50% { opacity:0; }
             100% { opacity:1; }
         }
+        a{
+        font-size: 15px;
+        }
     </style>
 </head>
 <body>
@@ -82,6 +86,7 @@ String message1=(String)session.getAttribute("message1");
 if(message==null){
 	message="Oops! It looks like you're lost. ";
 }
+
 if(message1==null){
 	message1="Sorry about that.";
 }
@@ -101,7 +106,17 @@ if(message1==null){
         </div>
 
         <div class="links">
-           <a href="home.jsp">Home</a> |  <a href="https://hurkat.in">Mohit Hurkat</a> | <a href="https://www.facebook.com/mohit.hurkat">Facebook</a> | <a href="https://twitter.com/mohithurkat">Twitter</a>
+<c:if test="${not empty sessionScope.student}">
+<a href="<c:url value="./Student/student.jsp"/>" style="font-size: 25px;">Go Back</a><br>
+</c:if>
+
+<c:if test="${not empty sessionScope.admin}">
+<a href="<c:url value="./Admin/adminSignIn.jsp"/>" style="font-size: 25px;">Go Back</a><br>
+</c:if>
+
+<br><br>
+<a href="https://www.hurkat.in">Contact Administrator</a><br><br>
+<a href="https://www.facebook.com/mohit.hurkat">Mohit Hurkat</a> | <a href="https://www.facebook.com/profile.php?id=100003573744425">Manish Kumar</a> | <a href="https://www.facebook.com/priyank.mahajan.35">Priyank Mahajan</a> | <a href="https://www.facebook.com/shikhar.bajaj">Shikhar Bajaj</a> | <a href="https://www.facebook.com/supriya.malla.35">Supriya Malla</a>
         </div>
     </div>
 </div>

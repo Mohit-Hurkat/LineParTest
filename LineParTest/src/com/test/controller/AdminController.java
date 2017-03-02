@@ -52,9 +52,7 @@ public class AdminController extends HttpServlet {
 	        String user="admin";
 		     AdminLogic adLogic=new AdminLogic();
 		     Admin ad=null;
-		     try {
-		    	 System.out.println("1");
-			 
+		     try {		 
 				String newpass=request.getParameter("password");
 				if(adLogic.update(user, newpass))
 				{

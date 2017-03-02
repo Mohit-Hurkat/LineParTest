@@ -8,9 +8,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>PREVIOUS RESULT</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.debug.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style1.css"/>
-    <script src="../javascript/homepage.js" type="text/javascript"></script>
+<script src="${pageContext.request.contextPath}/javascript/pdf.js" type="text/javascript"></script>
     <script>
 $(document).ready(function() {
         $("#prevResult").addClass("active");
@@ -27,7 +28,7 @@ text-align: center;
 <% ArrayList<Result> resList=(ArrayList<Result>)session.getAttribute("testResult");%>
 <div class="form">
 <div class="tab-group">
- <div style="color: white;">
+ <div style="color: white;" id="content">
  <h1>Previous Results</h1>
 	<table border="1" style="width:100%;">
 	<tr>
@@ -48,6 +49,7 @@ text-align: center;
  </div><br>
 </div>
  <br>
+ <input type="button" onclick="javascript:demoFromHTML();" class="button-block" id="pdf" value="Save As Pdf"><br><br>
  <form action="${pageContext.request.contextPath}/Student/student.jsp" method="post">
  <input type="submit" class="button-block" value="Back">
  </form>

@@ -50,11 +50,12 @@ function Validation() {
             </div>
             
           <input type="submit" class="button button-block" name="update" value="Submit">
-          </div><!-- top-row -->
+
 </form><br>
 
- <form action="${pageContext.request.contextPath}/Student/student.jsp" method="post">
+ <form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post">
  <input type="submit" class="button-block" value="Back">
+           </div><!-- top-row -->
  </form>
 </body>
 </html>
