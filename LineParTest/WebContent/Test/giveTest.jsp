@@ -33,9 +33,10 @@ a{
 padding: 0px 40px 0px 40px;
 float:left
 }
+.form{
+overflow:auto;
+}
 </style>
-
-
 </head>
 <body>
 <c:if test="${empty sessionScope.student}"><c:redirect url="/home.jsp" /></c:if>  
@@ -74,9 +75,12 @@ int que=0; %>
  							<br>
  							</div>
  -->	
+ 		   <div id="dis" style="float:left;">
+ <h1>Please Answer Atleast One Question</h1>
+ </div>
 		</div>
 	</div>
- <input type="submit" class="button button-block" value="Finish Test">
+ <input type="submit" class="button button-block" id="sub" value="Finish Test">
  </form>
 </body>
 </html>

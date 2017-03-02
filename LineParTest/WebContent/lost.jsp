@@ -88,7 +88,7 @@ if(message1==null){
 %>
 <div class="form">
     <div class="wrap">
-        <h1 id="construct">Site Is Under-construction.</h1>
+        <h1 id="construct" style="font-family: samarkan;">NAMASTE</h1>
 
         <div class="type-wrap">
             <div id="typed-strings">

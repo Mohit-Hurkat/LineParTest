@@ -16,6 +16,17 @@ $( document ).ready(function(){
 	    }
 	}, 1000);
 	
+	
+	
+
+	 	var $submit = $("#sub").hide();
+	    var $submit1 = $("#dis").show();
+	    var    $cbs = $("input[type='radio']").click(function() {
+	           $submit.toggle( $cbs.is(":checked") );
+	           $submit1.hide();
+	        });
+
+	
 });
 
 var slideIndex = 1;
