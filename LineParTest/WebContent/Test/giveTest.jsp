@@ -26,9 +26,11 @@ display:inline;
 float:left;
 }
 .leftRight{
-font-size: 40px;
+font-size: 50px;
+padding: 0px 100px 0px 420px;
 }
 a{
+padding: 0px 40px 0px 40px;
 float:left
 }
 </style>
@@ -53,12 +55,25 @@ int que=0; %>
 			</ol>
 
 				<%}%>
-							<div class="leftRight">
+				<div class="leftRight">
+							<div class="arrow bounce">
+ 									 <a class="fa fa-arrow-down fa-2x" id="lef" onclick="plusDivs(-1)">&#10094;</a>
+ 									 </div>
+ 									 <div id="timer_div"></div>
+ 									 <div class="arrow bounce1">
+ 									  <a class="fa fa-arrow-down fa-2x" id="rig" onclick="plusDivs(1)">&#10095;</a>
+							</div>
+							
+				</div>
+				
+				
+<!--  						<div class="leftRight">
 							<a class="left" id="lef" onclick="plusDivs(-1)">&#10094;</a>
 							<div id="timer_div"></div>
  							<a class="right" id="rig" onclick="plusDivs(1)">&#10095;</a>
  							<br>
  							</div>
+ -->	
 		</div>
 	</div>
  <input type="submit" class="button button-block" value="Finish Test">

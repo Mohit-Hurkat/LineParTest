@@ -4,7 +4,7 @@ $( document ).ready(function(){
 	     g[i].style.display = "none";  
 	  }
 	
-	var seconds_left = 500000;
+	var seconds_left = 300;
 
 	var interval = setInterval(function() {
 	    document.getElementById('timer_div').innerHTML = --seconds_left;
