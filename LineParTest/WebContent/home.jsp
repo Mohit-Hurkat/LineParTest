@@ -9,6 +9,7 @@
 <link rel="stylesheet" type="text/css" href="stylemy.css">
     <script src="javascript/homepage.js" type="text/javascript"></script>
 <script type="text/javascript">
+
 $( document ).ready(function(){
 $('.tab a').on('click', function (e) {
 	  

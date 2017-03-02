@@ -23,26 +23,27 @@ public class AdminController extends HttpServlet {
 		
 		
 		if (request.getParameter("login") != null) {
-			
+			HttpSession session=request.getSession(); 
 			String user=request.getParameter("username");
 			String pass=request.getParameter("password");
 			AdminLogic lc=new AdminLogic(); 
 			try {
 				if(lc.check(user,pass))
-				{	admin=new Admin(user, pass);
-					HttpSession session=request.getSession();  
+				{	admin=new Admin(user, pass); 
 					session.setAttribute("admin",admin);
 			        session.setAttribute("username",user); //use this attribute to display data
 			        response.sendRedirect("./Admin/adminSignIn.jsp");
 				}
 				else
 				{
-					request.setAttribute("message","Invalid Credentials");
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
-					dispatch.forward(request, response);
+					session.setAttribute("message","Invalid Credentials");
+					session.setAttribute("message1","Hey Admin,We Don't Expect This From You.");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
+				 session.setAttribute("message","Server Down.");
+					session.setAttribute("message1","Please Contact The Administrator.");
+					response.sendRedirect("./lost.jsp");
 			}
 		} 
 		else if(request.getParameter("update") != null)
@@ -57,17 +58,22 @@ public class AdminController extends HttpServlet {
 				String newpass=request.getParameter("password");
 				if(adLogic.update(user, newpass))
 				{
-				session.invalidate();//use this attribute to display data
-				response.sendRedirect("./Admin/AdminAdmin/updateSuccess.jsp");
+					session.setAttribute("message","Your Credentials Have Been Updated");
+					session.setAttribute("message1","Please Login In Again!!");
+					response.sendRedirect("./lost.jsp");
 				}
 				else
 				{
+					session.setAttribute("message","");
+					session.setAttribute("message1","");
 					response.sendRedirect("./lost.jsp");
 				}
 				
 			} catch (ClassNotFoundException | SQLException e) {
 		  
-				e.printStackTrace();
+				 session.setAttribute("message","Server Down.");
+					session.setAttribute("message1","Please Contact The Administrator.");
+					response.sendRedirect("./lost.jsp");
 			}
 		}
 		else if (request.getParameter("search") != null) {
@@ -81,8 +87,9 @@ public class AdminController extends HttpServlet {
 				dispatch.forward(request, response);
 			}
 		     catch (ClassNotFoundException | SQLException e) {
-				 
-				e.printStackTrace();
+		    	 session.setAttribute("message","Server Down.");
+					session.setAttribute("message1","Please Contact The Administrator.");
+					response.sendRedirect("./lost.jsp");
 			} 
 		}
 	}

@@ -57,10 +57,9 @@ public class TestController extends HttpServlet {
 				}
 				else	 
 				{
-					request.setAttribute("message","Test Already Given");
-//					request.setAttribute("message1",result.toString());
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
-					dispatch.forward(request, response);
+					session.setAttribute("message","Test Already Given");
+					request.setAttribute("message1","");
+					response.sendRedirect("./lost.jsp");
 				}
 			} 
 		catch (ClassNotFoundException | SQLException e) {

@@ -34,7 +34,9 @@ public class GiveTestController extends HttpServlet {
 			System.out.println("hellllll");//use this attribute to display data
 			response.sendRedirect("./Test/giveTest.jsp");
 		} catch (InterruptedException | ClassNotFoundException | SQLException | NullPointerException e) {
-			e.printStackTrace();
+			session.setAttribute("message","Server Down!!!");
+			session.setAttribute("message1","Please Contact The Administrator.");
+			response.sendRedirect("./lost.jsp");
 		}
 
 	}

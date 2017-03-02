@@ -4,14 +4,13 @@ $( document ).ready(function(){
 	     g[i].style.display = "none";  
 	  }
 	
-	var seconds_left = 50;
+	var seconds_left = 500000;
 
 	var interval = setInterval(function() {
 	    document.getElementById('timer_div').innerHTML = --seconds_left;
 
 	    if (seconds_left <= 0)
 	    {
-	       
 	       clearInterval(interval);
 	       $( "#test" ).submit();
 	    }

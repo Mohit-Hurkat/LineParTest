@@ -48,9 +48,9 @@ public class StudentHelper extends HttpServlet {
 				else
 				{
 					System.out.println("hell1");
-					request.setAttribute("subjectDisplay","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message",null);//use this attribute to abstract info
+					session.setAttribute("message1",null);//use this attribute to abstract info
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException | NullPointerException e) {
 				System.out.println("hell3");
@@ -80,9 +80,10 @@ public class StudentHelper extends HttpServlet {
 				else	 
 				{
 					System.out.println( "else");
-					request.setAttribute("studentUpdate","Error.");
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","Update Unsuccessful.");//use this attribute to abstract info
+					session.setAttribute("message1",null);//use this attribute to abstract info
+					response.sendRedirect("./lost.jsp");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
@@ -148,7 +149,10 @@ public class StudentHelper extends HttpServlet {
 		        response.sendRedirect("./Student/student.jsp");
 			}
 			else
-			{
+			{	
+				HttpSession session=request.getSession();
+				session.setAttribute("message","Invalid Credentials");
+				session.setAttribute("message1","Visit lenskart for better vision.");
 				response.sendRedirect("./lost.jsp");
 			}
 		}

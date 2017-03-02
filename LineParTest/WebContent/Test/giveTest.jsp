@@ -23,7 +23,13 @@ width: auto;
 display:inline;
 }
 #timer_div{
-float:right;
+float:left;
+}
+.leftRight{
+font-size: 40px;
+}
+a{
+float:left
 }
 </style>
 
@@ -36,7 +42,7 @@ int que=0; %>
 <form action="${pageContext.request.contextPath}/Result" id="test" method="post">
 <div class="form">
 <%for (Question quest:ques){%>
-	<div class="h">
+	<div class="question">
 	<ol class="mySlides">
 		<h3>QuestionNo: <%=++que%></h3>
 		<h3><%= quest.getQuestion()%></h3>
@@ -45,11 +51,15 @@ int que=0; %>
 		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getChoice3()%>"><%= quest.getChoice3()%></li>
 		<li><input type="radio" name="<%= quest.getQuestionId()%>" value="<%= quest.getChoice4()%>"><%= quest.getChoice4()%></li>
 			</ol>
-		</div>
+
 				<%}%>
+							<div class="leftRight">
 							<a class="left" id="lef" onclick="plusDivs(-1)">&#10094;</a>
-  <a class="right" id="rig" onclick="plusDivs(1)">&#10095;</a> 
-  <div id="timer_div"></div>
+							<div id="timer_div"></div>
+ 							<a class="right" id="rig" onclick="plusDivs(1)">&#10095;</a>
+ 							<br>
+ 							</div>
+		</div>
 	</div>
  <input type="submit" class="button button-block" value="Finish Test">
  </form>

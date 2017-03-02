@@ -46,7 +46,7 @@ $(document).ready(function() {
 			<td><%=sub.getSubject()%></td>
 			<td><%=sub.getStart()%></td>
 			<td><%=sub.getEnd()%></td>
-			<td><input type="radio" name="subjekctId" value="<%=sub.getSubjectId()%>"></td>
+			<td><input type="radio" name="subjectId" value="<%=sub.getSubjectId()%>"></td>
 		</tr>
 	<% } %>
 </table>

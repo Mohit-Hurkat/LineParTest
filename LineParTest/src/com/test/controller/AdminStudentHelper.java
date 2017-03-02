@@ -34,13 +34,14 @@ public class AdminStudentHelper extends HttpServlet {
 					}
 					else
 					{
-						request.setAttribute("studentDelete","Error.");
-						RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-						dispatch.forward(request, response);
+						session.setAttribute("message","Error");
+						session.setAttribute("message1","");
+						response.sendRedirect("./lost.jsp");
 					}
 				} catch (ClassNotFoundException | SQLException e) {
-				 
-					e.printStackTrace();
+					session.setAttribute("message","Server Down!!!");
+					session.setAttribute("message1","Please Contact The Administrator.");
+					response.sendRedirect("./lost.jsp");
 				}
 			  
 			}
@@ -56,13 +57,15 @@ public class AdminStudentHelper extends HttpServlet {
 					}
 					else
 					{
-						request.setAttribute("studentDelete","Error.");
-						RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-						dispatch.forward(request, response);
+						session.setAttribute("message","");
+						session.setAttribute("message1","");
+						response.sendRedirect("./lost.jsp");
 					}
 				} catch (ClassNotFoundException | SQLException e) {
 				 
-					e.printStackTrace();
+					session.setAttribute("message","Server Down!!!");
+					session.setAttribute("message1","Please Contact The Administrator.");
+					response.sendRedirect("./lost.jsp");
 				}
 			  
 			}
@@ -72,19 +75,19 @@ public class AdminStudentHelper extends HttpServlet {
 					List<Student> stu=lc.displayAll();
 					if(stu!=null)
 					{
-						
 					session.setAttribute("studentDisplay", stu);
 					response.sendRedirect("./Admin/AdminStudent/searchStudent.jsp");
 					}
 					else
 					{
-						request.setAttribute("studentDelete","Error.");
-						RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-						dispatch.forward(request, response);
+						session.setAttribute("message","");
+						session.setAttribute("message1","");
+						response.sendRedirect("./lost.jsp");
 					}
 				} catch (ClassNotFoundException | SQLException e) {
-				 
-					e.printStackTrace();
+					session.setAttribute("message","Server Down!!!");
+					session.setAttribute("message1","Please Contact The Administrator.");
+					response.sendRedirect("./lost.jsp");
 				}
 			  
 			}

@@ -25,7 +25,6 @@ public class AdminQuestionController extends HttpServlet {
 		HttpSession session=request.getSession(false);
 			SubjectLogic lc=new SubjectLogic();
 			try {
-				System.out.println("hell4");
 				List<Subject> sub=lc.displayAll();
 				if(sub!=null)
 				{
@@ -41,20 +40,19 @@ public class AdminQuestionController extends HttpServlet {
 					else if (request.getParameter("viewAll") != null) {
 						session.setAttribute("call","displayAll");
 					}
-					System.out.println("hell");
 				session.setAttribute("subjectDisplay", sub);//use this attribute to display data
 				response.sendRedirect("../Admin/AdminQuestion/Question.jsp");
 				}
 				else
 				{
-					System.out.println("hell1");
-					request.setAttribute("subjectDisplay","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","");
+					session.setAttribute("message1","");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException | NullPointerException e) {
-				System.out.println("hell3");
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}  
 		}
 

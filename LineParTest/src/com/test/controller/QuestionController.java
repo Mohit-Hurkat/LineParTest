@@ -37,8 +37,9 @@ public class QuestionController extends HttpServlet {
 					session.setAttribute("call", "insertIntoTable");
 					 response.sendRedirect("./Admin/AdminQuestion/insertQuestion.jsp");
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		}
 		else if(session.getAttribute("call").equals("insertIntoTable")){
@@ -60,11 +61,13 @@ public class QuestionController extends HttpServlet {
 				else
 				{
 					session.setAttribute("message","Inserted Failed");
+					session.setAttribute("message1", "Oops!!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 			
 		}
@@ -73,16 +76,18 @@ public class QuestionController extends HttpServlet {
 			try {
 				if(qLogic.delete(questionId)){
 					session.setAttribute("message","Deleted Successfully");
-						response.sendRedirect("./Admin/AdminQuestion/final.jsp");
+					response.sendRedirect("./Admin/AdminQuestion/final.jsp");
 					}
 				else
 				{
 					session.setAttribute("message","Deletion Unsuccessful");
+					session.setAttribute("message1","Oops!!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 			
 		}
@@ -94,8 +99,9 @@ public class QuestionController extends HttpServlet {
 					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
 					response.sendRedirect("./Admin/AdminQuestion/searchQuestion.jsp");
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}
@@ -110,11 +116,14 @@ public class QuestionController extends HttpServlet {
 					response.sendRedirect("./Admin/AdminQuestion/viewAllQuestion.jsp");
 				}
 				else{
-					
+					session.setAttribute("message","Error");
+					session.setAttribute("message1","");
+						response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}		
@@ -130,8 +139,9 @@ public class QuestionController extends HttpServlet {
 					response.sendRedirect("./Admin/AdminQuestion/updateQuestion.jsp");
 				}
 			}catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		}
 		
@@ -152,7 +162,8 @@ public class QuestionController extends HttpServlet {
 							response.sendRedirect("./Admin/AdminQuestion/finalUpdate.jsp");
 						}
 						catch (Exception e) {
-							session.setAttribute("message","Update Failed");
+							session.setAttribute("message","Update Unsuccessful");
+							session.setAttribute("message1","Please Contact The Administrator.");
 							response.sendRedirect("./lost.jsp");
 						}
 						
@@ -171,11 +182,12 @@ public class QuestionController extends HttpServlet {
 			try {
 					if(qLogic.update(questionId, ques)){
 						session.setAttribute("sessionQuestionAll",ques);
-						session.setAttribute("message", "");
+						session.setAttribute("message", "Update Successful");
 					response.sendRedirect("./Admin/AdminQuestion/final.jsp");
 				}
 					else{
 						session.setAttribute("message","Update Failed");
+						session.setAttribute("message1", "");
 						response.sendRedirect("./lost.jsp");
 					}
 			}catch (ClassNotFoundException | SQLException e) {
@@ -201,11 +213,13 @@ public class QuestionController extends HttpServlet {
 				else
 				{
 				session.setAttribute("message","Detele Failed");
+				session.setAttribute("message1", "");
 				response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		}
 		
