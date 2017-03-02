@@ -26,7 +26,7 @@ function Validation() {
 	
 }
 </script>
-<title>Insert title here</title>
+<title>ADMIN UPDATE</title>
 </head>
 <body>
 <c:if test="${empty sessionScope.admin}"><c:redirect url="/home.jsp" /></c:if> 

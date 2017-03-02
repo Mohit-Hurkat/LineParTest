@@ -8,7 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style1.css"/>
-<title>Insert title here</title>
+<title>ADMIN STUDENT DELETE</title>
     <script type="text/javascript">
     $(document).ready(function(){
     	var $submit = $("#sub").hide();

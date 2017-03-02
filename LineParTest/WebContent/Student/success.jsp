@@ -6,7 +6,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin/admin.css"/>
-<title>Insert title here</title>
+<title>SUCCESS</title>
 </head>
 <body>
 <c:if test="${empty sessionScope.student}"><c:redirect url="/home.jsp" /></c:if> 
