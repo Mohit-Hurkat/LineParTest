@@ -58,7 +58,7 @@ public class TestController extends HttpServlet {
 				else	 
 				{
 					session.setAttribute("message","Test Already Given");
-					request.setAttribute("message1","");
+					request.setAttribute("message1","Give Some Other Test");
 					response.sendRedirect("./lost.jsp");
 				}
 			} 
