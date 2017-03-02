@@ -42,32 +42,29 @@ public class TestController extends HttpServlet {
 						}
 						else	 
 						{ 
-							request.setAttribute("message","Please check Test Time Period ");//use this attribute to abstract info
-							RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-							dispatch.forward(request, response);
+							session.setAttribute("message","Please check Test Time Period");
+							session.setAttribute("message1","Please Login Again");
+							response.sendRedirect("./lost.jsp");
 						}
 					}
 					else	 
 					{
-						request.setAttribute("message","Questions Yet To Be Updated.");
-						request.setAttribute("message1","Please Select Another Subject..");//use this attribute to abstract info
-						RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-						dispatch.forward(request, response);
+						session.setAttribute("message","Questions Yet To Be Updated.");
+						session.setAttribute("message1","Please Login Again");
+						response.sendRedirect("./lost.jsp");
 					}
 				}
 				else	 
 				{
 					session.setAttribute("message","Test Already Given");
-					request.setAttribute("message1","Give Some Other Test");
+					session.setAttribute("message1","Please Login Again");
 					response.sendRedirect("./lost.jsp");
 				}
 			} 
-		catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+		catch (ClassNotFoundException | InterruptedException |SQLException e) {
+			session.setAttribute("message","Server Down!!!");
+			session.setAttribute("message1","Please Contact The Administrator.");
+			response.sendRedirect("./lost.jsp");
 			}
 		}
 		
@@ -92,13 +89,14 @@ public class TestController extends HttpServlet {
 				}
 				else	 
 				{
-					request.setAttribute("testResult","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","Test Error");
+					session.setAttribute("message1","");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-			 
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		      
 		}
@@ -113,9 +111,9 @@ public class TestController extends HttpServlet {
 				}
 				else
 				{
-					request.setAttribute("testCheck","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","Test Error");
+					session.setAttribute("message1","Please Login Again");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 			 
@@ -135,13 +133,14 @@ public class TestController extends HttpServlet {
 				}
 				else
 				{
-					request.setAttribute("testDateCheck","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","Test Error");
+					session.setAttribute("message1","Please Login Again");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-			 
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}
@@ -156,13 +155,14 @@ public class TestController extends HttpServlet {
 				}
 				else	 
 				{
-					request.setAttribute("testResult","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","Error");
+					session.setAttribute("message1","Please Login Again");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}
