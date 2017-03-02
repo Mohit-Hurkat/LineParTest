@@ -8,7 +8,6 @@
 <title>ADMIN HOME PAGE</title>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin/admin.css">
-    <script src="./javascript/homepage.js" type="text/javascript"></script>
     <script>
 	var audio = new Audio('../heartbeat.mp3');
     audio.play();
@@ -55,6 +54,6 @@
         	</li>
 		</ul>
 	</div> <!-- /form -->
- 
+ <%@include file="../Test/logout.jsp" %>
 </body>
 </html>

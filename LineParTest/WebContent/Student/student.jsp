@@ -15,5 +15,6 @@
 <body>
 <c:if test="${empty sessionScope.student}"><c:redirect url="/home.jsp" /></c:if> 
 <%@include file="./studentHeader.jsp" %>
+<%@include file="../Test/logout.jsp" %>
 </body>
 </html>

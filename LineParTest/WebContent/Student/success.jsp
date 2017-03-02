@@ -5,14 +5,19 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Admin/admin.css"/>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style1.css"/>
 <title>SUCCESS</title>
 </head>
 <body>
-<c:if test="${empty sessionScope.student}"><c:redirect url="/home.jsp" /></c:if> 
-	<h1>Successfully sign up</h1>
-	<form action="${pageContext.request.contextPath}/home.jsp" method="post" name="backForm">
- <input type="submit" class="button-block" value="Back">
-          </form>
+	<div class="form">
+		<div class="tab-group">
+			<h1 id="construct" style="font-family: samarkan;">NAMASTE</h1><br>
+			<h1>Successfully sign up</h1>
+			<br>
+ 			<form action="${pageContext.request.contextPath}/home.jsp" method="post">
+ 				<input type="submit" class="button-block" value="Back">
+ 			</form>
+		</div>
+	</div>
 </body>
 </html>

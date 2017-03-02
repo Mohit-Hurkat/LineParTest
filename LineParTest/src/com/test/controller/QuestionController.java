@@ -37,7 +37,7 @@ public class QuestionController extends HttpServlet {
 					session.setAttribute("call", "insertIntoTable");
 					 response.sendRedirect("./Admin/AdminQuestion/insertQuestion.jsp");
 			} catch (ClassNotFoundException | SQLException e) {
-				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
 				response.sendRedirect("./lost.jsp");
 			}
@@ -65,7 +65,7 @@ public class QuestionController extends HttpServlet {
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
 				response.sendRedirect("./lost.jsp");
 			}
@@ -85,7 +85,7 @@ public class QuestionController extends HttpServlet {
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
 				response.sendRedirect("./lost.jsp");
 			}
@@ -99,7 +99,7 @@ public class QuestionController extends HttpServlet {
 					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
 					response.sendRedirect("./Admin/AdminQuestion/searchQuestion.jsp");
 			} catch (ClassNotFoundException | SQLException e) {
-				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
 				response.sendRedirect("./lost.jsp");
 			}
@@ -121,7 +121,7 @@ public class QuestionController extends HttpServlet {
 						response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
 				response.sendRedirect("./lost.jsp");
 			}
@@ -139,7 +139,7 @@ public class QuestionController extends HttpServlet {
 					response.sendRedirect("./Admin/AdminQuestion/updateQuestion.jsp");
 				}
 			}catch (ClassNotFoundException | SQLException e) {
-				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
 				response.sendRedirect("./lost.jsp");
 			}
@@ -191,7 +191,8 @@ public class QuestionController extends HttpServlet {
 						response.sendRedirect("./lost.jsp");
 					}
 			}catch (ClassNotFoundException | SQLException e) {
-				session.setAttribute("message","Update Failed");
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
 				response.sendRedirect("./lost.jsp");
 			}
 		}
@@ -217,7 +218,7 @@ public class QuestionController extends HttpServlet {
 				response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				session.setAttribute("message","Server Down!!!");
+				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
 				response.sendRedirect("./lost.jsp");
 			}

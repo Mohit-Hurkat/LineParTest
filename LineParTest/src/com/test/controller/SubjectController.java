@@ -20,8 +20,6 @@ public class SubjectController extends HttpServlet {
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(true);
-		Enumeration<String> helloo=request.getParameterNames();
-		System.out.println(helloo);
 		if (request.getParameter("insert") != null) {
 		
 			SubjectLogic lc=new SubjectLogic(); 
@@ -35,18 +33,19 @@ public class SubjectController extends HttpServlet {
 				{
 				 
 					session.setAttribute("mess","Successfully Inserted.");//use this attribute to abstract info
-					 response.sendRedirect("./Admin/adminSubject.jsp");
+					response.sendRedirect("./Admin/adminSubject.jsp");
 					 
 				}
 				else	 
 				{
-					request.setAttribute("subjectinsert"," Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","Insertion Failed");
+					session.setAttribute("message1", "");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		} 
 		else if(request.getParameter("delete") != null)
@@ -57,27 +56,25 @@ public class SubjectController extends HttpServlet {
 			
 				if(lc.delete(subid))
 				{
-					System.out.println("del");
 					session.setAttribute("mess","Successfully Deleted.");//use this attribute to abstract info
 					response.sendRedirect("./Admin/adminSubject.jsp");
-					System.out.println("del2");
 				}
 				else	 
 				{
-					request.setAttribute("subjectDelete","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","Deletion Failed");
+					session.setAttribute("message1", "");
+					response.sendRedirect("./lost.jsp");
 				}
 			}
 			catch(NullPointerException | NumberFormatException e){
-					request.setAttribute("message","Please Select a Valid Subject");
-		    	 request.setAttribute("message1","Visit lenskart for better vision.");
-		    	 RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
-		    	 dispatch.forward(request, response);
+					session.setAttribute("message","Please Select a Valid Subject");
+		    	 session.setAttribute("message1","Visit lenskart for better vision.");
+		    	response.sendRedirect("./lost.jsp");
 		    	 
 			} catch (ClassNotFoundException | SQLException e) {
-			 
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		      
 		}
@@ -94,18 +91,20 @@ public class SubjectController extends HttpServlet {
 				}
 				else
 				{
-					request.setAttribute("subjectSearch","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","Search Failed");
+					session.setAttribute("message1", "");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (NullPointerException e) {
-				response.sendRedirect("../../lost.jsp");
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 			
 			catch (ClassNotFoundException | SQLException e) {
-				System.out.println("k");
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}
@@ -113,25 +112,23 @@ public class SubjectController extends HttpServlet {
 			 
 			SubjectLogic lc=new SubjectLogic();
 			try {
-				System.out.println("hell4");
 				List<Subject> sub=lc.displayAll();
 				if(sub!=null)
 				{
-					System.out.println("hell");
 					session.setAttribute("subjectDisplay", sub);//use this attribute to display data
 					response.sendRedirect("./Admin/AdminSubject/displaySubject.jsp");
 				 
 				}
 				else
 				{
-					System.out.println("hell1");
-					request.setAttribute("subjectDisplay","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","Error");
+					session.setAttribute("message1", "");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException | NullPointerException e) {
-				System.out.println("hell3");
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}
@@ -150,13 +147,14 @@ public class SubjectController extends HttpServlet {
 				}
 				else	 
 				{
-					request.setAttribute("subjectUpdate","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","Update Failed");
+					session.setAttribute("message1", "");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}
@@ -174,13 +172,14 @@ public class SubjectController extends HttpServlet {
 				}
 				else
 				{
-					request.setAttribute("subjectShow","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","");
+					session.setAttribute("message1", "");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-			 
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}
@@ -198,13 +197,14 @@ public class SubjectController extends HttpServlet {
 				}
 				else
 				{
-					request.setAttribute("subjectName","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","");
+					session.setAttribute("message1", "");
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-			 
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}

@@ -24,7 +24,6 @@ public class signInController extends HttpServlet {
 			dispatch.forward(request, response);
 		}
 		else{
-			System.out.println("mohit3");
 			request.setAttribute("username", user);
 			request.setAttribute("password", pass);
 			request.setAttribute("login", login);

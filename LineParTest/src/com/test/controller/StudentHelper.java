@@ -36,59 +36,54 @@ public class StudentHelper extends HttpServlet {
 			HttpSession session=request.getSession(false);
 			SubjectLogic lc=new SubjectLogic();
 			try {
-				System.out.println("hell4");
 				List<Subject> sub=lc.displayAll();
 				if(sub!=null)
 				{
-					System.out.println("hell");
 				request.setAttribute("subjectDisplay", sub);//use this attribute to display data
 				RequestDispatcher dispatch=request.getRequestDispatcher("./Student/studentGiveTest.jsp");
 				dispatch.forward(request, response);
 				}
 				else
 				{
-					System.out.println("hell1");
-					session.setAttribute("message",null);//use this attribute to abstract info
-					session.setAttribute("message1",null);//use this attribute to abstract info
+					session.setAttribute("message","");//use this attribute to abstract info
+					session.setAttribute("message1","");//use this attribute to abstract info
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException | NullPointerException e) {
-				System.out.println("hell3");
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}  
 		}
 		
 		else if (request.getParameter("update") != null) {
 			HttpSession session=request.getSession(false);
+			try {
 			String suname=(String)session.getAttribute("sessionUsername");
-			System.out.println(suname);
             String spass=request.getParameter("updatePassword");
 			String sname=request.getParameter("updateName");
 			String sphone=request.getParameter("updatePhone");
 			String semail=request.getParameter("updateEmail");
 			Student student=new Student(suname, spass, sname, sphone, semail);
-			try {
+			
 				
 				if(lc.update(suname, student))
 				{
-					System.out.println(suname);
-					System.out.println( "if");
 					request.setAttribute("studentUpdate","Successfully Updated.");
 					RequestDispatcher dispatch=request.getRequestDispatcher("./Student/updateStudent.jsp");
 					dispatch.forward(request, response);
 				}
 				else	 
 				{
-					System.out.println( "else");
 					session.setAttribute("message","Update Unsuccessful.");//use this attribute to abstract info
-					session.setAttribute("message1",null);//use this attribute to abstract info
+					session.setAttribute("message1","");//use this attribute to abstract info
 					response.sendRedirect("./lost.jsp");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println( e);
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}
@@ -109,13 +104,14 @@ public class StudentHelper extends HttpServlet {
 				}
 				else	 
 				{
-					request.setAttribute("testResult","Error.");//use this attribute to abstract info
-					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-					dispatch.forward(request, response);
+					session.setAttribute("message","");//use this attribute to abstract info
+					session.setAttribute("message1","");//use this attribute to abstract info
+					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-			 
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		      
 		}
@@ -128,29 +124,28 @@ public class StudentHelper extends HttpServlet {
 				session.setAttribute("studentUpdate", student);
 					response.sendRedirect("./Student/studentUpdateInfo.jsp");					
 			} catch (ClassNotFoundException | SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println( e);
-				e.printStackTrace();
+				session.setAttribute("message","Server Error!!!");
+				session.setAttribute("message1","Please Contact The Administrator.");
+				response.sendRedirect("./lost.jsp");
 			}
 		  
 		}
 		
 	else if (request.getParameter("login") != null) {
-		
+		HttpSession session=request.getSession();
 		String user=request.getParameter("username");
 		String pass=request.getParameter("password");
 		Student student=new Student(user, pass, "mohit", "9987588772", "mohit.hukat@gmail.com");
 		try {
 			if(lc.check(user,pass))
 			{
-				HttpSession session=request.getSession();
+				
 				session.setAttribute("student",student);
 				session.setAttribute("sessionUsername", user);
 		        response.sendRedirect("./Student/student.jsp");
 			}
 			else
 			{	
-				HttpSession session=request.getSession();
 				session.setAttribute("message","Invalid Credentials");
 				session.setAttribute("message1","Visit lenskart for better vision.");
 				response.sendRedirect("./lost.jsp");
@@ -163,6 +158,8 @@ public class StudentHelper extends HttpServlet {
 			dispatch.forward(request, response);			
 		}
 		catch (ClassNotFoundException | SQLException e) {
+			session.setAttribute("message","Server Error!!!");
+			session.setAttribute("message1","Please Contact The Administrator.");
 			response.sendRedirect("./lost.jsp");
 		}
 		
@@ -174,6 +171,7 @@ public class StudentHelper extends HttpServlet {
 		String username=(String) session.getAttribute("sessionUsername");
 		try {
 			List<Result> result1=rc.show(username);
+			System.out.println("result1");
 			if(result1!=null)
 			{
 				session.setAttribute("testResult",result1);//use this attribute to display data
@@ -181,13 +179,14 @@ public class StudentHelper extends HttpServlet {
 			}
 			else	 
 			{
-				request.setAttribute("testResult","Error.");//use this attribute to abstract info
-				RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
-				dispatch.forward(request, response);
+				session.setAttribute("message","");//use this attribute to abstract info
+				session.setAttribute("message1","");//use this attribute to abstract info
+				response.sendRedirect("./lost.jsp");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			session.setAttribute("message","Server Error!!!");
+			session.setAttribute("message1","Please Contact The Administrator.");
+			response.sendRedirect("./lost.jsp");
 		}
 	  
 		}
