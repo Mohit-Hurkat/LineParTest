@@ -32,8 +32,8 @@ input[type=radio] {
 }
 
 .leftRight {
+padding: 0px 400px 0px 300px;
 	font-size: 50px;
-	padding: 0px 100px 0px 350px;
 }
 
 a {
@@ -55,8 +55,8 @@ a {
 	});
 </script>
 <%
-	} 
-if (session.getAttribute("giveTestSession") == null) {
+	}
+	if (session.getAttribute("giveTestSession") == null) {
 		session.setAttribute("giveTestSession", "hello");
 	}
 %>
@@ -92,20 +92,7 @@ if (session.getAttribute("giveTestSession") == null) {
 						value="<%=quest.getChoice4()%>"><%=quest.getChoice4()%></li>
 				</ol>
 
-				<%
-					}
-				%>
-				<div class="leftRight">
-					<div class="arrow bounce">
-						<a class="fa fa-arrow-down fa-2x" id="lef" onclick="plusDivs(-1)">&#10094;prev
-						</a>
-					</div>
-					<div id="timer_div"></div>
-					<div class="arrow bounce1">
-						<a class="fa fa-arrow-down fa-2x" id="rig" onclick="plusDivs(1)">next&#10095;</a><br>
-					</div>
 
-				</div>
 
 
 				<!--  						<div class="leftRight">
@@ -114,12 +101,27 @@ if (session.getAttribute("giveTestSession") == null) {
  							<a class="right" id="rig" onclick="plusDivs(1)">&#10095;</a>
  							<br>
  							</div>
- -->
-				<div id="dis" style="float: left;">
-					<h1>Please Answer Atleast One Question</h1>
+				 -->
+			</div>
+			<%
+				}
+			%>
+			<div class="leftRight">
+				<div class="arrow bounce">
+					<a class="fa fa-arrow-down fa-2x" onclick="plusDivs(-1)">&#10094;prev</a>
 				</div>
+				<div id="timer_div"></div>
+				<div class="arrow bounce1">
+					<a class="fa fa-arrow-down fa-2x" onclick="plusDivs(1)">next&#10095;</a>
+				</div>
+				<br>
+			</div>
+			<br>
+			<div id="dis">
+				<h1>Please Answer Atleast One Question</h1>
 			</div>
 		</div>
+
 		<input type="submit" class="button button-block" id="sub"
 			value="Finish Test">
 	</form>

@@ -23,7 +23,7 @@ if(session.getAttribute("giveTestSession")!=null){
 <div class="form" style="margin: 40px 300px 40px 300px;text-align: center;">
     <div class="wrap">
   <form action="${pageContext.request.contextPath}/GiveTest" >
-  <input type="text" name="subjectIdd" value="<%=(Integer)request.getAttribute("sessionSubjectId")%>">
+  <input type="hidden" name="subjectIdd" value="<%=(Integer)request.getAttribute("sessionSubjectId")%>">
 <p>------------Don't Press Anything Until The Test Starts------------</p>
 		<p>-------------------INSTRUCTIONS FOR ONLINE EXAM-------------------</p>
 		<p>You will be given only 25 seconds to attempt every question</p>

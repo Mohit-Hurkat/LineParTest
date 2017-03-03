@@ -38,13 +38,13 @@ function Validation() {
             <label class="active highlight">            
             New Password<span class="req">*</span>
             </label>
-            <input type="password"  name="password" id="updatePassword" required autocomplete="off"/>
+            <input type="password" name="password" id="updatePassword" required autocomplete="off"/>
           	</div>   
           	<div class="field-wrap">
             <label class="active highlight">            
            Confirm Password<span class="req">*</span>
             </label>
-            <input type="password"  name="password" id="confirmPassword" required autocomplete="off" onBlur="Validation();"/>
+            <input type="password" name="password" id="confirmPassword" required autocomplete="off" onBlur="Validation();"/>
           	</div>  
            
             </div>

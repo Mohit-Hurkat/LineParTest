@@ -15,9 +15,6 @@ $( document ).ready(function(){
 		}
 	}, 1000);
 	
-	
-	
-
 	 	var $submit = $("#sub").hide();
 	    var $submit1 = $("#dis").show();
 	    var    $cbs = $("input[type='radio']").click(function() {

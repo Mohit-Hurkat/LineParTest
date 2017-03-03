@@ -49,15 +49,15 @@ function Validation() {
           	</div>
             <div class="field-wrap">
             <label class="active highlight">            
-            Update Password<span class="req">*</span>
+            Update Password(0-9,A-Z,a-z required)<span class="req">*</span>
             </label>
-            <input type="password"  name="updatePassword" id="updatePassword" required autocomplete="off"/>
+            <input type="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,})$" name="updatePassword" id="updatePassword" required autocomplete="off"/>
           	</div>   
           	<div class="field-wrap">
             <label class="active highlight">            
            Confirm Password<span class="req">*</span>
             </label>
-            <input type="password"  name="confirmPassword" id="confirmPassword" required autocomplete="off" onBlur="Validation();"/>
+            <input type="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])([a-zA-Z0-9]{8,})$" name="confirmPassword" id="confirmPassword" required autocomplete="off" onBlur="Validation();"/>
           	</div>  
           	<div class="field-wrap">
             <label class="active highlight">            

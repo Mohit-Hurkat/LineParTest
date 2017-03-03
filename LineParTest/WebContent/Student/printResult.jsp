@@ -73,7 +73,7 @@
 		<input type="button" onclick="javascript:demoFromHTML();"
 			class="button-block" id="pdf" value="Save As Pdf"><br>
 		<br>
-		<form action="${pageContext.request.contextPath}/Student/student.jsp"
+		<form action="${pageContext.request.contextPath}/StudentHelper?printt=printt"
 			method="post">
 			<input type="submit" class="button-block" value="Back">
 		</form>

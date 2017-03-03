@@ -9,5 +9,5 @@ import com.test.bean.Result;
 public interface ResultDao {
 	public List<Result> show(String username) throws ClassNotFoundException, SQLException, IOException;
 	public boolean set(String username,int subjectId,int result) throws ClassNotFoundException, SQLException, IOException;
-
+	public boolean update(String username,int subjectId,int result) throws ClassNotFoundException, SQLException, IOException;
 }

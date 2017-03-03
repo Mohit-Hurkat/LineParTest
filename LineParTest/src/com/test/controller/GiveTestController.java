@@ -12,12 +12,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.test.bl.ResultLogic;
 import com.test.bl.TestLogic;
 import com.test.bean.Question;
 
 public class GiveTestController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private TestLogic lc=new TestLogic(); 
+	private TestLogic lc=new TestLogic();
+	private ResultLogic rc=new ResultLogic(); 
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
@@ -27,9 +29,6 @@ public class GiveTestController extends HttpServlet {
 			int subject=Integer.parseInt(request.getParameter("subjectIdd"));
 			List<Question> quest=new ArrayList<>();
 			quest=lc.getQuestions(username, subject);
-			for(Question ques:quest){
-			System.out.println(ques);
-				}
 			session.setAttribute("Questions",quest);
 			response.sendRedirect("./Test/giveTest.jsp");
 		} catch (InterruptedException | ClassNotFoundException | SQLException | NullPointerException e) {
