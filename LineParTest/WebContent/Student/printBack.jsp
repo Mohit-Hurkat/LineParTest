@@ -27,7 +27,6 @@
 		<c:redirect url="/home.jsp" />
 	</c:if>
 	<%
-		ArrayList<PrintResult> resultList = (ArrayList<PrintResult>) session.getAttribute("sessionResultSet");
 		String result = (String) session.getAttribute("message1");
 		String username = (String) session.getAttribute("sessionUsername");
 	%>
@@ -41,27 +40,6 @@
 					<h2>
 						Username:
 						<%=username%></h2>
-					<h2>
-						Subject Id:<%=resultList.get(0).getSubjectId()%></h2>
-					<table border="1" style="width: 100%;">
-						<tr>
-							<th>Question</th>
-							<th>Answer</th>
-							<th>Your Selection</th>
-
-						</tr>
-						<%
-							for (PrintResult print : resultList) {
-						%>
-						<tr>
-							<td><%=print.getQuestion()%></td>
-							<td><%=print.getAnswer()%></td>
-							<td><%=print.getChoice()%></td>
-						</tr>
-						<%
-							}
-						%>
-					</table>
 					<h1>
 						Result:
 						<%=result%></h1>

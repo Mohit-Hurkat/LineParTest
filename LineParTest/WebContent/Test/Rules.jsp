@@ -12,9 +12,14 @@ p{
 color:white;
 }
 </style>
+<%
+if(session.getAttribute("giveTestSession")!=null){
+	session.setAttribute("forceSubmit", "force");
+    response.sendRedirect("./Test/giveTest.jsp");
+}
+%>
 </head>
 <body>
-
 <div class="form" style="margin: 40px 300px 40px 300px;text-align: center;">
     <div class="wrap">
   <form action="${pageContext.request.contextPath}/GiveTest" >

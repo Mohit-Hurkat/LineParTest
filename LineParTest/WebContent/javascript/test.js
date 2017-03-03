@@ -9,11 +9,10 @@ $( document ).ready(function(){
 	var interval = setInterval(function() {
 	    document.getElementById('timer_div').innerHTML = --seconds_left;
 
-	    if (seconds_left <= 0)
-	    {
-	       clearInterval(interval);
-	       $( "#test" ).submit();
-	    }
+		    if (seconds_left <= 0) {
+			clearInterval(interval);
+			$("#test").submit();
+		}
 	}, 1000);
 	
 	
