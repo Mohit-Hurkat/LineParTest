@@ -43,7 +43,7 @@
  				<div id="dis">
 					<h1>Please Select an User</h1>
  				</div>
- 			<input type="submit" id="sub" value="delete" name="delete">
+ 			<input type="submit" class="button-block" id="sub" value="delete" name="delete">
 		</form>
 		</div>
 		<br>

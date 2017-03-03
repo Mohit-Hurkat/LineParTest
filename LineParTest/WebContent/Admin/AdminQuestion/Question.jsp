@@ -59,7 +59,7 @@ display:inline;
  <div id="dis">
  <h1>Please select the Subject</h1>
  </div>
- <input type="submit" id="sub" name="Subject" value="Select">
+ <input type="submit" class="button-block" id="sub" name="Subject" value="Select">
 </form>
 </div>
 <form action="${pageContext.request.contextPath}/Admin/adminSignIn.jsp" method="post" name="backForm">

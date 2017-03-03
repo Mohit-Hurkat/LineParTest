@@ -70,10 +70,11 @@
 			</form>
 		</div>
 		<div id="editor"></div>
-		<input type="button" onclick="javascript:demoFromHTML();"
-			class="button-block" id="pdf" value="Save As Pdf"><br>
-		<br>
-		<form action="${pageContext.request.contextPath}/StudentHelper?printt=printt"
+		<input type="button" onclick="printDiv('content');"
+			class="button-block" id="pdf" value="Print Content"><br>
+		<br> <br>
+		<form
+			action="${pageContext.request.contextPath}/StudentHelper?printt=printt"
 			method="post">
 			<input type="submit" class="button-block" value="Back">
 		</form>
