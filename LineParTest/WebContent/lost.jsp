@@ -114,6 +114,12 @@ if(message1==null){
 <a href="<c:url value="./Admin/adminSignIn.jsp"/>" style="font-size: 25px;">Go Back</a><br>
 </c:if>
 
+<c:if test="${empty sessionScope.admin}">
+<c:if test="${empty sessionScope.student}">
+<a href="<c:url value="./home.jsp"/>" style="font-size: 25px;">Go Back</a><br>
+</c:if>
+</c:if>
+
 <br><br>
 <a href="https://www.hurkat.in">Contact Administrator</a><br><br>
 <a href="https://www.facebook.com/mohit.hurkat">Mohit Hurkat</a> | <a href="https://www.facebook.com/profile.php?id=100003573744425">Manish Kumar</a> | <a href="https://www.facebook.com/priyank.mahajan.35">Priyank Mahajan</a> | <a href="https://www.facebook.com/shikhar.bajaj">Shikhar Bajaj</a> | <a href="https://www.facebook.com/supriya.malla.35">Supriya Malla</a>

@@ -12,9 +12,11 @@
 	href="${pageContext.request.contextPath}/style1.css" />
 <script src="../javascript/homepage.js" type="text/javascript"></script>
 <%
-	if (session.getAttribute("giveTestSession") != null) {
-		session.setAttribute("giveTestSession", null);
-	}
+if(session.getAttribute("giveTestSession")!=null){
+	out.println(session.getAttribute("giveTestSession"));
+	session.setAttribute("forceSubmit", "force");
+    response.sendRedirect("./Test/giveTest.jsp");
+}
 %>
 </head>
 <body>

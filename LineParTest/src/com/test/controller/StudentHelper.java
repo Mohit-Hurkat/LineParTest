@@ -192,6 +192,13 @@ public class StudentHelper extends HttpServlet {
 		}
 	  
 		}
+	else if (request.getParameter("printt") != null) {//check the parameter name
+		HttpSession session=request.getSession(false);
+		if (session.getAttribute("giveTestSession") != null) {
+			session.setAttribute("giveTestSession", null);
+		}
+		response.sendRedirect("./Student/student.jsp");
+	}
 		
 		
 	}

@@ -69,7 +69,7 @@ public class TestResult extends HttpServlet {
 		} 
 			else{
 				session.setAttribute("message","Test Already Given");
-				session.setAttribute("message1","Stop Using The Back Button");
+				session.setAttribute("message1","Stop Using The Browser Back Button");
 				response.sendRedirect("./lost.jsp");
 			}
 		}	catch (Exception e) {
