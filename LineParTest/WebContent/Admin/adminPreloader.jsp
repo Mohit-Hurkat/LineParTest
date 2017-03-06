@@ -13,7 +13,7 @@
 <script type="text/javascript">
 $( document ).ready(function() {
 	odoo.default({ el:'.js-odoo', from: 'Hola', to: 'Admin', animationDelay: 1000 });
-	responsiveVoice.speak("Hey Admin", "Hindi Female", {volume: 4},{rate: 0.6});
+	responsiveVoice.speak("Welcome Admin", "UK English Male",{rate:0.75});
 });
 </script>
 </head>

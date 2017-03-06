@@ -16,7 +16,7 @@ $( document ).ready(function() {
 	var parts = "<%=name%>".split(" ");
 	var first = parts.shift();
 			odoo.default({ el:'.js-odoo', from: 'Hola', to: first, animationDelay: 1000 });
-			responsiveVoice.speak("Hello"+"<%=name%>", "Hindi Female", {volume: 4},{rate: 0.6});
+			responsiveVoice.speak("Hello"+"<%=name%>", "UK English Male",{rate:0.75});
 });
 </script>
 </head>
