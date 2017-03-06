@@ -143,8 +143,10 @@ public class StudentHelper extends HttpServlet {
 			{
 				
 				session.setAttribute("student",student);
+				student=lc.search(user);
+				session.setAttribute("sessionName", student.getName());
 				session.setAttribute("sessionUsername", user);
-		        response.sendRedirect("./Student/student.jsp");
+		        response.sendRedirect("./Student/studentPreloader.jsp");
 			}
 			else
 			{	
