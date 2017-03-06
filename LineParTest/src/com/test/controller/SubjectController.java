@@ -136,7 +136,11 @@ public class SubjectController extends HttpServlet {
 			int subid=Integer.parseInt(request.getParameter("subjectId"));
 			String subname=request.getParameter("subjectName");
 			String subdate1=request.getParameter("subjectDate1");
+			System.out.println(subdate1);
+			String res1=subdate1.substring(0,3);
+			System.out.println(res1);
 			String subdate2=request.getParameter("subjectDate2");
+			System.out.println(subdate2);
 			Subject sub=new Subject(subid, subname, subdate1, subdate2);
 			SubjectLogic lc=new SubjectLogic();
 			try {

@@ -12,14 +12,15 @@ import com.test.bean.Subject;
 import com.test.helper.JDBCConnection;
 
 public class SubjectDaoImpl implements SubjectDao {
-	private static final String INSERT_QUERY="INSERT INTO SUBJECT(SUBJECT_ID,SUBJECT_NAME,START_DATE,END_DATE) VALUES(?,?,to_date(?,'dd/mm/yyyy'),to_date(?,'dd/mm/yyyy'))";
+	private static final String INSERT_QUERY="INSERT INTO SUBJECT(SUBJECT_ID,SUBJECT_NAME,START_DATE,END_DATE) VALUES(?,?,to_date(?,'yyyy-mm-dd'),to_date(?,'yyyy-mm-dd'))";
 	private static final String GET_MAX_ID_QUERY = "SELECT COALESCE(MAX(SUBJECT_ID), 0) AS COUNT FROM SUBJECT";
 	private static final String SELECT_QUERY = "SELECT * FROM SUBJECT WHERE SUBJECT_ID = ?";   
 	private static final String SELECT_ALL_QUERY = "SELECT * FROM SUBJECT";
-	private static final String UPDATE_QUERY = "UPDATE SUBJECT SET SUBJECT_NAME = ? ,START_DATE = to_date(?,'dd/mm/yyyy'),END_DATE = to_date(?,'dd/mm/yyyy') WHERE SUBJECT_ID = ?";
+	private static final String UPDATE_QUERY = "UPDATE SUBJECT SET SUBJECT_NAME = ? ,START_DATE = to_date(?,'yyyy-mm-dd'),END_DATE = to_date(?,'yyyy-mm-dd') WHERE SUBJECT_ID = ?";
 	private static final String DELETE_QUERY = "DELETE FROM SUBJECT WHERE SUBJECT_ID = ?";
 	private static final String SELECT_RESULT = "SELECT SUBJECT_ID,SUBJECT_NAME FROM SUBJECT WHERE SUBJECT_ID IN (SELECT SUBJECT_ID FROM RESULT WHERE USERNAME = ?)";
-	private String start,end; 
+	private String start,end;
+	private String dated,monthm,yeary;
 	
 	@Override
 	public boolean insert(String sub,String date1,String date2) throws IOException, ClassNotFoundException, SQLException {
@@ -100,10 +101,22 @@ public class SubjectDaoImpl implements SubjectDao {
 	public boolean update(int subjectId, Subject subject) throws IOException, ClassNotFoundException, SQLException {
 		Connection connection = JDBCConnection.getConnection();
 		PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_QUERY);
+//		monthm=subject.getStart().substring(0,3);
+//		dated=subject.getStart().substring(3,6);
+//		yeary=subject.getStart().substring(6,10);
+//		start=dated.concat(monthm);
+//		start=start.concat(yeary);
+		preparedStatement.setString(2, subject.getStart());
+//		System.out.println(start);
+//		monthm=subject.getEnd().substring(0,3);
+//		dated=subject.getEnd().substring(3,6);
+//		yeary=subject.getEnd().substring(6,10);
+//		end=dated.concat(monthm);
+//		end=start.concat(yeary);
+//		System.out.println(end);
+		preparedStatement.setString(3, subject.getEnd());
 		preparedStatement.setString(1, subject.getSubject());
 		preparedStatement.setInt(4, subjectId);
-		preparedStatement.setString(2, subject.getStart());
-		preparedStatement.setString(3, subject.getEnd());
 		preparedStatement.executeQuery();
 		preparedStatement.close();
 		connection.close();

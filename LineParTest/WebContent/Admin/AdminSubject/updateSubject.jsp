@@ -78,23 +78,23 @@ $('.tab a').on('click', function (e) {
             </div>
 
           <div class="field-wrap">
-            <label>
+            <label class="active">
             Subject ID <span class="req">*</span>
             </label>
-            <input type="number"  name="subjectId" required autocomplete="off"/>
+            <input type="number"  name="subjectId" min="1" required autocomplete="off"/>
             </div>
 			<div class="field-wrap">
-            <label>
+            <label class="active">
            Start Date<span class="req">*</span>
             </label>
-            <input type="text"  name="subjectDate1" required autocomplete="off"/>
+            <input type="date"  name="subjectDate1" required autocomplete="off"/>
           	</div>
           
             <div class="field-wrap">
-            <label>
+            <label class="active">
            	End State<span class="req">*</span>
             </label>
-            <input type="text"  name="subjectDate2"  required autocomplete="off"  />
+            <input type="date"  name="subjectDate2"  required autocomplete="off"  />
             </div>
           
             

@@ -49,17 +49,17 @@ $('.tab a').on('click', function (e) {
 
           
 			<div class="field-wrap">
-			<label>
-           Start Date (dd/mm/yyyy)<span class="req">*</span>
+			<label class="active">
+           Start Date (mm/dd/yyyy)<span class="req">*</span>
             </label>
-            <input type="text" pattern="\d{1,2}/\d{1,2}/\d{4}"  name="subjectDate1" required autocomplete="off"/>
+            <input type="date" pattern="\d{1,2}/\d{1,2}/\d{4}"  name="subjectDate1" required autocomplete="off"/>
           	</div>
           
             <div class="field-wrap">
-	        <label>
-           	End State(dd/mm/yyyy)<span class="req">*</span>
+	        <label class="active">
+           	End State(mm/dd/yyyy)<span class="req">*</span>
             </label>
-            <input type="text" pattern="\d{1,2}/\d{1,2}/\d{4}" name="subjectDate2"  required autocomplete="off"  />
+            <input type="date" pattern="\d{1,2}/\d{1,2}/\d{4}" name="subjectDate2"  required autocomplete="off"  />
             </div>
           
             
