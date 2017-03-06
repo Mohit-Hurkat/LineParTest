@@ -6,15 +6,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>FINAL</title>
+    <% String message=(String)session.getAttribute("message");
+    String message1=(String)session.getAttribute("message1"); 
+    if(message==null){
+    	message="Oops! It looks like you're lost. ";
+    }
+
+    if(message1==null){
+    	message1="Sorry about that.";
+    }
+    %>
 <head>
     <meta charset="UTF-8">
     <title>Typed.js - Type your heart out</title>
     <!-- Get jQuery -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="javascript/typed.js" type="text/javascript"></script>
+    <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
     <script>
-    $(function(){
-
+    $(document).ready(function() {
+    	responsiveVoice.speak("<%=message%>"+"<%=message1%>"+"Let me try and help."+"Click On The Below Links for Navigations.", "UK English Male",{rate:1});
+    	
         $("#typed").typed({
             stringsElement: $('#typed-strings'),
             typeSpeed: 30,
@@ -30,6 +42,7 @@
         $(".reset").click(function(){
             $("#typed").typed('reset');
         });
+
 
     });
 
@@ -81,16 +94,6 @@
     </style>
 </head>
 <body>
-<% String message=(String)session.getAttribute("message");
-String message1=(String)session.getAttribute("message1"); 
-if(message==null){
-	message="Oops! It looks like you're lost. ";
-}
-
-if(message1==null){
-	message1="Sorry about that.";
-}
-%>
 <div class="form">
     <div class="wrap">
         <h1 id="construct" style="font-family: samarkan;">NAMASTE</h1>
