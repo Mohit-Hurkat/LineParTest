@@ -9,9 +9,11 @@
 <link rel="stylesheet" type="text/css" href="./style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
 <script src="https://cdn.rawgit.com/coderitual/odoo/feature/codevember16/lib/odoo.js" type="text/javascript"></script>
+<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <script type="text/javascript">
 $( document ).ready(function() {
 	odoo.default({ el:'.js-odoo', from: 'Hola', to: 'Admin', animationDelay: 1000 });
+	responsiveVoice.speak("Hey Admin", "Hindi Female", {volume: 4},{rate: 0.6});
 });
 </script>
 </head>

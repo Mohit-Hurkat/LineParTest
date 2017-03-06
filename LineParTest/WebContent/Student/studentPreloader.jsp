@@ -9,13 +9,14 @@
 <link rel="stylesheet" type="text/css" href="./style.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
 <script src="https://cdn.rawgit.com/coderitual/odoo/feature/codevember16/lib/odoo.js" type="text/javascript"></script>
+<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
 <script type="text/javascript">
 $( document ).ready(function() {
 	<% String name=(String)session.getAttribute("sessionName");%>
 	var parts = "<%=name%>".split(" ");
 	var first = parts.shift();
-
 			odoo.default({ el:'.js-odoo', from: 'Hola', to: first, animationDelay: 1000 });
+			responsiveVoice.speak("Hello"+"<%=name%>", "Hindi Female", {volume: 4},{rate: 0.6});
 });
 </script>
 </head>

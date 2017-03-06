@@ -16,7 +16,7 @@ body {
   font-weight: bold;
   font-size: 16vmin;
   text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
-  fill: #fff;
+  fill: rgba(36, 83, 105, 0.52);
   display: flex;
   justify-content: center;
   align-items: center;
