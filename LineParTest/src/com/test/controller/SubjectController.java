@@ -12,11 +12,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 import com.test.bean.Subject;
 import com.test.bl.SubjectLogic;
  
 public class SubjectController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger logger=Logger.getLogger(AdminController.class);
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(true);
@@ -33,6 +37,8 @@ public class SubjectController extends HttpServlet {
 				{
 				 
 					session.setAttribute("mess","Successfully Inserted.");//use this attribute to abstract info
+					BasicConfigurator.configure();
+				 	logger.info("Admin Subject insert working!!");
 					response.sendRedirect("./Admin/adminSubject.jsp");
 					 
 				}
@@ -40,11 +46,15 @@ public class SubjectController extends HttpServlet {
 				{
 					session.setAttribute("message","Insertion Failed");
 					session.setAttribute("message1", "");
+					BasicConfigurator.configure();
+				 	logger.info("Admin Subject insert not working!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				session.setAttribute("message","Invalid Input Format");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+			 	logger.info("Admin Subject insert not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		} 
@@ -57,23 +67,31 @@ public class SubjectController extends HttpServlet {
 				if(lc.delete(subid))
 				{
 					session.setAttribute("mess","Successfully Deleted.");//use this attribute to abstract info
+					BasicConfigurator.configure();
+				 	logger.info("Admin Subject delete working!!");
 					response.sendRedirect("./Admin/adminSubject.jsp");
 				}
 				else	 
 				{
 					session.setAttribute("message","Deletion Failed");
 					session.setAttribute("message1", "");
+					BasicConfigurator.configure();
+				 	logger.info("Admin Subject delete not working!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			}
 			catch(NullPointerException | NumberFormatException e){
 					session.setAttribute("message","Please Select a Valid Subject");
 		    	 session.setAttribute("message1","Visit lenskart for better vision.");
+		    	 BasicConfigurator.configure();
+				 	logger.info("Admin Subject delete not working!!");
 		    	response.sendRedirect("./lost.jsp");
 		    	 
 			} catch (ClassNotFoundException | SQLException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+			 	logger.info("Admin Subject delete not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		      
@@ -87,23 +105,31 @@ public class SubjectController extends HttpServlet {
 				if(sub.getSubjectId()==subid)
 				{				 
 					session.setAttribute("subjectSearch", sub);//use this attribute to display data
+					BasicConfigurator.configure();
+				 	logger.info("Admin Subject search working!!");
 					response.sendRedirect("./Admin/AdminSubject/adminSubjectSearch.jsp");
 				}
 				else
 				{
 					session.setAttribute("message","Search Failed");
 					session.setAttribute("message1", "");
+					BasicConfigurator.configure();
+				 	logger.info("Admin Subject search not working!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (NullPointerException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+			 	logger.info("Admin Subject search not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 			
 			catch (ClassNotFoundException | SQLException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+			 	logger.info("Admin Subject search not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		  
@@ -116,6 +142,8 @@ public class SubjectController extends HttpServlet {
 				if(sub!=null)
 				{
 					session.setAttribute("subjectDisplay", sub);//use this attribute to display data
+					BasicConfigurator.configure();
+				 	logger.info("Admin Subject display all working!!");
 					response.sendRedirect("./Admin/AdminSubject/displaySubject.jsp");
 				 
 				}
@@ -123,11 +151,15 @@ public class SubjectController extends HttpServlet {
 				{
 					session.setAttribute("message","Error");
 					session.setAttribute("message1", "");
+					BasicConfigurator.configure();
+				 	logger.info("Admin Subject display all not working!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException | NullPointerException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+			 	logger.info("Admin Subject display all not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		  
@@ -147,17 +179,23 @@ public class SubjectController extends HttpServlet {
 				if(lc.update(subid,sub))
 				{
 					session.setAttribute("mess","Successfully Updated.");//use this attribute to abstract info
+					BasicConfigurator.configure();
+				 	logger.info("Admin Subject update working!!");
 					 response.sendRedirect("./Admin/adminSubject.jsp");
 				}
 				else	 
 				{
 					session.setAttribute("message","Update Failed");
 					session.setAttribute("message1", "");
+					BasicConfigurator.configure();
+				 	logger.info("Admin Subject update not working!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+			 	logger.info("Admin Subject update not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		  

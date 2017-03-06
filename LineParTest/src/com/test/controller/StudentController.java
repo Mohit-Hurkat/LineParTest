@@ -11,11 +11,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 import com.test.bean.Student;
 import com.test.bl.StudentLogic;
  
 public class StudentController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private static Logger logger=Logger.getLogger(signInController.class);
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession(false);
@@ -33,16 +37,22 @@ public class StudentController extends HttpServlet {
 				if(lc.insert(student))
 				{
 					request.setAttribute("studentinsert","Successfully Inserted.");
+					BasicConfigurator.configure();
+				 	logger.info("Sign up working!!");
 					response.sendRedirect("./Student/success.jsp");
 				}
 				else	 
 				{
 					request.setAttribute("studentinsert"," Error.");
+					BasicConfigurator.configure();
+				 	logger.info("Sign up not working!!");
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
+				BasicConfigurator.configure();
+			 	logger.info("Sign up not working!!");
 				e.printStackTrace();
 			}
 		} 
@@ -54,17 +64,22 @@ public class StudentController extends HttpServlet {
 				if(lc.delete(username))
 				{
 					session.setAttribute("studentDelete","Successfully Deleted.");
+					BasicConfigurator.configure();
+				 	logger.info("Student delete working!!");
 					response.sendRedirect("./Admin/AdminStudent/adminStudent.jsp");
 				}
 				else	 
 				{
 					request.setAttribute("studentDelete","Error.");
+					BasicConfigurator.configure();
+				 	logger.info("Student delete not working!!");
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
-			 
-				e.printStackTrace();
+				BasicConfigurator.configure();
+			 	logger.info("Student delete not working!!");
+			    e.printStackTrace();
 			}
 		      
 		}
@@ -76,11 +91,15 @@ public class StudentController extends HttpServlet {
 				if(stu.getUsername().equals(suname))
 				{
 					session.setAttribute("studentSearch",stu);
+					BasicConfigurator.configure();
+				 	logger.info("Student search working!!");
 					response.sendRedirect("./Admin/AdminStudent/adminStudentSearch.jsp");
 				}
 				else
 				{
 					request.setAttribute("studentDelete","Error.");
+					BasicConfigurator.configure();
+				 	logger.info("Student search not working!!");
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
 				}
@@ -93,7 +112,8 @@ public class StudentController extends HttpServlet {
 		    	 
 			}
 			catch (ClassNotFoundException | SQLException e) {
-			 
+				BasicConfigurator.configure();
+			 	logger.info("Student search not working!!");
 				e.printStackTrace();
 			}
 		  
@@ -133,17 +153,23 @@ public class StudentController extends HttpServlet {
 				if(lc.update(suname, student))
 				{
 					request.setAttribute("studentUpdate","Successfully Updated.");
+					BasicConfigurator.configure();
+				 	logger.info("Student Update working!!");
 					RequestDispatcher dispatch=request.getRequestDispatcher("./student.jsp");
 					dispatch.forward(request, response);
 				}
 				else	 
 				{
 					request.setAttribute("studentUpdate","Error.");
+					BasicConfigurator.configure();
+				 	logger.info("Student Update not working!!");
 					RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");//change this to appropriate path
 					dispatch.forward(request, response);
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				// TODO Auto-generated catch block
+				BasicConfigurator.configure();
+			 	logger.info("Student Update not working!!");
 				e.printStackTrace();
 			}
 		  

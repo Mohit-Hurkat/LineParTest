@@ -10,6 +10,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 import com.test.bean.Question;
 import com.test.bean.Subject;
 import com.test.bl.QuestionLogic;
@@ -22,6 +25,7 @@ public class QuestionController extends HttpServlet {
 	private SubjectLogic sLogic=new SubjectLogic();
 	private Subject sub=null;
 	private QuestionLogic qLogic=new QuestionLogic();
+	private static Logger logger=Logger.getLogger(QuestionController.class);
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 //System.out.println("ques");
@@ -56,17 +60,23 @@ public class QuestionController extends HttpServlet {
 			try {
 				if(qLogic.insert(ques)){
 					session.setAttribute("message","Inserted Successfully");
+					BasicConfigurator.configure();
+				 	logger.info("Admin Questuion insert working!!");
 						response.sendRedirect("./Admin/AdminQuestion/final.jsp");
 					}
 				else
 				{
 					session.setAttribute("message","Inserted Failed");
 					session.setAttribute("message1", "Oops!!!");
+					BasicConfigurator.configure();
+				 	logger.info("Admin Questuion insert failed working!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+			 	logger.info("Admin Questuion insert not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 			
@@ -76,17 +86,23 @@ public class QuestionController extends HttpServlet {
 			try {
 				if(qLogic.delete(questionId)){
 					session.setAttribute("message","Deleted Successfully");
+					BasicConfigurator.configure();
+				 	logger.info("Admin Questuion delete working!!");
 					response.sendRedirect("./Admin/AdminQuestion/final.jsp");
 					}
 				else
 				{
 					session.setAttribute("message","Deletion Unsuccessful");
 					session.setAttribute("message1","Oops!!!");
+					BasicConfigurator.configure();
+				 	logger.info("Admin Questuion delete not working!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+			 	logger.info("Admin Questuion delete not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 			
@@ -97,10 +113,14 @@ public class QuestionController extends HttpServlet {
 			try {
 				sub=sLogic.search(subjectId);
 					session.setAttribute("sessionSubject",sub);//use this attribute to abstract info
+					BasicConfigurator.configure();
+				 	logger.info("Admin Questuion search working!!");
 					response.sendRedirect("./Admin/AdminQuestion/searchQuestion.jsp");
 			} catch (ClassNotFoundException | SQLException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+			 	logger.info("Admin Questuion search not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		  
@@ -113,16 +133,22 @@ public class QuestionController extends HttpServlet {
 				List<Question> ques=qLogic.displayAll(subjectId);
 				if(ques!=null){
 				session.setAttribute("sessionQuestionAll",ques);
+				BasicConfigurator.configure();
+			 	logger.info("Admin Questuion display all working!!");
 					response.sendRedirect("./Admin/AdminQuestion/viewAllQuestion.jsp");
 				}
 				else{
 					session.setAttribute("message","Error");
 					session.setAttribute("message1","");
+					BasicConfigurator.configure();
+				 	logger.info("Admin Questuion display all not working!!");
 						response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+			 	logger.info("Admin Questuion display all working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		  
@@ -159,11 +185,15 @@ public class QuestionController extends HttpServlet {
 							Question ques=new Question(questionId, subjectId, question, answer, op1, op2, op3, op4, op1);
 							session.setAttribute("sessionQuestion", ques);
 							session.setAttribute("call", "finalQues");
+							BasicConfigurator.configure();
+						 	logger.info("Admin Questuion update working!!");
 							response.sendRedirect("./Admin/AdminQuestion/finalUpdate.jsp");
 						}
 						catch (Exception e) {
 							session.setAttribute("message","Update Unsuccessful");
 							session.setAttribute("message1","Please Contact The Administrator.");
+							BasicConfigurator.configure();
+						 	logger.info("Admin Questuion update not working!!");
 							response.sendRedirect("./lost.jsp");
 						}
 						

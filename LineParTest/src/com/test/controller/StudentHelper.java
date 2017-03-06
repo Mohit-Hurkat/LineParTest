@@ -14,6 +14,9 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.jasper.tagplugins.jstl.core.Out;
 
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Logger;
+
 import com.test.bean.Question;
 import com.test.bean.Result;
 import com.test.bean.Student;
@@ -30,6 +33,7 @@ import javafx.scene.control.Alert;
 public class StudentHelper extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private StudentLogic lc=new StudentLogic(); 
+	private static Logger logger=Logger.getLogger(StudentHelper.class);
 	 
  
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -72,6 +76,8 @@ public class StudentHelper extends HttpServlet {
 				if(lc.update(suname, student))
 				{
 					request.setAttribute("studentUpdate","Successfully Updated.");
+					BasicConfigurator.configure();
+			 	    logger.info("Student update working!!");
 					RequestDispatcher dispatch=request.getRequestDispatcher("./Student/updateStudent.jsp");
 					dispatch.forward(request, response);
 				}
@@ -79,12 +85,15 @@ public class StudentHelper extends HttpServlet {
 				{
 					session.setAttribute("message","Update Unsuccessful.");//use this attribute to abstract info
 					session.setAttribute("message1","");//use this attribute to abstract info
-					response.sendRedirect("./lost.jsp");
+					BasicConfigurator.configure();
+			 	    logger.info("Student update not working!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+		 	    logger.info("Student update  not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		  
@@ -101,6 +110,8 @@ public class StudentHelper extends HttpServlet {
 				if(res>0)
 				{
 					request.setAttribute("testResult", res);//use this attribute to abstract info
+					BasicConfigurator.configure();
+			 	    logger.info("Student result working!!");
 					RequestDispatcher dispatch=request.getRequestDispatcher("./studentResult.jsp");
 					dispatch.forward(request, response);
 				}
@@ -108,11 +119,15 @@ public class StudentHelper extends HttpServlet {
 				{
 					session.setAttribute("message","");//use this attribute to abstract info
 					session.setAttribute("message1","");//use this attribute to abstract info
+					BasicConfigurator.configure();
+			 	    logger.info("Student result not working!!");
 					response.sendRedirect("./lost.jsp");
 				}
 			} catch (ClassNotFoundException | SQLException e) {
 				session.setAttribute("message","Server Error!!!");
 				session.setAttribute("message1","Please Contact The Administrator.");
+				BasicConfigurator.configure();
+		 	    logger.info("Student result not working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		      
@@ -146,24 +161,32 @@ public class StudentHelper extends HttpServlet {
 				student=lc.search(user);
 				session.setAttribute("sessionName", student.getName());
 				session.setAttribute("sessionUsername", user);
+				BasicConfigurator.configure();
+		 	    logger.info("Student login working!!");
 		        response.sendRedirect("./Student/studentPreloader.jsp");
 			}
 			else
 			{	
 				session.setAttribute("message","Invalid Credentials");
 				session.setAttribute("message1","Visit lenskart for better vision.");
+				BasicConfigurator.configure();
+		 	    logger.info("Student login wrong credentials!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		}
 		catch( NullPointerException e){
 			request.setAttribute("message","Invalid Credentials");
 	    	request.setAttribute("message1","Visit lenskart for better vision.");
+	    	BasicConfigurator.configure();
+	 	    logger.info("Student login not working!!");
 	    	RequestDispatcher dispatch=request.getRequestDispatcher("./lost.jsp");
 			dispatch.forward(request, response);			
 		}
 		catch (ClassNotFoundException | SQLException e) {
 			session.setAttribute("message","Server Error!!!");
 			session.setAttribute("message1","Please Contact The Administrator.");
+			BasicConfigurator.configure();
+	 	    logger.info("Student login not working!!");
 			response.sendRedirect("./lost.jsp");
 		}
 		
@@ -179,17 +202,23 @@ public class StudentHelper extends HttpServlet {
 			if(!result1.equals(result2))
 			{
 				session.setAttribute("testResult",result1);//use this attribute to display data
+				BasicConfigurator.configure();
+		 	    logger.info("Student result working!!");
 				response.sendRedirect("./Student/studentPrevResult.jsp");
 			}
 			else	 
 			{
 				session.setAttribute("message","No Test Given");//use this attribute to abstract info
 				session.setAttribute("message1","Hence, No Result Found");//use this attribute to abstract info
+				BasicConfigurator.configure();
+		 	    logger.info("Student result working!!");
 				response.sendRedirect("./lost.jsp");
 			}
 		} catch (ClassNotFoundException | SQLException e) {
 			session.setAttribute("message","Server Error!!!");
 			session.setAttribute("message1","Please Contact The Administrator.");
+			BasicConfigurator.configure();
+	 	    logger.info("Student result not working!!");
 			response.sendRedirect("./lost.jsp");
 		}
 	  
